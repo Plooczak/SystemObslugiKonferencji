@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System obsługi konferencji", "System obsługi konferencji\System obsługi konferencji.csproj", "{6ED0D39C-200D-4ED0-A5E9-58FEC8B1FD8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ED0D39C-200D-4ED0-A5E9-58FEC8B1FD8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ED0D39C-200D-4ED0-A5E9-58FEC8B1FD8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ED0D39C-200D-4ED0-A5E9-58FEC8B1FD8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ED0D39C-200D-4ED0-A5E9-58FEC8B1FD8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {405B7974-8662-4AF6-BDA6-AE13D756CA8F}
+	EndGlobalSection
+EndGlobal

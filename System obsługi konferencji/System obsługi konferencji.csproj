@@ -61,23 +61,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Konferencja.cs" />
+    <Compile Include="Organizator.cs" />
     <Compile Include="OrganizerMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrganizerMenu.Designer.cs">
       <DependentUpon>OrganizerMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Osoba.cs" />
     <Compile Include="ParticipantMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ParticipantMenu.Designer.cs">
       <DependentUpon>ParticipantMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Prelegent.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Referat.cs" />
     <Compile Include="SpeakerMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +103,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Uzytkownik.cs" />
     <EmbeddedResource Include="OrganizerMenu.resx">
       <DependentUpon>OrganizerMenu.cs</DependentUpon>
     </EmbeddedResource>

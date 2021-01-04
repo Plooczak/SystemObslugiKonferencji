@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 
-namespace ProgramoProjekt
+namespace System_obsługi_konferencji
 {
-    public abstract class Osoba
+    public abstract class NiepotrzebnaOsoba
     {
 
         private string imie;
@@ -52,7 +52,7 @@ namespace ProgramoProjekt
             set => email = value;
         }
 
-        public Osoba()
+        public NiepotrzebnaOsoba()
         {
             imie = null;
             nazwisko = null;
@@ -62,7 +62,7 @@ namespace ProgramoProjekt
             email = null;
         }
 
-        public Osoba(string imie, string nazwisko, string plec, string data_Urodzenia, string nrTelefonu, string email) : this()
+        public NiepotrzebnaOsoba(string imie, string nazwisko, string plec, string data_Urodzenia, string nrTelefonu, string email) : this()
         {
             this.imie = imie;
             this.nazwisko = nazwisko;

@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace ProgramoProjekt
 {
-    class Uzytkownik: Osoba
+    public class Uzytkownik: Osoba
     {
         private string login;
         private string haslo;

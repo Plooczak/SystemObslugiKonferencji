@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 
-namespace ProgramoProjekt
+namespace System_obsługi_konferencji
 {
-    public class Uzytkownik: Osoba
+    public abstract class Uzytkownik
     {
         private string login;
         private string haslo;
@@ -30,7 +30,7 @@ namespace ProgramoProjekt
             haslo = null;
         }
 
-        public Uzytkownik(string imie, string nazwisko, string plec, string data_Urodzenia, string nrTelefonu, string email, string login, string haslo) : base(imie, nazwisko, plec, data_Urodzenia, nrTelefonu, email)
+        public Uzytkownik(string login, string haslo)
         {
             this.login = login;
             this.haslo = haslo;
@@ -40,6 +40,5 @@ namespace ProgramoProjekt
         {
             return base.ToString();
         }
-
     }
 }

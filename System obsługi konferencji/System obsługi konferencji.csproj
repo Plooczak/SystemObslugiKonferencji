@@ -67,6 +67,7 @@
     <Compile Include="ListaMiejsc.cs" />
     <Compile Include="ListaPrelegentówKonferencji.cs" />
     <Compile Include="ListaUczestnikówKonferencji.cs" />
+    <Compile Include="Miejsce.cs" />
     <Compile Include="Organizator.cs" />
     <Compile Include="OrganizerMenu.cs">
       <SubType>Form</SubType>

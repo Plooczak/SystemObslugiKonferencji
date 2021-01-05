@@ -75,7 +75,6 @@
     <Compile Include="OrganizerMenu.Designer.cs">
       <DependentUpon>OrganizerMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Osoba.cs" />
     <Compile Include="ParticipantMenu.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -13,13 +13,14 @@ namespace System_obsługi_konferencji
 {
     public partial class Start : Form
     {
+        List<Sluchacz> sluchacze = new List<Sluchacz>();
+        List<Prelegent> prelegenci = new List<Prelegent>();
+        List<Organizator> organizatorzy = new List<Organizator>();
+        Sluchacz user = new Sluchacz();
         public Start()
         {
             InitializeComponent();
         }
-
-        
-
         private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
         {
 
@@ -42,9 +43,9 @@ namespace System_obsługi_konferencji
 
 
             textBox1.Location = new System.Drawing.Point(140, 30);
-            textBox1.Name = "textBox1";
+            textBox1.Name = "tbxName";
             textBox1.Size = new System.Drawing.Size(118, 22);
-            //textBox1.TabIndex = 0;
+            //tbxName.TabIndex = 0;
 
             label1.AutoSize = true;
             label1.Location = new System.Drawing.Point(10, 32);
@@ -54,7 +55,7 @@ namespace System_obsługi_konferencji
             label1.Text = "Nazwa użytkownika";
 
             textBox2.Location = new System.Drawing.Point(140, 70);
-            textBox2.Name = "textBox2";
+            textBox2.Name = "tbxSurname";
             textBox2.Size = new System.Drawing.Size(118, 22);
 
             label2.AutoSize = true;
@@ -91,12 +92,26 @@ namespace System_obsługi_konferencji
 
             void BtnZaloguj(object sender2, EventArgs e2)
             {
-                dlgLogin.DialogResult = DialogResult.OK;
-                dlgLogin.Dispose();
-                this.Hide();
-                var mainMenu = new MainMenu();
-                mainMenu.Closed += (s, args) => this.Show();
-                mainMenu.Show();
+                Sluchacz login = new Sluchacz(textBox1.Text,textBox2.Text);
+                if (sluchacze.Contains(login))
+                {
+                    dlgLogin.DialogResult = DialogResult.OK;
+                    dlgLogin.Dispose();
+                    this.Hide();
+                    var mainMenu = new MainMenu();
+                    mainMenu.Closed += (s, args) => this.Show();
+                    mainMenu.Show();
+                }
+                else
+                {
+                    string message = "Nieprawidłowe dane logowania";
+                    string caption = "";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    DialogResult result;
+
+                    result = MessageBox.Show(message, caption, buttons);
+                }
+                                    
             }
 
             void BtnCancel(object sender2, EventArgs e2)
@@ -123,14 +138,14 @@ namespace System_obsługi_konferencji
             Label label8 = new System.Windows.Forms.Label();
             Label label9 = new System.Windows.Forms.Label();
             Label label10 = new System.Windows.Forms.Label();
-            TextBox textBox1 = new System.Windows.Forms.TextBox();
-            TextBox textBox2 = new System.Windows.Forms.TextBox();
-            TextBox textBox3 = new System.Windows.Forms.TextBox();
-            DateTimePicker dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            ComboBox comboBox1 = new System.Windows.Forms.ComboBox();
-            TextBox textBox4 = new System.Windows.Forms.TextBox();
-            TextBox textBox5 = new System.Windows.Forms.TextBox();
-            TextBox textBox6 = new System.Windows.Forms.TextBox();
+            TextBox tbxName = new System.Windows.Forms.TextBox();
+            TextBox tbxSurname = new System.Windows.Forms.TextBox();
+            TextBox tbxEMail = new System.Windows.Forms.TextBox();
+            DateTimePicker pckBirthDate = new System.Windows.Forms.DateTimePicker();
+            ComboBox cbxSex = new System.Windows.Forms.ComboBox();
+            TextBox tbxLogin = new System.Windows.Forms.TextBox();
+            TextBox tbxPassword = new System.Windows.Forms.TextBox();
+            TextBox tbxPhoneNumber = new System.Windows.Forms.TextBox();
             Button button1 = new System.Windows.Forms.Button();
             Button button2 = new System.Windows.Forms.Button();
 
@@ -145,74 +160,74 @@ namespace System_obsługi_konferencji
             label1.TabIndex = 0;
             label1.Text = "Wprowadź swoje dane";
             // 
-            // textBox1
+            // tbxName
             // 
-            textBox1.Location = new System.Drawing.Point(45, 92);
-            textBox1.MaxLength = 20;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new System.Drawing.Size(120, 22);
-            textBox1.TabIndex = 1;
+            tbxName.Location = new System.Drawing.Point(45, 92);
+            tbxName.MaxLength = 20;
+            tbxName.Name = "imie";
+            tbxName.Size = new System.Drawing.Size(120, 22);
+            tbxName.TabIndex = 1;
             // 
-            // textBox2
+            // tbxSurname
             // 
-            textBox2.Location = new System.Drawing.Point(196, 92);
-            textBox2.MaxLength = 25;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new System.Drawing.Size(120, 22);
-            textBox2.TabIndex = 2;
+            tbxSurname.Location = new System.Drawing.Point(196, 92);
+            tbxSurname.MaxLength = 25;
+            tbxSurname.Name = "nazwisko";
+            tbxSurname.Size = new System.Drawing.Size(120, 22);
+            tbxSurname.TabIndex = 2;
             // 
-            // textBox3
+            // tbxEMail
             // 
-            textBox3.Location = new System.Drawing.Point(45, 151);
-            textBox3.MaxLength = 100;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new System.Drawing.Size(152, 22);
-            textBox3.TabIndex = 3;
+            tbxEMail.Location = new System.Drawing.Point(45, 151);
+            tbxEMail.MaxLength = 100;
+            tbxEMail.Name = "email";
+            tbxEMail.Size = new System.Drawing.Size(152, 22);
+            tbxEMail.TabIndex = 3;
             // 
-            // dateTimePicker1
+            // pckBirthDate
             // 
-            dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new System.Drawing.Point(45, 211);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new System.Drawing.Size(185, 22);
-            dateTimePicker1.TabIndex = 4;
+            pckBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            pckBirthDate.Location = new System.Drawing.Point(45, 211);
+            pckBirthDate.Name = "pckBirthDate";
+            pckBirthDate.Size = new System.Drawing.Size(185, 22);
+            pckBirthDate.TabIndex = 4;
             // 
-            // comboBox1
+            // cbxSex
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] {
+            cbxSex.FormattingEnabled = true;
+            cbxSex.Items.AddRange(new object[] {
             "K",
             "M"});
-            comboBox1.Location = new System.Drawing.Point(273, 211);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new System.Drawing.Size(43, 24);
-            comboBox1.TabIndex = 5;
+            cbxSex.Location = new System.Drawing.Point(273, 211);
+            cbxSex.Name = "cbxSex";
+            cbxSex.Size = new System.Drawing.Size(43, 24);
+            cbxSex.TabIndex = 5;
             // 
-            // textBox4
+            // tbxLogin
             // 
-            textBox4.Location = new System.Drawing.Point(45, 271);
-            textBox4.MaxLength = 20;
-            textBox4.Name = "textBox4";
-            textBox4.Size = new System.Drawing.Size(120, 22);
-            textBox4.TabIndex = 6;
+            tbxLogin.Location = new System.Drawing.Point(45, 271);
+            tbxLogin.MaxLength = 20;
+            tbxLogin.Name = "login";
+            tbxLogin.Size = new System.Drawing.Size(120, 22);
+            tbxLogin.TabIndex = 6;
             // 
-            // textBox5
+            // tbxPassword
             // 
-            textBox5.Location = new System.Drawing.Point(196, 271);
-            textBox5.MaxLength = 20;
-            textBox5.Name = "textBox5";
-            textBox5.Size = new System.Drawing.Size(120, 22);
-            textBox5.TabIndex = 7;
-            textBox5.UseSystemPasswordChar = true;
+            tbxPassword.Location = new System.Drawing.Point(196, 271);
+            tbxPassword.MaxLength = 20;
+            tbxPassword.Name = "haslo";
+            tbxPassword.Size = new System.Drawing.Size(120, 22);
+            tbxPassword.TabIndex = 7;
+            tbxPassword.UseSystemPasswordChar = true;
             // 
-            // textBox6
+            // tbxPhoneNumber
             // 
-            textBox6.Location = new System.Drawing.Point(235, 151);
-            textBox6.MaxLength = 9;
-            textBox6.Name = "textBox6";
-            textBox6.Size = new System.Drawing.Size(81, 22);
-            textBox6.TabIndex = 8;
-            textBox6.WordWrap = false;
+            tbxPhoneNumber.Location = new System.Drawing.Point(235, 151);
+            tbxPhoneNumber.MaxLength = 9;
+            tbxPhoneNumber.Name = "NrTelefonu";
+            tbxPhoneNumber.Size = new System.Drawing.Size(81, 22);
+            tbxPhoneNumber.TabIndex = 8;
+            tbxPhoneNumber.WordWrap = false;
             // 
             // label2
             // 
@@ -341,14 +356,14 @@ namespace System_obsługi_konferencji
             dlgRegister.Controls.Add(label4);
             dlgRegister.Controls.Add(label3);
             dlgRegister.Controls.Add(label2);
-            dlgRegister.Controls.Add(textBox6);
-            dlgRegister.Controls.Add(textBox5);
-            dlgRegister.Controls.Add(textBox4);
-            dlgRegister.Controls.Add(comboBox1);
-            dlgRegister.Controls.Add(dateTimePicker1);
-            dlgRegister.Controls.Add(textBox3);
-            dlgRegister.Controls.Add(textBox2);
-            dlgRegister.Controls.Add(textBox1);
+            dlgRegister.Controls.Add(tbxPhoneNumber);
+            dlgRegister.Controls.Add(tbxPassword);
+            dlgRegister.Controls.Add(tbxLogin);
+            dlgRegister.Controls.Add(cbxSex);
+            dlgRegister.Controls.Add(pckBirthDate);
+            dlgRegister.Controls.Add(tbxEMail);
+            dlgRegister.Controls.Add(tbxSurname);
+            dlgRegister.Controls.Add(tbxName);
             dlgRegister.Controls.Add(label1);
             dlgRegister.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             dlgRegister.Name = "Rejestracja";
@@ -360,6 +375,9 @@ namespace System_obsługi_konferencji
 
             void BtnRegister(object sender2, EventArgs e2)
             {
+                user = new Sluchacz(tbxLogin.Text, tbxPassword.Text, tbxName.Text, tbxSurname.Text, cbxSex.Text, pckBirthDate.Value.ToString(), tbxPhoneNumber.Text, tbxEMail.Text);
+                sluchacze.Add(user);
+                
                 string message = "Zostałeś zarejestrowany!";
                 string caption = "";
                 MessageBoxButtons buttons = MessageBoxButtons.OK;

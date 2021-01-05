@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    class Sluchacz : Uzytkownik, IComparable, IEquatable<Sluchacz>
+    class Sluchacz : Uzytkownik, IEquatable<Sluchacz>
     {
         private string imie;
         private string nazwisko;
@@ -23,8 +23,16 @@ namespace System_obsługi_konferencji
         public string NrTelefonu { get => nrTelefonu; set => nrTelefonu = value; }
         public string Email { get => email; set => email = value; }
 
-
         public Sluchacz()
+        {
+            imie = null;
+            nazwisko = null;
+            plec = null;
+            dataUrodzenia = DateTime.MinValue;
+            nrTelefonu = null;
+            email = null;
+        }
+        public Sluchacz(string login, string haslo):base(login,haslo)
         {
             imie = null;
             nazwisko = null;
@@ -49,31 +57,33 @@ namespace System_obsługi_konferencji
             return base.ToString();
         }
 
-        public int CompareTo(object obj)
-        {
-            if (obj != null)
-            {
-                Sluchacz s = (Sluchacz)obj;
-                int pom = this.Login.CompareTo(s.login);
+        //public int CompareTo(object obj)
+        //{
+        //    if (obj != null)
+        //    {
+        //        Sluchacz s = obj as Sluchacz;
+        //        int pom = this.Login.CompareTo(s.login);
 
-                if (pom != 0)
-                {
-                    return pom;
-                }
+        //        if (pom != 0)
+        //        {
+        //            return pom;
+        //        }
 
-                else
-                {
-                    return this.haslo.CompareTo(s.Haslo);
-                }
-            }
+        //        else
+        //        {
+        //            return this.haslo.CompareTo(s.Haslo);
+        //        }
+        //    }
 
-            else
-                return 1;
-        }
+        //    else
+        //        return 1;
+        //}
 
         public bool Equals(Sluchacz other)
         {
-            return (login.Equals(other.Login));
+            if (login.Equals(other.Login))
+                return (haslo.Equals(other.Haslo));
+            else return false;
         }
 
     }

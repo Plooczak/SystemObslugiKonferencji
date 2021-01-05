@@ -12,7 +12,7 @@ namespace System_obsługi_konferencji
         /// Główny punkt wejścia dla aplikacji.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             SetProcessDPIAware();
             Application.EnableVisualStyles();

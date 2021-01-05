@@ -17,7 +17,7 @@ namespace System_obsługi_konferencji
         private ListaPrelegentówKonferencji prelegenci;
         private ListaUczestnikówKonferencji uczestnicy;
         private PlanKonferencji plan;
-        private MiejsceKonferencji miejsce;
+        private Miejsce miejsce;
 
         public string IdKonferencji { get => idKonferencji; set => idKonferencji = value; }
         public string Temat { get => temat; set => temat = value; }

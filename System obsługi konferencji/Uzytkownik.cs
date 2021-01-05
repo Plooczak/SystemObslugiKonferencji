@@ -20,17 +20,14 @@ namespace System_obsługi_konferencji
             login = null;
             haslo = null;
         }
-
         public Uzytkownik(string login, string haslo)
         {
             this.login = login;
             this.haslo = haslo;
         }
-
         public override string ToString()
         {
             return base.ToString();
         }
-
     }
 }

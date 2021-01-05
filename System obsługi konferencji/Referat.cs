@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgramoProjekt
+namespace System_obsługi_konferencji
 {
     class Referat
     {
@@ -17,7 +17,7 @@ namespace ProgramoProjekt
         public string Streszczenie { get => streszczenie; set => streszczenie = value; }
         public DateTime SzacowanyCzasTrwania { get => szacowanyCzasTrwania; set => szacowanyCzasTrwania = value; }
         internal Prelegent Autor { get => autor; set => autor = value; }
-        
+
         public Referat()
         {
             tytul = null;
@@ -40,3 +40,4 @@ namespace ProgramoProjekt
         }
     }
 }
+

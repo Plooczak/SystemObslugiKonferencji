@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="DataStore.cs" />
     <Compile Include="Konferencja.cs" />
+    <Compile Include="ListaKonferencji.cs" />
     <Compile Include="Organizator.cs" />
     <Compile Include="OrganizerMenu.cs">
       <SubType>Form</SubType>

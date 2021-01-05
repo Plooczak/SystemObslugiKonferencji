@@ -12,17 +12,8 @@ namespace System_obsługi_konferencji
         private string login;
         private string haslo;
 
-        public string Login
-        {
-            get => login;
-            set => login = value;
-        }
-
-        public string Haslo
-        {
-            get => haslo;
-            set => haslo = value;
-        }
+        public string Login { get => login; set => login = value; }
+        public string Haslo { get => haslo; set => haslo = value; }
 
         public Uzytkownik()
         {
@@ -40,5 +31,6 @@ namespace System_obsługi_konferencji
         {
             return base.ToString();
         }
+
     }
 }

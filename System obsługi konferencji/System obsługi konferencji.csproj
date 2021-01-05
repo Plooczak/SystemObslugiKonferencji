@@ -82,6 +82,7 @@
     <Compile Include="ParticipantMenu.Designer.cs">
       <DependentUpon>ParticipantMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlanKonferencji.cs" />
     <Compile Include="Prelegent.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

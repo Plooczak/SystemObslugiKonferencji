@@ -376,7 +376,7 @@ namespace System_obsługi_konferencji
             void BtnRegister(object sender2, EventArgs e2)
             {
                 user = new Sluchacz(tbxLogin.Text, tbxPassword.Text, tbxName.Text, tbxSurname.Text, cbxSex.Text, pckBirthDate.Value.ToString(), tbxPhoneNumber.Text, tbxEMail.Text);
-                sluchacze.Add(user);
+                sluchacze.Add(user);  
                 
                 string message = "Zostałeś zarejestrowany!";
                 string caption = "";

@@ -11,11 +11,11 @@ namespace System_obsługi_konferencji
         private string tytul;
         private string streszczenie;
         private Prelegent autor;
-        private DateTime szacowanyCzasTrwania;
+        private TimeSpan szacowanyCzasTrwania;
 
         public string Tytul { get => tytul; set => tytul = value; }
         public string Streszczenie { get => streszczenie; set => streszczenie = value; }
-        public DateTime SzacowanyCzasTrwania { get => szacowanyCzasTrwania; set => szacowanyCzasTrwania = value; }
+        public TimeSpan SzacowanyCzasTrwania { get => szacowanyCzasTrwania; set => szacowanyCzasTrwania = value; }
         internal Prelegent Autor { get => autor; set => autor = value; }
 
         public Referat()
@@ -23,15 +23,19 @@ namespace System_obsługi_konferencji
             tytul = null;
             streszczenie = null;
             autor = null;
-            szacowanyCzasTrwania = DateTime.MinValue;
+            //szacowanyCzasTrwania = new TimeSpan(0, 0, 0);
         }
 
-        public Referat(string tytul, string streszczenie, Prelegent autor, DateTime szacowanyCzasTrwania) : this()
+        public Referat(string tytul, string streszczenie, Prelegent autor) : this()
         {
             this.tytul = tytul;
             this.streszczenie = streszczenie;
             this.autor = autor;
-            this.szacowanyCzasTrwania = szacowanyCzasTrwania;
+        }
+
+        public void DodajCzasTrwania(int godziny, int minuty)
+        {
+            szacowanyCzasTrwania = new TimeSpan(godziny, minuty, 0);
         }
 
         public override string ToString()

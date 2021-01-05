@@ -20,7 +20,7 @@ namespace System_obsługi_konferencji
             login = null;
             haslo = null;
         }
-        public Uzytkownik(string login, string haslo)
+        public Uzytkownik(string login, string haslo) : this()
         {
             this.login = login;
             this.haslo = haslo;

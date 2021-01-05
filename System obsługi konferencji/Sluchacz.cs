@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    class Organizator : Uzytkownik
+    class Sluchacz: Uzytkownik
     {
         private string imie;
         private string nazwisko;
@@ -24,7 +24,7 @@ namespace System_obsługi_konferencji
         public string Email { get => email; set => email = value; }
 
 
-        public Organizator()
+        public Sluchacz()
         {
             imie = null;
             nazwisko = null;
@@ -34,7 +34,7 @@ namespace System_obsługi_konferencji
             email = null;
         }
 
-        public Organizator(string login, string haslo, string imie, string nazwisko, string plec, string data_Urodzenia, string nrTelefonu, string email, string stopienNaukowy, string opis) : base(login, haslo)
+        public Sluchacz(string login, string haslo, string imie, string nazwisko, string plec, string data_Urodzenia, string nrTelefonu, string email) : base(login, haslo)
         {
             this.imie = imie;
             this.nazwisko = nazwisko;
@@ -48,5 +48,6 @@ namespace System_obsługi_konferencji
         {
             return base.ToString();
         }
+
     }
 }

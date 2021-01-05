@@ -8,15 +8,15 @@ namespace System_obsługi_konferencji
 {
     class ListaMiejsc
     {
-        public LinkedList<Miejsce> listaMiejsc;
-        private LinkedList<Miejsce> Lista { get => listaMiejsc; set => listaMiejsc = value; }
+        public LinkedList<MiejsceKonferencji> listaMiejsc;
+        private LinkedList<MiejsceKonferencji> Lista { get => listaMiejsc; set => listaMiejsc = value; }
 
         public ListaMiejsc()
         {
-            listaMiejsc = new LinkedList<Miejsce>();
+            listaMiejsc = new LinkedList<MiejsceKonferencji>();
         }
 
-        public void DodajMiejsce(Miejsce miejsce)
+        public void DodajMiejsce(MiejsceKonferencji miejsce)
         {
             listaMiejsc.AddLast(miejsce);
         }

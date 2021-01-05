@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace System_obsługi_konferencji
 {
-    class Miejsce
+    class MiejsceKonferencji
     {
         private string adres;
         private int nrSali;
@@ -16,7 +16,7 @@ namespace System_obsługi_konferencji
         public int NrSali { get => nrSali; set => nrSali = value; }
         public int IloscMiejsc { get => iloscMiejsc; set => iloscMiejsc = value; }
 
-        public Miejsce()
+        public MiejsceKonferencji()
         {
             adres = null;
             nrSali = 0;

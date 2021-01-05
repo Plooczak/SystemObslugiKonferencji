@@ -1,4 +1,4 @@
-﻿using ProgramoProjekt;
+﻿using System_obsługi_konferencji;
 using System;
 using System.Collections.Generic;
 using System.Linq;

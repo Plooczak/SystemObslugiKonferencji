@@ -8,7 +8,6 @@ namespace System_obsługi_konferencji
 {
     class ListaUczestnikówKonferencji
     {
-        private string idKonferencji;
         public LinkedList<Uzytkownik> listaUczestnikow;
         private LinkedList<Uzytkownik> Lista { get => listaUczestnikow; set => listaUczestnikow = value; }
 

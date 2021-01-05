@@ -67,7 +67,7 @@
     <Compile Include="ListaMiejsc.cs" />
     <Compile Include="ListaPrelegentówKonferencji.cs" />
     <Compile Include="ListaUczestnikówKonferencji.cs" />
-    <Compile Include="Miejsce.cs" />
+    <Compile Include="MiejsceKonferencji.cs" />
     <Compile Include="Organizator.cs" />
     <Compile Include="OrganizerMenu.cs">
       <SubType>Form</SubType>
@@ -89,6 +89,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Referat.cs" />
+    <Compile Include="Sluchacz.cs" />
     <Compile Include="SpeakerMenu.cs">
       <SubType>Form</SubType>
     </Compile>

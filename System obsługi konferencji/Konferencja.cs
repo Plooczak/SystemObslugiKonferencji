@@ -37,19 +37,18 @@ namespace System_obsługi_konferencji
             dataKonferencji = DateTime.MinValue;
             //terminRejestracji = dataKonferencji.AddDays(-7);
             //organizator = null;
-            //prelegenci = null;
-            
+            //prelegenci = null; 
         }
 
-        public Konferencja(string temat, string data_Konferencji, Organizator organizator, ListaPrelegentówKonferencji prelegenci, ListaUczestnikówKonferencji uczestnicy, PlanKonferencji plan, MiejsceKonferencji miejsce) : this()
+        public Konferencja(string temat, string data_Konferencji, Organizator organizator, MiejsceKonferencji miejsce) : this()
         {
             this.temat = temat;
             DateTime.TryParseExact(data_Konferencji, new[] { "dd-MM-yyyy" }, null, DateTimeStyles.None, out dataKonferencji);
             terminRejestracji = dataKonferencji.AddDays(-7);
             this.organizator = organizator;
-            this.prelegenci = prelegenci;
-            this.uczestnicy = uczestnicy;
-            this.plan = plan;
+            //this.prelegenci = prelegenci;
+            //this.uczestnicy = uczestnicy;
+            //this.plan = plan;
             this.miejsce = miejsce;
         }
 

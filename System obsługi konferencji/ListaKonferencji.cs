@@ -24,12 +24,50 @@ namespace System_obsługi_konferencji
 
         public void SortujPoDacie()
         {
-            List<Konferencja> nowa_lista = new List<Konferencja>(listaKonferencji);
-            nowa_lista.Sort(new DataComparator());
-            listaKonferencji = new LinkedList<Konferencja>(nowa_lista);
+            List<Konferencja> nowaLista = new List<Konferencja>(listaKonferencji);
+            nowaLista.Sort(new DataComparator());
+            listaKonferencji = new LinkedList<Konferencja>(nowaLista);
+        }
+
+        public void PokazNadchodzace()
+        {
+            List<Konferencja> nowaLista = new List<Konferencja>(listaKonferencji);
+            DateTime teraz = DateTime.Now;
+
+            foreach (Konferencja conference in listaKonferencji)
+            {
+                if (conference.TerminRejestracji > teraz)
+                {
+                    nowaLista.Add(conference);
+                }
+            }
+
+            nowaLista.Sort(new DataComparator());
+            listaKonferencji = new LinkedList<Konferencja>(nowaLista);
+        }
+
+        public void PokazPrzeszle()
+        {
+            List<Konferencja> nowaLista = new List<Konferencja>(listaKonferencji);
+            DateTime teraz = DateTime.Now;
+
+            foreach (Konferencja conference in listaKonferencji)
+            {
+                if (conference.TerminRejestracji < teraz)
+                {
+                    nowaLista.Add(conference);
+                }
+            }
+
+            nowaLista.Sort(new DataComparator());
+            listaKonferencji = new LinkedList<Konferencja>(nowaLista);
         }
 
     }
+
+    //Pokaż nadchodzące posortowane datami 
+    //Pokaż wszystkie
+
 
     public class DataComparator : IComparer<Konferencja>
     {

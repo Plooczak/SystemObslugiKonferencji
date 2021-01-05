@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    class Organizator : Uzytkownik
+    class Organizator : Uzytkownik, IComparable, IEquatable<Organizator>
     {
         private string imie;
         private string nazwisko;
@@ -48,5 +48,33 @@ namespace System_obsługi_konferencji
         {
             return base.ToString();
         }
+
+        public int CompareTo(object obj)
+        {
+            if (obj != null)
+            {
+                Organizator o = (Organizator)obj;
+                int pom = this.Login.CompareTo(o.Login);
+
+                if (pom != 0)
+                {
+                    return pom;
+                }
+
+                else
+                {
+                    return this.Haslo.CompareTo(o.Haslo);
+                }
+            }
+
+            else
+                return 1;
+        }
+
+        public bool Equals(Organizator other)
+        {
+            return (login.Equals(other.Login));
+        }
+
     }
 }

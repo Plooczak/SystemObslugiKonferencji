@@ -7,10 +7,10 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    public abstract class Uzytkownik
+    public abstract class Uzytkownik 
     {
-        private string login;
-        private string haslo;
+        protected string login;
+        protected string haslo;
 
         public string Login { get => login; set => login = value; }
         public string Haslo { get => haslo; set => haslo = value; }
@@ -29,5 +29,7 @@ namespace System_obsługi_konferencji
         {
             return base.ToString();
         }
+
+        
     }
 }

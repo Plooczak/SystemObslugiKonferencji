@@ -8,7 +8,6 @@ namespace System_obsługi_konferencji
 {
     class ListaPrelegentówKonferencji
     {
-        private string idKonferencji;
         public LinkedList<Prelegent> listaPrelegentow;
         private LinkedList<Prelegent> Lista { get => listaPrelegentow; set => listaPrelegentow = value; }
         
@@ -21,5 +20,25 @@ namespace System_obsługi_konferencji
         {
             listaPrelegentow.AddLast(prelegent);
         }
+
+
     }
 }
+
+/*
+        public List<Prelegent> ZnajdzKonferencjePrelegenta(Login login)
+        {
+            List<Prelegent> nowaLista = new List<Prelegent>();
+
+            foreach (Prelegent p in listaPrelegentow)
+            {
+                if (p.Login.Equals(Login))
+                {
+                    nowaLista.Add(p);
+                }
+            }
+
+            return nowaLista.Count == 0 ? null : nowaLista;
+        }
+
+*/

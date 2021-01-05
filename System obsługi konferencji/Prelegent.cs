@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    class Prelegent : Uzytkownik
+    class Prelegent : Uzytkownik, IComparable, IEquatable<Prelegent>
     {
         private string imie;
         private string nazwisko;
@@ -54,6 +54,33 @@ namespace System_obsługi_konferencji
         public override string ToString()
         {
             return base.ToString();
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj != null)
+            {
+                Prelegent p = (Prelegent)obj;
+                int pom = this.Login.CompareTo(p.login);
+
+                if (pom != 0)
+                {
+                    return pom;
+                }
+
+                else
+                {
+                    return this.haslo.CompareTo(p.Haslo);
+                }
+            }
+
+            else
+                return 1;
+        }
+
+        public bool Equals(Prelegent other)
+        {
+            return (login.Equals(other.Login));
         }
 
     }

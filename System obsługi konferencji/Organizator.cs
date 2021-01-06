@@ -9,39 +9,46 @@ namespace System_obsługi_konferencji
 {
     public class Organizator : Uzytkownik, IComparable, IEquatable<Organizator>
     {
-        private string imie;
-        private string nazwisko;
-        private string plec;
-        private DateTime dataUrodzenia;
-        private string nrTelefonu;
-        private string email;
-
-        public string Imie { get => imie; set => imie = value; }
-        public string Nazwisko { get => nazwisko; set => nazwisko = value; }
-        public string Plec { get => plec; set => plec = value; }
-        public DateTime DataUrodzenia { get => dataUrodzenia; set => dataUrodzenia = value; }
-        public string NrTelefonu { get => nrTelefonu; set => nrTelefonu = value; }
-        public string Email { get => email; set => email = value; }
-
+        private string adres { get; set; }
+        private string numerKonta { get; set; }
+        private static bool czyFirma { get; set; }
+        private string nip { get; set; }
+        private string nazwaFirmy { get; set; }
 
         public Organizator()
         {
-            imie = null;
-            nazwisko = null;
-            plec = null;
-            dataUrodzenia = DateTime.MinValue;
-            nrTelefonu = null;
-            email = null;
+            czyFirma = false;
+            adres = null;
+            numerKonta = null;
+            nip = null;
+            nip = null;
+            nazwaFirmy = null;
+        }
+        public Organizator(string login, string haslo):base(login,haslo)
+        {
+            czyFirma = false;
+            adres = null;
+            numerKonta = null;
+            nip = null;
+            nip = null;
+            nazwaFirmy = null;
+        }
+        public Organizator(string login, string haslo, string adres, string numerKonta) : base(login, haslo)
+        {
+            this.adres = adres;
+            this.numerKonta = numerKonta;
+            czyFirma = false;
+            nip = null;
+            nazwaFirmy = null;
         }
 
-        public Organizator(string login, string haslo, string imie, string nazwisko, string plec, string data_Urodzenia, string nrTelefonu, string email, string stopienNaukowy, string opis) : base(login, haslo)
+        public Organizator(string login, string haslo, string adres, string numerKonta, string nip, string nazwaFirmy) : base(login, haslo)
         {
-            this.imie = imie;
-            this.nazwisko = nazwisko;
-            this.plec = plec;
-            DateTime.TryParseExact(data_Urodzenia, new[] { "dd-MM-yyyy" }, null, DateTimeStyles.None, out dataUrodzenia);
-            this.nrTelefonu = nrTelefonu;
-            this.email = email;
+            this.adres = adres;
+            this.numerKonta = numerKonta;
+            czyFirma = true;
+            this.nip = nip;
+            this.nazwaFirmy = nazwaFirmy;
         }
 
         public override string ToString()

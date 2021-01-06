@@ -93,6 +93,7 @@ namespace System_obsługi_konferencji
                 Sluchacz login = new Sluchacz(textBox1.Text,textBox2.Text);
                 if (_ds.Sluchacze.Contains(login))
                 {
+                    Sluchacz uzytkownik = _ds.Sluchacze.Find(x => x.Login.Contains(login.Login));
                     dlgLogin.DialogResult = DialogResult.OK;
                     dlgLogin.Dispose();
                     this.Hide();

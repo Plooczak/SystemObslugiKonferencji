@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DataStore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Sluchacze>
+    <Sluchacz>
+      <Login>Jacek</Login>
+      <Haslo>Jacek</Haslo>
+      <Imie>Jacuś</Imie>
+      <Nazwisko>Placuś</Nazwisko>
+      <Plec>M</Plec>
+      <DataUrodzenia>14.07.2004</DataUrodzenia>
+      <NrTelefonu>123321123</NrTelefonu>
+      <Email>jaca@gmail.com</Email>
+    </Sluchacz>
   </Sluchacze>
-  <Prelegenci/>
-  <Organizatorzy/>
+  <Prelegenci>
+    <Prelegent>
+      <Login>Jacek</Login>
+      <Haslo>Jacek</Haslo>
+      <stopienNaukowy>Magister inżynier</stopienNaukowy>
+      <dziedzina>Dupa</dziedzina>
+      <opis>Kieta etykieta jestem kurwa jak rakieta wjedzie seta wjedzie seta dożynki jedzie bagieta ej kupie szewroleta witam siema katecheta ona chciałaby faceta ja mówie sory żaneta</opis>
+    </Prelegent>
+  </Prelegenci>
+  <Organizatorzy />
 </DataStore>

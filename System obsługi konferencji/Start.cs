@@ -14,7 +14,6 @@ namespace System_obsługi_konferencji
     public partial class Start : Form
     {
         DataStore _ds = DataStore.DataStore_load();
-        Sluchacz user = new Sluchacz();
         public Start()
         {
             InitializeComponent();
@@ -97,7 +96,7 @@ namespace System_obsługi_konferencji
                     dlgLogin.DialogResult = DialogResult.OK;
                     dlgLogin.Dispose();
                     this.Hide();
-                    var mainMenu = new MainMenu();
+                    var mainMenu = new MainMenu(_ds, uzytkownik);
                     mainMenu.Closed += (s, args) => this.Show();
                     mainMenu.Show();
                 }
@@ -375,6 +374,7 @@ namespace System_obsługi_konferencji
             {
                 int atCount = 0;
                 int dotCount = 0;
+                Sluchacz user = new Sluchacz();
                 Sluchacz potentialUser = new Sluchacz(tbxLogin.Text, tbxPassword.Text);
                 foreach(char character in tbxEMail.Text)
                 {
@@ -414,7 +414,7 @@ namespace System_obsługi_konferencji
                 }
                 else if(atCount != 1 || dotCount == 0 || tbxEMail.Text.EndsWith(".") || tbxEMail.Text.EndsWith("@"))
                 {
-                    string message2 = "Niepoprawny adres email.";
+                    string message2 = "Niepoprawny ulicaDom email.";
                     string caption2 = "";
                     MessageBoxButtons buttons2 = MessageBoxButtons.OK;
                     DialogResult result2;

@@ -7,18 +7,24 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    public class Organizator : Uzytkownik, IComparable, IEquatable<Organizator>
+    public class Organizator : Uzytkownik, IComparable, IEquatable<Sluchacz>
     {
-        private string adres { get; set; }
-        private string numerKonta { get; set; }
-        private static bool czyFirma { get; set; }
-        private string nip { get; set; }
-        private string nazwaFirmy { get; set; }
+        public string ulicaDom { get; set; }
+        public string numerLokalu { get; set; }
+        public string kodPocztowy { get; set; }
+        public string miasto { get; set; }
+        public string numerKonta { get; set; }
+        public static bool czyFirma { get; set; }
+        public string nip { get; set; }
+        public string nazwaFirmy { get; set; }
 
         public Organizator()
         {
             czyFirma = false;
-            adres = null;
+            ulicaDom = null;
+            numerLokalu = null;
+            kodPocztowy = null;
+            miasto = null;
             numerKonta = null;
             nip = null;
             nip = null;
@@ -27,24 +33,32 @@ namespace System_obsługi_konferencji
         public Organizator(string login, string haslo):base(login,haslo)
         {
             czyFirma = false;
-            adres = null;
+            ulicaDom = null;
+            numerLokalu = null;
+            kodPocztowy = null;
+            miasto = null;
             numerKonta = null;
-            nip = null;
             nip = null;
             nazwaFirmy = null;
         }
-        public Organizator(string login, string haslo, string adres, string numerKonta) : base(login, haslo)
+        public Organizator(string login, string haslo, string ulicaDom, string numerLokalu, string kodPocztowy, string miasto, string numerKonta) : base(login, haslo)
         {
-            this.adres = adres;
+            this.ulicaDom = ulicaDom;
+            this.numerLokalu = numerLokalu;
+            this.kodPocztowy = kodPocztowy;
+            this.miasto = miasto;
             this.numerKonta = numerKonta;
             czyFirma = false;
             nip = null;
             nazwaFirmy = null;
         }
 
-        public Organizator(string login, string haslo, string adres, string numerKonta, string nip, string nazwaFirmy) : base(login, haslo)
+        public Organizator(string login, string haslo, string ulicaDom, string numerLokalu, string kodPocztowy, string miasto, string numerKonta, string nip, string nazwaFirmy) : base(login, haslo)
         {
-            this.adres = adres;
+            this.ulicaDom = ulicaDom;
+            this.numerLokalu = numerLokalu;
+            this.kodPocztowy = kodPocztowy;
+            this.miasto = miasto;
             this.numerKonta = numerKonta;
             czyFirma = true;
             this.nip = nip;
@@ -78,7 +92,7 @@ namespace System_obsługi_konferencji
                 return 1;
         }
 
-        public bool Equals(Organizator other)
+        public bool Equals(Sluchacz other)
         {
             return (login.Equals(other.Login));
         }

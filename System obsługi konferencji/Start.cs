@@ -13,9 +13,7 @@ namespace System_obsługi_konferencji
 {
     public partial class Start : Form
     {
-        List<Sluchacz> sluchacze = new List<Sluchacz>();
-        List<Prelegent> prelegenci = new List<Prelegent>();
-        List<Organizator> organizatorzy = new List<Organizator>();
+        DataStore _ds = DataStore.DataStore_load();
         Sluchacz user = new Sluchacz();
         public Start()
         {
@@ -93,7 +91,7 @@ namespace System_obsługi_konferencji
             void BtnZaloguj(object sender2, EventArgs e2)
             {
                 Sluchacz login = new Sluchacz(textBox1.Text,textBox2.Text);
-                if (sluchacze.Contains(login))
+                if (_ds.Sluchacze.Contains(login))
                 {
                     dlgLogin.DialogResult = DialogResult.OK;
                     dlgLogin.Dispose();
@@ -375,8 +373,11 @@ namespace System_obsługi_konferencji
 
             void BtnRegister(object sender2, EventArgs e2)
             {
+                
+
                 user = new Sluchacz(tbxLogin.Text, tbxPassword.Text, tbxName.Text, tbxSurname.Text, cbxSex.Text, pckBirthDate.Value.ToString(), tbxPhoneNumber.Text, tbxEMail.Text);
-                sluchacze.Add(user);  
+                _ds.Sluchacze.Add(user);
+                _ds.DataStore_save(_ds);
                 
                 string message = "Zostałeś zarejestrowany!";
                 string caption = "";

@@ -9,6 +9,7 @@ using System.IO;
 
 namespace System_obsługi_konferencji
 {
+    [Serializable]
     public class DataStore
     {
         public List<Sluchacz> Sluchacze {get;set;}
@@ -16,19 +17,30 @@ namespace System_obsługi_konferencji
         public List<Organizator> Organizatorzy { get; set; }
 
 
-        DataStore(List<Sluchacz> sluchacze, List<Prelegent> prelegenci, List<Organizator> organizatorzy)
+        //DataStore(List<Sluchacz> sluchacze, List<Prelegent> prelegenci, List<Organizator> organizatorzy)
+        //{
+        //    this.Sluchacze = sluchacze;
+        //    this.Prelegenci = prelegenci;
+        //    this.Organizatorzy = organizatorzy;
+        //}
+        public void DataStore_save(DataStore ds)
         {
-            this.Sluchacze = sluchacze;
-            this.Prelegenci = prelegenci;
-            this.Organizatorzy = organizatorzy;
-        }
-        void SerializujSluchaczy(List<Sluchacz> listS)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Sluchacz>));
-            using (TextWriter writer = new StreamWriter(@"C:\Xml.txt"))
+            XmlSerializer serializer = new XmlSerializer(typeof(DataStore));
+            using (TextWriter writer = new StreamWriter("C:/Users/Paweł/Desktop/Studia/AGH/Semestr III/Programowanie obiektowe/System obsługi konferencji/ESSGit/System obsługi konferencji/BazaUzytkownikow.xml"))
             {
-                serializer.Serialize(writer, listS);
+                serializer.Serialize(writer, ds);
             }
+        }
+        public static DataStore DataStore_load()
+        {
+            XmlSerializer deserializer = new XmlSerializer(typeof(DataStore));
+            //using (TextReader reader = new StreamReader(Path.Combine(Directory.GetCurrentDirectory(), "\\BazaUzytkownikow.xml")))
+            using (TextReader reader = new StreamReader("C:/Users/Paweł/Desktop/Studia/AGH/Semestr III/Programowanie obiektowe/System obsługi konferencji/ESSGit/System obsługi konferencji/BazaUzytkownikow.xml"))
+            {
+                object ds = deserializer.Deserialize(reader);
+                return ds as DataStore;
+            }
+
         }
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataStore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Sluchacze>
+    <Sluchacz>
+      <Login>Koperek</Login>
+      <Haslo>Koperek</Haslo>
+      <Imie>Koperek</Imie>
+      <Nazwisko>Koperek</Nazwisko>
+      <Plec>M</Plec>
+      <DataUrodzenia>0001-01-01T00:00:00</DataUrodzenia>
+      <NrTelefonu>777777777</NrTelefonu>
+      <Email>Koperek</Email>
+    </Sluchacz>
+  </Sluchacze>
+  <Prelegenci />
+  <Organizatorzy />
+</DataStore>

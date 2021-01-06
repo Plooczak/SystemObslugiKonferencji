@@ -12,14 +12,14 @@ namespace System_obsługi_konferencji
         private string imie;
         private string nazwisko;
         private string plec;
-        private DateTime dataUrodzenia;
+        private string dataUrodzenia;
         private string nrTelefonu;
         private string email;
 
         public string Imie { get => imie; set => imie = value; }
         public string Nazwisko { get => nazwisko; set => nazwisko = value; }
         public string Plec { get => plec; set => plec = value; }
-        public DateTime DataUrodzenia { get => dataUrodzenia; set => dataUrodzenia = value; }
+        public string DataUrodzenia { get => dataUrodzenia; set => dataUrodzenia = value; }
         public string NrTelefonu { get => nrTelefonu; set => nrTelefonu = value; }
         public string Email { get => email; set => email = value; }
 
@@ -28,7 +28,7 @@ namespace System_obsługi_konferencji
             imie = null;
             nazwisko = null;
             plec = null;
-            dataUrodzenia = DateTime.MinValue;
+            dataUrodzenia = null;
             nrTelefonu = null;
             email = null;
         }
@@ -37,17 +37,17 @@ namespace System_obsługi_konferencji
             imie = null;
             nazwisko = null;
             plec = null;
-            dataUrodzenia = DateTime.MinValue;
+            dataUrodzenia = null;
             nrTelefonu = null;
             email = null;
         }
 
-        public Sluchacz(string login, string haslo, string imie, string nazwisko, string plec, string data_Urodzenia, string nrTelefonu, string email) : base(login, haslo)
+        public Sluchacz(string login, string haslo, string imie, string nazwisko, string plec, string dataUrodzenia, string nrTelefonu, string email) : base(login, haslo)
         {
             this.imie = imie;
             this.nazwisko = nazwisko;
             this.plec = plec;
-            DateTime.TryParseExact(data_Urodzenia, new[] { "dd-MM-yyyy" }, null, DateTimeStyles.None, out dataUrodzenia);
+            this.dataUrodzenia = dataUrodzenia;
             this.nrTelefonu = nrTelefonu;
             this.email = email;
         }

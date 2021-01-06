@@ -108,8 +108,7 @@ namespace System_obsługi_konferencji
                     DialogResult result;
 
                     result = MessageBox.Show(message, caption, buttons);
-                }
-                                    
+                }                       
             }
 
             void BtnCancel(object sender2, EventArgs e2)
@@ -188,7 +187,7 @@ namespace System_obsługi_konferencji
             pckBirthDate.Location = new System.Drawing.Point(45, 211);
             pckBirthDate.Name = "pckBirthDate";
             pckBirthDate.Size = new System.Drawing.Size(185, 22);
-            pckBirthDate.TabIndex = 4;
+            pckBirthDate.TabIndex = 5;
             // 
             // cbxSex
             // 
@@ -199,7 +198,7 @@ namespace System_obsługi_konferencji
             cbxSex.Location = new System.Drawing.Point(273, 211);
             cbxSex.Name = "cbxSex";
             cbxSex.Size = new System.Drawing.Size(43, 24);
-            cbxSex.TabIndex = 5;
+            cbxSex.TabIndex = 6;
             // 
             // tbxLogin
             // 
@@ -207,7 +206,7 @@ namespace System_obsługi_konferencji
             tbxLogin.MaxLength = 20;
             tbxLogin.Name = "login";
             tbxLogin.Size = new System.Drawing.Size(120, 22);
-            tbxLogin.TabIndex = 6;
+            tbxLogin.TabIndex = 7;
             // 
             // tbxPassword
             // 
@@ -215,7 +214,7 @@ namespace System_obsługi_konferencji
             tbxPassword.MaxLength = 20;
             tbxPassword.Name = "haslo";
             tbxPassword.Size = new System.Drawing.Size(120, 22);
-            tbxPassword.TabIndex = 7;
+            tbxPassword.TabIndex = 8;
             tbxPassword.UseSystemPasswordChar = true;
             // 
             // tbxPhoneNumber
@@ -224,7 +223,7 @@ namespace System_obsługi_konferencji
             tbxPhoneNumber.MaxLength = 9;
             tbxPhoneNumber.Name = "NrTelefonu";
             tbxPhoneNumber.Size = new System.Drawing.Size(81, 22);
-            tbxPhoneNumber.TabIndex = 8;
+            tbxPhoneNumber.TabIndex = 4;
             tbxPhoneNumber.WordWrap = false;
             // 
             // label2
@@ -373,19 +372,163 @@ namespace System_obsługi_konferencji
 
             void BtnRegister(object sender2, EventArgs e2)
             {
-                
+                int atCount = 0;
+                int dotCount = 0;
+                Sluchacz potentialUser = new Sluchacz(tbxLogin.Text, tbxPassword.Text);
+                foreach(char character in tbxEMail.Text)
+                {
+                    if (character.Equals('@'))
+                    {
+                        atCount++;
+                    }
+                    if (character.Equals('.'))
+                    {
+                        dotCount++;
+                    }
+                }
+                if(String.IsNullOrWhiteSpace(tbxLogin.Text) || String.IsNullOrWhiteSpace(tbxName.Text) || String.IsNullOrWhiteSpace(tbxSurname.Text) || String.IsNullOrWhiteSpace(tbxPassword.Text) || 
+                    String.IsNullOrWhiteSpace(tbxPhoneNumber.Text) || String.IsNullOrWhiteSpace(tbxEMail.Text) || String.IsNullOrWhiteSpace(cbxSex.Text) || String.IsNullOrWhiteSpace(pckBirthDate.Text))
+                {
+                    string message2 = "Nie wszystkie pola zostały wypełnione.";
+                    string caption2 = "";
+                    MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                    DialogResult result2;
+                    result2 = MessageBox.Show(message2, caption2, buttons2);
+                }
+                else if (_ds.Sluchacze.Contains(potentialUser))
+                {
+                    string message2 = "Nazwa użytkownika jest już zajęta.";
+                    string caption2 = "";
+                    MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                    DialogResult result2;
+                    result2 = MessageBox.Show(message2, caption2, buttons2);
+                }
+                else if (!tbxPhoneNumber.Text.All(char.IsDigit) || (tbxPhoneNumber.Text.Length < 9))
+                {
+                    string message2 = "Czyż nie jest powszechną wiedzą, że numer telefonu w Polsce składa się z dziewięciu cyfr?";
+                    string caption2 = "";
+                    MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                    DialogResult result2;
+                    result2 = MessageBox.Show(message2, caption2, buttons2);
+                }
+                else if(atCount != 1 || dotCount == 0 || tbxEMail.Text.EndsWith(".") || tbxEMail.Text.EndsWith("@"))
+                {
+                    string message2 = "Niepoprawny adres email.";
+                    string caption2 = "";
+                    MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                    DialogResult result2;
+                    result2 = MessageBox.Show(message2, caption2, buttons2);
+                }
+                else if((pckBirthDate.Value.Year+13) > DateTime.Today.Year && pckBirthDate.Value.Year < DateTime.Today.Year)
+                {
+                    string message2 = "Aby założyć konto musisz mieć więcej niż 13 lat.";
+                    string caption2 = "";
+                    MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                    DialogResult result2;
+                    result2 = MessageBox.Show(message2, caption2, buttons2);
+                }
+                else if ((pckBirthDate.Value.Year+13) == DateTime.Today.Year)
+                {
+                    if ((pckBirthDate.Value.Month) >= DateTime.Today.Month)
+                    {
+                        if ((pckBirthDate.Value.Day) > DateTime.Today.Day)
+                        {
+                            string message2 = "Aby założyć konto musisz mieć więcej niż 13 lat.";
+                            string caption2 = "";
+                            MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                            DialogResult result2;
+                            result2 = MessageBox.Show(message2, caption2, buttons2);
+                        }
+                        else
+                        {
+                            user = new Sluchacz(tbxLogin.Text, tbxPassword.Text, tbxName.Text, tbxSurname.Text, cbxSex.Text, pckBirthDate.Value.ToShortDateString(), tbxPhoneNumber.Text, tbxEMail.Text);
+                            _ds.Sluchacze.Add(user);
+                            _ds.DataStore_save(_ds);
 
-                user = new Sluchacz(tbxLogin.Text, tbxPassword.Text, tbxName.Text, tbxSurname.Text, cbxSex.Text, pckBirthDate.Value.ToString(), tbxPhoneNumber.Text, tbxEMail.Text);
-                _ds.Sluchacze.Add(user);
-                _ds.DataStore_save(_ds);
-                
-                string message = "Zostałeś zarejestrowany!";
-                string caption = "";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
+                            string message = "Zostałeś zarejestrowany!";
+                            string caption = "";
+                            MessageBoxButtons buttons = MessageBoxButtons.OK;
+                            DialogResult result;
 
-                result = MessageBox.Show(message, caption, buttons);
-                dlgRegister.Close();
+                            result = MessageBox.Show(message, caption, buttons);
+                            dlgRegister.Close();
+                        }
+                    }
+                    else
+                    {
+                        user = new Sluchacz(tbxLogin.Text, tbxPassword.Text, tbxName.Text, tbxSurname.Text, cbxSex.Text, pckBirthDate.Value.ToShortDateString(), tbxPhoneNumber.Text, tbxEMail.Text);
+                        _ds.Sluchacze.Add(user);
+                        _ds.DataStore_save(_ds);
+
+                        string message = "Zostałeś zarejestrowany!";
+                        string caption = "";
+                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                        DialogResult result;
+
+                        result = MessageBox.Show(message, caption, buttons);
+                        dlgRegister.Close();
+                    }
+                }
+                else if ((pckBirthDate.Value.Year) == DateTime.Today.Year)
+                {
+                    if ((pckBirthDate.Value.Month) >= DateTime.Today.Month)
+                    {
+                        if ((pckBirthDate.Value.Day) > DateTime.Today.Day)
+                        {
+                            string message2 = "Przybysze z przyszłości nie mogą zakładać konta w naszym serwisie.";
+                            string caption2 = "";
+                            MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                            DialogResult result2;
+                            result2 = MessageBox.Show(message2, caption2, buttons2);
+                        }
+                        else
+                        {
+                            string message2 = "Aby założyć konto musisz mieć więcej niż 13 lat.";
+                            string caption2 = "";
+                            MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                            DialogResult result2;
+                            result2 = MessageBox.Show(message2, caption2, buttons2);
+                        }
+                    }
+                    else
+                    {
+                        string message2 = "Aby założyć konto musisz mieć więcej niż 13 lat.";
+                        string caption2 = "";
+                        MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                        DialogResult result2;
+                        result2 = MessageBox.Show(message2, caption2, buttons2);
+                    }
+                }
+                else if (pckBirthDate.Value.Year > DateTime.Today.Year)
+                {
+                    string message2 = "Przybysze z przyszłości nie mogą zakładać konta w naszym serwisie.";
+                    string caption2 = "";
+                    MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                    DialogResult result2;
+                    result2 = MessageBox.Show(message2, caption2, buttons2);
+                }
+                else if((pckBirthDate.Value.Year + 118) <= DateTime.Today.Year)
+                {
+                    string message2 = "https://www.medonet.pl/zdrowie/zdrowie-dla-kazdego,najstarszy-czlowiek-swiata--poznaj-sekrety-i-historie-dlugowiecznosci,artykul,14294014.html";
+                    string caption2 = "";
+                    MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                    DialogResult result2;
+                    result2 = MessageBox.Show(message2, caption2, buttons2);
+                }
+                else
+                {
+                    user = new Sluchacz(tbxLogin.Text, tbxPassword.Text, tbxName.Text, tbxSurname.Text, cbxSex.Text, pckBirthDate.Value.ToShortDateString(), tbxPhoneNumber.Text, tbxEMail.Text);
+                    _ds.Sluchacze.Add(user);
+                    _ds.DataStore_save(_ds);
+
+                    string message = "Zostałeś zarejestrowany!";
+                    string caption = "";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    DialogResult result;
+
+                    result = MessageBox.Show(message, caption, buttons);
+                    dlgRegister.Close();
+                }
             }
 
             void BtnCancel(object sender2, EventArgs e2)

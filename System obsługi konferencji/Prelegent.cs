@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    class Prelegent : Uzytkownik, IComparable, IEquatable<Prelegent>
+    public class Prelegent : Uzytkownik, IComparable, IEquatable<Prelegent>
     {
         private string imie;
         private string nazwisko;

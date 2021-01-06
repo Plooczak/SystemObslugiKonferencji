@@ -11,9 +11,9 @@ namespace System_obsługi_konferencji
 {
     public class DataStore
     {
-        List<Sluchacz> sluchacze = new List<Sluchacz>();
-        List<Prelegent> prelegenci = new List<Prelegent>();
-        List<Organizator> organizatorzy = new List<Organizator>();
+        public List<Sluchacz> Sluchacze {get;set;}
+        public List<Prelegent> Prelegenci { get; set; }
+        public List<Organizator> Organizatorzy { get; set; }
 
 
         DataStore(List<Sluchacz> sluchacze, List<Prelegent> prelegenci, List<Organizator> organizatorzy)
@@ -22,11 +22,6 @@ namespace System_obsługi_konferencji
             this.Prelegenci = prelegenci;
             this.Organizatorzy = organizatorzy;
         }
-
-        List<Sluchacz> Sluchacze { get => sluchacze; set => sluchacze = value; }
-        List<Prelegent> Prelegenci { get => prelegenci; set => prelegenci = value; }
-        List<Organizator> Organizatorzy { get => organizatorzy; set => organizatorzy = value; }
-
         void SerializujSluchaczy(List<Sluchacz> listS)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Sluchacz>));

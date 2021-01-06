@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    class Sluchacz : Uzytkownik, IEquatable<Sluchacz>
+    public class Sluchacz : Uzytkownik, IEquatable<Sluchacz>
     {
         private string imie;
         private string nazwisko;

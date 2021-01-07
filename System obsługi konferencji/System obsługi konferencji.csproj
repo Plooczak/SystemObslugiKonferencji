@@ -62,6 +62,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataStore.cs" />
+    <Compile Include="DodajMiejsce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DodajMiejsce.Designer.cs">
+      <DependentUpon>DodajMiejsce.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KonferencjaSzczegoly.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KonferencjaSzczegoly.Designer.cs">
+      <DependentUpon>KonferencjaSzczegoly.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Organizacja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Organizacja.Designer.cs">
+      <DependentUpon>Organizacja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrzeglądKonferencji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrzeglądKonferencji.Designer.cs">
+      <DependentUpon>PrzeglądKonferencji.cs</DependentUpon>
+    </Compile>
     <Compile Include="Konferencja.cs" />
     <Compile Include="ListaKonferencji.cs" />
     <Compile Include="ListaMiejsc.cs" />
@@ -111,6 +135,24 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Uzytkownik.cs" />
+    <Compile Include="Zapisy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Zapisy.Designer.cs">
+      <DependentUpon>Zapisy.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DodajMiejsce.resx">
+      <DependentUpon>DodajMiejsce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KonferencjaSzczegoly.resx">
+      <DependentUpon>KonferencjaSzczegoly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Organizacja.resx">
+      <DependentUpon>Organizacja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrzeglądKonferencji.resx">
+      <DependentUpon>PrzeglądKonferencji.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OrganizerMenu.resx">
       <DependentUpon>OrganizerMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +172,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zapisy.resx">
+      <DependentUpon>Zapisy.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -182,6 +227,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\undo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

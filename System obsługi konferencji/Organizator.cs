@@ -7,17 +7,17 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    public class Organizator : Uzytkownik, IComparable, IEquatable<Sluchacz>
+    public class Organizator : Uzytkownik, IComparable, IEquatable<Organizator>
     {
         public Adres adres { get; set; }
         public string numerKonta { get; set; }
-        public static bool czyFirma { get; set; }
+        //public static bool czyFirma { get; set; }
         public string nip { get; set; }
         public string nazwaFirmy { get; set; }
 
         public Organizator()
         {
-            czyFirma = false;
+            //czyFirma = false;
             adres = new Adres();
             numerKonta = null;
             nip = null;
@@ -25,34 +25,26 @@ namespace System_obsługi_konferencji
         }
         public Organizator(string login, string haslo):base(login,haslo)
         {
-            czyFirma = false;
+            //czyFirma = null;
             adres = null;
             numerKonta = null;
             nip = null;
             nazwaFirmy = null;
         }
-        public Organizator(string login, string haslo, string ulica, string miejscowosc, string kodPocztowy, string numerBudynku, string numerLokalu, string numerKonta) : base(login, haslo)
+        public Organizator(string login, string haslo, Adres adres, string numerKonta) : base(login, haslo)
         {
-            adres.Ulica = ulica;
-            adres.Miejscowosc = miejscowosc;
-            adres.KodPocztowy = kodPocztowy;
-            adres.NumerBudynku = numerBudynku;
-            adres.NumerLokalu = numerLokalu;
-            czyFirma = false;
+            this.adres = adres;
+            this.numerKonta = numerKonta;
+            //czyFirma = false;
             nip = null;
             nazwaFirmy = null;
         }
 
-        public Organizator(string login, string haslo, string ulica, string miejscowosc, string kodPocztowy, string numerBudynku, string numerLokalu,
-            string numerKonta, string nip, string nazwaFirmy) : base(login, haslo)
+        public Organizator(string login, string haslo, Adres adres, string numerKonta, string nip, string nazwaFirmy) : base(login, haslo)
         {
-            adres.Ulica = ulica;
-            adres.Miejscowosc = miejscowosc;
-            adres.KodPocztowy = kodPocztowy;
-            adres.NumerBudynku = numerBudynku;
-            adres.NumerLokalu = numerLokalu;
+            this.adres = adres;
             this.numerKonta = numerKonta;
-            czyFirma = true;
+            //czyFirma = true;
             this.nip = nip;
             this.nazwaFirmy = nazwaFirmy;
         }
@@ -84,7 +76,7 @@ namespace System_obsługi_konferencji
                 return 1;
         }
 
-        public bool Equals(Sluchacz other)
+        public bool Equals(Organizator other)
         {
             return (login.Equals(other.Login));
         }

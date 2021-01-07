@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace System_obsługi_konferencji
@@ -9,6 +10,8 @@ namespace System_obsługi_konferencji
         Sluchacz _sluchacz;
         Prelegent prelegent = new Prelegent();
         Prelegent prelegentLogin = new Prelegent();
+        Organizator organizator = new Organizator();
+        Organizator organizatorLogin = new Organizator();
         public MainMenu(DataStore ds, Sluchacz sluchacz)
         {
             _ds = ds;
@@ -75,6 +78,7 @@ namespace System_obsługi_konferencji
             dlgProfile.Height = 290;
             dlgProfile.Width = 330;
             prelegentLogin = new Prelegent(_sluchacz.Login, _sluchacz.Haslo);
+            organizatorLogin = new Organizator(_sluchacz.Login, _sluchacz.Haslo);
 
             #region Layout
             Label label1 = new System.Windows.Forms.Label();
@@ -169,7 +173,7 @@ namespace System_obsługi_konferencji
             label8.Name = "label8";
             label8.Size = new System.Drawing.Size(0, 17);
             label8.TabIndex = 7;
-            if (_ds.Organizatorzy.Equals(_sluchacz.Login))
+            if (_ds.Organizatorzy.Contains(organizatorLogin))
             {
                 label8.Text = "Tak";
             }
@@ -230,6 +234,7 @@ namespace System_obsługi_konferencji
                     MessageBoxButtons buttons = MessageBoxButtons.OK;
                     DialogResult result;
                     result = MessageBox.Show(message, caption, buttons);
+                    dlgProfile.Close();
                 }
                 else
                 {
@@ -293,7 +298,7 @@ namespace System_obsługi_konferencji
                     btnOK.TabIndex = 4;
                     btnOK.Text = "Dalej";
                     btnOK.UseVisualStyleBackColor = true;
-                    btnOK.Click += new System.EventHandler(BtnCreateSpeaker);
+                    btnOK.Click += new System.EventHandler(BtnCreate);
 
                     dlgChooseUpgrade.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
                     dlgChooseUpgrade.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -314,7 +319,7 @@ namespace System_obsługi_konferencji
                     dlgProfile.Close();
                     #endregion
 
-                    void BtnCreateSpeaker(object sender3, EventArgs e3)
+                    void BtnCreate(object sender3, EventArgs e3)
                     {
                         if (cbxProfile.Text == "Prelegent")
                         {
@@ -369,7 +374,7 @@ namespace System_obsługi_konferencji
                             btnCreatorOK.Name = "btnCreatorOK";
                             btnCreatorOK.Size = new System.Drawing.Size(133, 43);
                             btnCreatorOK.TabIndex = 7;
-                            btnCreatorOK.Text = "Zostań mówcą";
+                            btnCreatorOK.Text = "Utwórz";
                             btnCreatorOK.UseVisualStyleBackColor = true;
                             btnCreatorOK.Click += new System.EventHandler(CreateSpeaker);
                             // 
@@ -483,7 +488,449 @@ namespace System_obsługi_konferencji
                         }
                         else if(cbxProfile.Text == "Organizator")
                         {
+                            Form dlgCreateOrganizer = new Form();
+                            dlgCreateOrganizer.Width = 314;
+                            dlgCreateOrganizer.Height = 339;
 
+                            #region layout
+                            TextBox tbxStreet = new System.Windows.Forms.TextBox();
+                            TextBox tbxBuilding = new System.Windows.Forms.TextBox();
+                            TextBox tbxAppartment = new System.Windows.Forms.TextBox();
+                            TextBox tbxCity = new System.Windows.Forms.TextBox();
+                            TextBox tbxPostalCode = new System.Windows.Forms.TextBox();
+                            TextBox tbxBankAccount = new System.Windows.Forms.TextBox();
+                            TextBox tbxCompanyName = new System.Windows.Forms.TextBox();
+                            TextBox tbxNIP1 = new System.Windows.Forms.TextBox();
+                            Button btnCancelOrganizerCreation = new System.Windows.Forms.Button();
+                            Button btnCreateOrganizer = new System.Windows.Forms.Button();
+                            Label lbl1 = new System.Windows.Forms.Label();
+                            Label lbl2 = new System.Windows.Forms.Label();
+                            Label lbl3 = new System.Windows.Forms.Label();
+                            Label lbl4 = new System.Windows.Forms.Label();
+                            Label lbl5 = new System.Windows.Forms.Label();
+                            Label lbl6 = new System.Windows.Forms.Label();
+                            Label lbl7 = new System.Windows.Forms.Label();
+                            Label lbl8 = new System.Windows.Forms.Label();
+                            TextBox tbxNIP2 = new System.Windows.Forms.TextBox();
+                            TextBox tbxNIP3 = new System.Windows.Forms.TextBox();
+                            TextBox tbxNIP4 = new System.Windows.Forms.TextBox();
+                            Button btnSwitch = new System.Windows.Forms.Button();
+                            dlgCreateOrganizer.SuspendLayout();
+
+                            // 
+                            // tbxStreet
+                            // 
+                            tbxStreet.Location = new System.Drawing.Point(12, 34);
+                            tbxStreet.MaxLength = 40;
+                            tbxStreet.Name = "tbxStreet";
+                            tbxStreet.Size = new System.Drawing.Size(177, 22);
+                            tbxStreet.TabIndex = 0;
+                            // 
+                            // tbxBuilding
+                            // 
+                            tbxBuilding.Location = new System.Drawing.Point(195, 34);
+                            tbxBuilding.MaxLength = 5;
+                            tbxBuilding.Name = "tbxBuilding";
+                            tbxBuilding.Size = new System.Drawing.Size(41, 22);
+                            tbxBuilding.TabIndex = 1;
+                            // 
+                            // tbxAppartment
+                            // 
+                            tbxAppartment.Location = new System.Drawing.Point(242, 34);
+                            tbxAppartment.MaxLength = 5;
+                            tbxAppartment.Name = "tbxAppartment";
+                            tbxAppartment.Size = new System.Drawing.Size(42, 22);
+                            tbxAppartment.TabIndex = 2;
+                            // 
+                            // tbxCity
+                            // 
+                            tbxCity.Location = new System.Drawing.Point(13, 86);
+                            tbxCity.MaxLength = 40;
+                            tbxCity.Name = "tbxCity";
+                            tbxCity.Size = new System.Drawing.Size(188, 22);
+                            tbxCity.TabIndex = 3;
+                            // 
+                            // tbxPostalCode
+                            // 
+                            tbxPostalCode.Location = new System.Drawing.Point(207, 86);
+                            tbxPostalCode.MaxLength = 6;
+                            tbxPostalCode.Name = "tbxPostalCode";
+                            tbxPostalCode.Size = new System.Drawing.Size(77, 22);
+                            tbxPostalCode.TabIndex = 4;
+                            // 
+                            // tbxBankAccount
+                            // 
+                            tbxBankAccount.Location = new System.Drawing.Point(12, 138);
+                            tbxBankAccount.MaxLength = 26;
+                            tbxBankAccount.Name = "tbxBankAccount";
+                            tbxBankAccount.Size = new System.Drawing.Size(272, 22);
+                            tbxBankAccount.TabIndex = 5;
+                            // 
+                            // btnSwitch
+                            // 
+                            btnSwitch.BackColor = System.Drawing.SystemColors.ButtonShadow;
+                            btnSwitch.Location = new System.Drawing.Point(47, 176);
+                            btnSwitch.Name = "btnSwitch";
+                            btnSwitch.Size = new System.Drawing.Size(213, 34);
+                            btnSwitch.TabIndex = 22;
+                            btnSwitch.Text = "Konto prywatne";
+                            btnSwitch.UseVisualStyleBackColor = false;
+                            btnSwitch.Click += new System.EventHandler(BtnSwitch);
+                            // 
+                            // tbxCompanyName
+                            // 
+                            tbxCompanyName.Location = new System.Drawing.Point(12, 230);
+                            tbxCompanyName.MaxLength = 50;
+                            tbxCompanyName.Name = "tbxCompanyName";
+                            tbxCompanyName.Size = new System.Drawing.Size(272, 22);
+                            tbxCompanyName.TabIndex = 7;
+                            // 
+                            // tbxNIP1
+                            // 
+                            tbxNIP1.Location = new System.Drawing.Point(13, 272);
+                            tbxNIP1.MaxLength = 2;
+                            tbxNIP1.Name = "tbxNIP1";
+                            tbxNIP1.Size = new System.Drawing.Size(28, 22);
+                            tbxNIP1.TabIndex = 8;
+                            // 
+                            // btnCancelOrganizerCreation
+                            // 
+                            btnCancelOrganizerCreation.Location = new System.Drawing.Point(13, 238);
+                            btnCancelOrganizerCreation.Name = "btnCancelOrganizerCreation";
+                            btnCancelOrganizerCreation.Size = new System.Drawing.Size(119, 42);
+                            btnCancelOrganizerCreation.TabIndex = 9;
+                            btnCancelOrganizerCreation.Text = "Anuluj";
+                            btnCancelOrganizerCreation.UseVisualStyleBackColor = true;
+                            // 
+                            // btnCreateOrganizer
+                            // 
+                            btnCreateOrganizer.Location = new System.Drawing.Point(165, 238);
+                            btnCreateOrganizer.Name = "btnCreateOrganizer";
+                            btnCreateOrganizer.Size = new System.Drawing.Size(119, 42);
+                            btnCreateOrganizer.TabIndex = 10;
+                            btnCreateOrganizer.Text = "Utwórz";
+                            btnCreateOrganizer.UseVisualStyleBackColor = true;
+                            btnCreateOrganizer.Click += new System.EventHandler(CreateOrganizer);
+                            // 
+                            // lbl1
+                            // 
+                            lbl1.AutoSize = true;
+                            lbl1.Font = new System.Drawing.Font("Calibri", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                            lbl1.Location = new System.Drawing.Point(20, 18);
+                            lbl1.Name = "lbl1";
+                            lbl1.Size = new System.Drawing.Size(26, 13);
+                            lbl1.TabIndex = 11;
+                            lbl1.Text = "Ulica";
+                            // 
+                            // lbl2
+                            // 
+                            lbl2.AutoSize = true;
+                            lbl2.Font = new System.Drawing.Font("Calibri", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                            lbl2.Location = new System.Drawing.Point(192, 18);
+                            lbl2.Name = "lbl2";
+                            lbl2.Size = new System.Drawing.Size(41, 13);
+                            lbl2.TabIndex = 12;
+                            lbl2.Text = "Nr domu";
+                            // 
+                            // lbl3
+                            // 
+                            lbl3.AutoSize = true;
+                            lbl3.Font = new System.Drawing.Font("Calibri", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                            lbl3.Location = new System.Drawing.Point(243, 18);
+                            lbl3.Name = "lbl3";
+                            lbl3.Size = new System.Drawing.Size(42, 13);
+                            lbl3.TabIndex = 13;
+                            lbl3.Text = "Nr mszk.";
+                            // 
+                            // lbl4
+                            // 
+                            lbl4.AutoSize = true;
+                            lbl4.Font = new System.Drawing.Font("Calibri", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                            lbl4.Location = new System.Drawing.Point(20, 70);
+                            lbl4.Name = "lbl4";
+                            lbl4.Size = new System.Drawing.Size(35, 13);
+                            lbl4.TabIndex = 14;
+                            lbl4.Text = "Miasto";
+                            // 
+                            // lbl5
+                            // 
+                            lbl5.AutoSize = true;
+                            lbl5.Font = new System.Drawing.Font("Calibri", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                            lbl5.Location = new System.Drawing.Point(213, 70);
+                            lbl5.Name = "lbl5";
+                            lbl5.Size = new System.Drawing.Size(62, 13);
+                            lbl5.TabIndex = 15;
+                            lbl5.Text = "Kod pocztowy";
+                            // 
+                            // lbl6
+                            // 
+                            lbl6.AutoSize = true;
+                            lbl6.Font = new System.Drawing.Font("Calibri", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                            lbl6.Location = new System.Drawing.Point(20, 122);
+                            lbl6.Name = "lbl6";
+                            lbl6.Size = new System.Drawing.Size(108, 13);
+                            lbl6.TabIndex = 16;
+                            lbl6.Text = "Numer konta bankowego (bez spacji)";
+                            // 
+                            // lbl7
+                            // 
+                            lbl7.AutoSize = true;
+                            lbl7.Font = new System.Drawing.Font("Calibri", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                            lbl7.Location = new System.Drawing.Point(20, 214);
+                            lbl7.Name = "lbl7";
+                            lbl7.Size = new System.Drawing.Size(57, 13);
+                            lbl7.TabIndex = 17;
+                            lbl7.Text = "Nazwa firmy";
+                            // 
+                            // lbl8
+                            // 
+                            lbl8.AutoSize = true;
+                            lbl8.Font = new System.Drawing.Font("Calibri", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                            lbl8.Location = new System.Drawing.Point(20, 256);
+                            lbl8.Name = "lbl8";
+                            lbl8.Size = new System.Drawing.Size(21, 13);
+                            lbl8.TabIndex = 18;
+                            lbl8.Text = "NIP";
+                            // 
+                            // tbxNIP2
+                            // 
+                            tbxNIP2.Location = new System.Drawing.Point(49, 272);
+                            tbxNIP2.MaxLength = 2;
+                            tbxNIP2.Name = "tbxNIP2";
+                            tbxNIP2.Size = new System.Drawing.Size(28, 22);
+                            tbxNIP2.TabIndex = 19;
+                            // 
+                            // tbxNIP3
+                            // 
+                            tbxNIP3.Location = new System.Drawing.Point(83, 272);
+                            tbxNIP3.MaxLength = 3;
+                            tbxNIP3.Name = "tbxNIP3";
+                            tbxNIP3.Size = new System.Drawing.Size(33, 22);
+                            tbxNIP3.TabIndex = 20;
+                            // 
+                            // tbxNIP4
+                            // 
+                            tbxNIP4.Location = new System.Drawing.Point(122, 272);
+                            tbxNIP4.MaxLength = 3;
+                            tbxNIP4.Name = "tbxNIP4";
+                            tbxNIP4.Size = new System.Drawing.Size(33, 22);
+                            tbxNIP4.TabIndex = 21;
+                            //
+                            //BtnSwitchCompany
+                            //
+                            void BtnSwitch(object sender4, EventArgs e4)
+                            {
+                                if (btnSwitch.Text.Equals("Konto prywatne"))
+                                {
+                                    dlgCreateOrganizer.Width = 314;
+                                    dlgCreateOrganizer.Height = 423;
+                                    btnCancelOrganizerCreation.Location = new System.Drawing.Point(13, 316);
+                                    btnCreateOrganizer.Location = new System.Drawing.Point(165, 316);
+
+                                    dlgCreateOrganizer.Controls.Add(tbxNIP4);
+                                    dlgCreateOrganizer.Controls.Add(tbxNIP3);
+                                    dlgCreateOrganizer.Controls.Add(tbxNIP2);
+                                    dlgCreateOrganizer.Controls.Add(lbl8);
+                                    dlgCreateOrganizer.Controls.Add(lbl7);
+                                    dlgCreateOrganizer.Controls.Add(tbxNIP1);
+                                    dlgCreateOrganizer.Controls.Add(tbxCompanyName);
+
+                                    btnSwitch.Text = "Konto firmy";
+                                    btnSwitch.BackColor = System.Drawing.SystemColors.ActiveBorder;
+                                }
+                                else
+                                {
+                                    dlgCreateOrganizer.Width = 314;
+                                    dlgCreateOrganizer.Height = 339;
+                                    btnCancelOrganizerCreation.Location = new System.Drawing.Point(13, 238);
+                                    btnCreateOrganizer.Location = new System.Drawing.Point(165, 238);
+
+                                    dlgCreateOrganizer.Controls.Remove(tbxNIP4);
+                                    dlgCreateOrganizer.Controls.Remove(tbxNIP3);
+                                    dlgCreateOrganizer.Controls.Remove(tbxNIP2);
+                                    dlgCreateOrganizer.Controls.Remove(lbl8);
+                                    dlgCreateOrganizer.Controls.Remove(lbl7);
+                                    dlgCreateOrganizer.Controls.Remove(tbxNIP1);
+                                    dlgCreateOrganizer.Controls.Remove(tbxCompanyName);
+
+                                    btnSwitch.Text = "Konto prywatne";
+                                    btnSwitch.BackColor = System.Drawing.SystemColors.ButtonShadow;
+                                }
+                            }
+                            // 
+                            // Form2
+                            //
+                            dlgCreateOrganizer.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+                            dlgCreateOrganizer.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                            dlgCreateOrganizer.AutoSize = true;
+                            //dlgCreateOrganizer.ClientSize = new System.Drawing.Size(296, 376);
+                            dlgCreateOrganizer.Controls.Add(lbl6);
+                            dlgCreateOrganizer.Controls.Add(lbl5);
+                            dlgCreateOrganizer.Controls.Add(lbl4);
+                            dlgCreateOrganizer.Controls.Add(lbl3);
+                            dlgCreateOrganizer.Controls.Add(lbl2);
+                            dlgCreateOrganizer.Controls.Add(lbl1);
+                            dlgCreateOrganizer.Controls.Add(btnCreateOrganizer);
+                            dlgCreateOrganizer.Controls.Add(btnCancelOrganizerCreation);
+                            dlgCreateOrganizer.Controls.Add(tbxBankAccount);
+                            dlgCreateOrganizer.Controls.Add(tbxPostalCode);
+                            dlgCreateOrganizer.Controls.Add(tbxCity);
+                            dlgCreateOrganizer.Controls.Add(tbxAppartment);
+                            dlgCreateOrganizer.Controls.Add(tbxBuilding);
+                            dlgCreateOrganizer.Controls.Add(tbxStreet);
+                            dlgCreateOrganizer.Controls.Add(btnSwitch);
+                            dlgCreateOrganizer.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+                            dlgCreateOrganizer.Name = "Form2";
+                            dlgCreateOrganizer.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+                            dlgCreateOrganizer.Text = "Form2";
+                            //dlgCreateOrganizer.Load += new System.EventHandler(dlgCreateOrganizer.Form2_Load);
+                            //dlgCreateOrganizer.ResumeLayout(false);
+                            dlgCreateOrganizer.PerformLayout();
+                            dlgCreateOrganizer.ShowDialog();
+                            dlgChooseUpgrade.Close();
+
+                            #endregion
+
+                            void CreateOrganizer(object sender4, EventArgs e4)
+                            {
+                                var poczt1 = tbxPostalCode.Text.Substring(0, 2);
+                                var poczt2 = tbxPostalCode.Text.Substring(2, 1);
+                                var poczt3 = tbxPostalCode.Text.Substring(3, 3);
+                                Adres adresik = new Adres();
+                                if (btnSwitch.Text.Equals("Konto prywatne"))
+                                {
+
+                                    if (String.IsNullOrWhiteSpace(tbxStreet.Text) || String.IsNullOrWhiteSpace(tbxBuilding.Text) || String.IsNullOrWhiteSpace(tbxAppartment.Text) || String.IsNullOrWhiteSpace(tbxCity.Text) ||
+                                        String.IsNullOrWhiteSpace(tbxPostalCode.Text) || String.IsNullOrWhiteSpace(tbxBankAccount.Text))
+                                    {
+                                        string message = "Uzupełnij wszystkie pola.";
+                                        string caption = "";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                    }
+                                    else if (!tbxAppartment.Text.Any(char.IsDigit) || !tbxBuilding.Text.Any(char.IsDigit) || !tbxBankAccount.Text.All(char.IsDigit))
+                                    {
+                                        string message = "Numery zwykle zawierają cyfry.";
+                                        string caption = "";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                    }
+                                    else if (!poczt1.All(char.IsDigit) || !poczt2.Equals("-") || !poczt3.All(char.IsDigit))
+                                    {
+                                        string message = "Niepoprawny kod pocztowy.";
+                                        string caption = "";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                    }
+                                    else if (tbxBankAccount.Text.Length < 26)
+                                    {
+                                        string message = "Numer konta bankowego składa się z 26 cyfr.";
+                                        string caption = "";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                    }
+                                    else
+                                    {
+                                        string message = "Witaj w Systemie Wyimaginowanych Płatności! Aby zasubskrybować i uzyskać status prelegenta wciśnij \"OK\".";
+                                        string caption = "SWP";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                        if (result == DialogResult.OK)
+                                        {
+                                            adresik = new Adres(tbxStreet.Text, tbxCity.Text, tbxPostalCode.Text, tbxBuilding.Text, tbxAppartment.Text);
+                                            organizator = new Organizator(_sluchacz.Login, _sluchacz.Haslo, adresik, tbxBankAccount.Text);
+                                            _ds.Organizatorzy.Add(organizator);
+                                            _ds.DataStore_save(_ds);
+                                            string messag = "Gratulacje! Od teraz możesz pełnić na konferencjach funkcję organizatora.";
+                                            string captio = "Dziękujemy!";
+                                            MessageBoxButtons button = MessageBoxButtons.OK;
+                                            DialogResult resul;
+                                            resul = MessageBox.Show(messag, captio, button);
+                                            dlgCreateOrganizer.Close();
+                                        }
+                                        else
+                                        {
+                                            dlgCreateOrganizer.Close();
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (String.IsNullOrWhiteSpace(tbxStreet.Text) || String.IsNullOrWhiteSpace(tbxBuilding.Text) || String.IsNullOrWhiteSpace(tbxAppartment.Text) || String.IsNullOrWhiteSpace(tbxCity.Text) ||
+                                    String.IsNullOrWhiteSpace(tbxPostalCode.Text) || String.IsNullOrWhiteSpace(tbxBankAccount.Text) || String.IsNullOrWhiteSpace(tbxCompanyName.Text) || String.IsNullOrWhiteSpace(tbxNIP1.Text) ||
+                                    String.IsNullOrWhiteSpace(tbxNIP2.Text) || String.IsNullOrWhiteSpace(tbxNIP3.Text) || String.IsNullOrWhiteSpace(tbxNIP4.Text))
+                                    {
+                                        string message = "Uzupełnij wszystkie pola.";
+                                        string caption = "";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                    }
+                                    else if (!tbxAppartment.Text.Any(char.IsDigit) || !tbxBuilding.Text.Any(char.IsDigit) || !tbxBankAccount.Text.All(char.IsDigit) || !tbxNIP1.Text.All(char.IsDigit) || !tbxNIP2.Text.All(char.IsDigit) ||
+                                        !tbxNIP3.Text.All(char.IsDigit) || !tbxNIP4.Text.All(char.IsDigit))
+                                    {
+                                        string message = "Numery zwykle zawierają cyfry.";
+                                        string caption = "";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                    }
+                                    else if (!poczt1.All(char.IsDigit) || !poczt2.Equals("-") || !poczt3.All(char.IsDigit))
+                                    {
+                                        string message = "Niepoprawny kod pocztowy.";
+                                        string caption = "";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                    }
+                                    else if (tbxBankAccount.Text.Length < 26)
+                                    {
+                                        string message = "Numer konta bankowego składa się z 26 cyfr.";
+                                        string caption = "";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                    }
+                                    else if (tbxNIP1.Text.Length != 2 || tbxNIP2.Text.Length != 2 || tbxNIP3.Text.Length != 3 || tbxNIP4.Text.Length != 3)
+                                    {
+                                        string message = "NIP wprowadź według wzoru:\nXX XX XXX XXX";
+                                        string caption = "";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                    }
+                                    else
+                                    {
+                                        string message = "Witaj w Systemie Wyimaginowanych Płatności! Aby zasubskrybować i uzyskać status prelegenta wciśnij \"OK\".";
+                                        string caption = "SWP";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                        if (result == DialogResult.OK)
+                                        {
+                                            adresik = new Adres(tbxStreet.Text, tbxCity.Text, tbxPostalCode.Text, tbxBuilding.Text, tbxAppartment.Text);
+                                            organizator = new Organizator(_sluchacz.Login, _sluchacz.Haslo, adresik, tbxBankAccount.Text, (tbxNIP1.Text + '-' + tbxNIP2.Text + '-' + tbxNIP3.Text + '-' + tbxNIP4.Text), tbxCompanyName.Text);
+                                            _ds.Organizatorzy.Add(organizator);
+                                            _ds.DataStore_save(_ds);
+                                            string messag = "Gratulacje! Od teraz możesz pełnić na konferencjach funkcję organizatora.";
+                                            string captio = "Dziękujemy!";
+                                            MessageBoxButtons button = MessageBoxButtons.OK;
+                                            DialogResult resul;
+                                            resul = MessageBox.Show(messag, captio, button);
+                                            dlgCreateOrganizer.Close();
+                                        }
+                                        else
+                                        {
+                                            dlgCreateOrganizer.Close();
+                                        }
+                                    }
+                                }
+                            }
                         }
                         else
                         {

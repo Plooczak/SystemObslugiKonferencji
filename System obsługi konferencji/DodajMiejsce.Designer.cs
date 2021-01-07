@@ -58,7 +58,6 @@ namespace System_obsługi_konferencji
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.73913F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.67901F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.18568F));
-            this.tableLayoutPanel1.Controls.Add(this.button1, 3, 7);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
@@ -73,6 +72,7 @@ namespace System_obsługi_konferencji
             this.tableLayoutPanel1.Controls.Add(this.textBox4, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.label7, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.textBox5, 3, 6);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 3, 7);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, -1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;

@@ -54,6 +54,7 @@ namespace System_obsługi_konferencji
             this.button1.TabIndex = 1;
             this.button1.Text = "Opuść";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -63,6 +64,7 @@ namespace System_obsługi_konferencji
             this.button2.TabIndex = 2;
             this.button2.Text = "Dodaj referat";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // listBox1
             // 
@@ -72,6 +74,7 @@ namespace System_obsługi_konferencji
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(545, 340);
             this.listBox1.TabIndex = 3;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // button3
             // 
@@ -81,6 +84,7 @@ namespace System_obsługi_konferencji
             this.button3.TabIndex = 4;
             this.button3.Text = "Szczegóły";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // TwojeWydarzeniaPrelegent
             // 
@@ -94,6 +98,7 @@ namespace System_obsługi_konferencji
             this.Controls.Add(this.label1);
             this.Name = "TwojeWydarzeniaPrelegent";
             this.Text = "TwojeWydarzenia";
+            this.Load += new System.EventHandler(this.TwojeWydarzeniaPrelegent_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

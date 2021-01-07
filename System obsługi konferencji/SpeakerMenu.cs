@@ -296,7 +296,6 @@ namespace System_obsługi_konferencji
                 dodajReferat.Width = 492;
 
                 #region layout
-
                 Button button7 = new System.Windows.Forms.Button();
                 Label label7 = new System.Windows.Forms.Label();
                 Label label2 = new System.Windows.Forms.Label();
@@ -392,10 +391,10 @@ namespace System_obsługi_konferencji
                 numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
                 numericUpDown1.Location = new System.Drawing.Point(110, 280);
                 numericUpDown1.Maximum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
+                2,
+                0,
+                0,
+                0});
                 numericUpDown1.Name = "numericUpDown1";
                 numericUpDown1.Size = new System.Drawing.Size(41, 24);
                 numericUpDown1.TabIndex = 8;
@@ -405,10 +404,10 @@ namespace System_obsługi_konferencji
                 numericUpDown2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
                 numericUpDown2.Location = new System.Drawing.Point(246, 280);
                 numericUpDown2.Maximum = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
+                60,
+                0,
+                0,
+                0});
                 numericUpDown2.Name = "numericUpDown2";
                 numericUpDown2.Size = new System.Drawing.Size(41, 24);
                 numericUpDown2.TabIndex = 9;

@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    public class Sluchacz : Uzytkownik, IEquatable<Sluchacz>
+    public class Sluchacz : Uzytkownik, IEquatable<Sluchacz>, ICloneable
     {
         private string imie;
         private string nazwisko;
@@ -64,5 +64,9 @@ namespace System_obsługi_konferencji
             else return false;
         }
 
+        public object Clone()
+        {
+            return (Sluchacz)this.MemberwiseClone();
+        }
     }
 }

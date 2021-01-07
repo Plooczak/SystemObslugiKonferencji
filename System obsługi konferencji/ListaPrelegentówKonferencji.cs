@@ -6,19 +6,23 @@ using System.Threading.Tasks;
 
 namespace System_obsługi_konferencji
 {
-    class ListaPrelegentówKonferencji
+    public class ListaPrelegentówKonferencji
     {
+        private int liczbaPrelegentow;
+        public int LiczbaPrelegentow { get => liczbaPrelegentow; set => liczbaPrelegentow = value; }
         public LinkedList<Prelegent> listaPrelegentow;
         private LinkedList<Prelegent> Lista { get => listaPrelegentow; set => listaPrelegentow = value; }
         
         public ListaPrelegentówKonferencji()
         {
             listaPrelegentow = new LinkedList<Prelegent>();
+            liczbaPrelegentow = 0;
         }
         
         public void DodajPrelegenta(Prelegent prelegent)
         {
             listaPrelegentow.AddLast(prelegent);
+            liczbaPrelegentow++;
         }
 
 

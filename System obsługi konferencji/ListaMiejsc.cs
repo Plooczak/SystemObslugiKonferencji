@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace System_obsługi_konferencji
 {
-    class ListaMiejsc
+    public class ListaMiejsc
     {
         public LinkedList<MiejsceKonferencji> listaMiejsc;
         private LinkedList<MiejsceKonferencji> Lista { get => listaMiejsc; set => listaMiejsc = value; }

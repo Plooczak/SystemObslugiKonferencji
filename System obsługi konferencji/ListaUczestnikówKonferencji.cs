@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace System_obsługi_konferencji
 {
-    public class ListaUczestnikówKonferencji
+    public class ListaUczestnikówKonferencji : ICloneable
     {
         private int liczbaUczestnikow;
         public int LiczbaUczestnikow { get => liczbaUczestnikow; set => liczbaUczestnikow = value; }
-        public LinkedList<Sluchacz> listaUczestnikow;
-        private LinkedList<Sluchacz> Lista { get => listaUczestnikow; set => listaUczestnikow = value; }
+        private LinkedList<Sluchacz> listaUczestnikow;
+        public LinkedList<Sluchacz> Lista { get => listaUczestnikow; set => listaUczestnikow = value; }
 
         public ListaUczestnikówKonferencji()
         {
@@ -23,6 +23,18 @@ namespace System_obsługi_konferencji
         {
             listaUczestnikow.AddLast(sluchacz);
             liczbaUczestnikow++;
+        }
+
+        public object Clone()
+        {
+            return (ListaUczestnikówKonferencji)this.MemberwiseClone();
+        }
+
+        public ListaUczestnikówKonferencji Kopiuj()
+        {
+            ListaUczestnikówKonferencji kopia = (ListaUczestnikówKonferencji)this.Clone();
+            kopia.listaUczestnikow = new LinkedList<Sluchacz>(listaUczestnikow.Select(x => (Sluchacz)x.Clone()));
+            return kopia;
         }
     }
 }

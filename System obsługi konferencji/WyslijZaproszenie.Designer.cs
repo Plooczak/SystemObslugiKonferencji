@@ -154,6 +154,7 @@ namespace System_obsługi_konferencji
             this.Controls.Add(this.label1);
             this.Name = "WyslijZaproszenie";
             this.Text = "WyslijZaproszenie";
+            this.Load += new System.EventHandler(this.WyslijZaproszenie_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

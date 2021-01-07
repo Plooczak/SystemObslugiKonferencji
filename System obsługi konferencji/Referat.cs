@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace System_obsługi_konferencji
 {
-    class Referat
+    public class Referat
     {
         private string tytul;
         private string streszczenie;
@@ -23,7 +23,7 @@ namespace System_obsługi_konferencji
             tytul = null;
             streszczenie = null;
             autor = null;
-            //szacowanyCzasTrwania = new TimeSpan(0, 0, 0);
+            szacowanyCzasTrwania = new TimeSpan(0, 0, 0);
         }
 
         public Referat(string tytul, string streszczenie, Prelegent autor) : this()
@@ -33,9 +33,9 @@ namespace System_obsługi_konferencji
             this.autor = autor;
         }
 
-        public void DodajCzasTrwania(int godziny, int minuty)
+        public TimeSpan DodajCzasTrwania(int godziny, int minuty)
         {
-            szacowanyCzasTrwania = new TimeSpan(godziny, minuty, 0);
+            return szacowanyCzasTrwania = new TimeSpan(godziny, minuty, 0);    
         }
 
         public override string ToString()

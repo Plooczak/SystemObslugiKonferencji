@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace System_obsługi_konferencji
 {
-    class MiejsceKonferencji: Adres
+    public class MiejsceKonferencji: Adres
     {
         private Adres adres;
         private int nrSali;
@@ -27,6 +27,18 @@ namespace System_obsługi_konferencji
         {
             this.nrSali = nrSali;
             this.iloscMiejsc = iloscMiejsc;
+        }
+
+        public bool CzyPrzekroczono(ListaUczestnikówKonferencji listaUczestnikówKonferencji)
+        {
+            if (iloscMiejsc < listaUczestnikówKonferencji.LiczbaUczestnikow)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

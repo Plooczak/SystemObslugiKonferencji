@@ -11,6 +11,16 @@
       <NrTelefonu>123321123</NrTelefonu>
       <Email>jaca@gmail.com</Email>
     </Sluchacz>
+    <Sluchacz>
+      <Login>pirateska</Login>
+      <Haslo>martynka</Haslo>
+      <Imie>Martyna</Imie>
+      <Nazwisko>Karbownik</Nazwisko>
+      <Plec>K</Plec>
+      <DataUrodzenia>11.11.1999</DataUrodzenia>
+      <NrTelefonu>888888888</NrTelefonu>
+      <Email>karbownikmartyna984@gmail.com</Email>
+    </Sluchacz>
   </Sluchacze>
   <Prelegenci>
   </Prelegenci>

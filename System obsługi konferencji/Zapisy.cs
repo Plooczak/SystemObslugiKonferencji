@@ -26,5 +26,20 @@ namespace System_obsługi_konferencji
         {
 
         }
+
+        private void Zapisy_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBoxZapisz_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ZapiszBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

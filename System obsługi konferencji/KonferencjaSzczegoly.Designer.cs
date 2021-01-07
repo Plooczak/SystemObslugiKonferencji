@@ -121,7 +121,7 @@ namespace System_obsługi_konferencji
             this.ColumnHeader});
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(47, 312);
+            this.listView1.Location = new System.Drawing.Point(48, 299);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(618, 177);
             this.listView1.TabIndex = 6;

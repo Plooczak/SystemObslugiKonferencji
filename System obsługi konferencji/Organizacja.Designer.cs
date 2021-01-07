@@ -53,14 +53,14 @@ namespace System_obsługi_konferencji
             this.button2.Text = "Wyślij zaproszenie";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // Organizuj1
+            // Organizacja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(297, 363);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "Organizuj1";
+            this.Name = "Organizacja";
             this.Text = "Organizuj1";
             this.ResumeLayout(false);
 

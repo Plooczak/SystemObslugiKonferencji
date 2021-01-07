@@ -64,9 +64,9 @@ namespace System_obsługi_konferencji
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(653, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(654, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(71, 40);
+            this.pictureBox1.Size = new System.Drawing.Size(70, 40);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -90,16 +90,18 @@ namespace System_obsługi_konferencji
             this.listBoxZapisz.Name = "listBoxZapisz";
             this.listBoxZapisz.Size = new System.Drawing.Size(584, 292);
             this.listBoxZapisz.TabIndex = 3;
+            this.listBoxZapisz.SelectedIndexChanged += new System.EventHandler(this.listBoxZapisz_SelectedIndexChanged);
             // 
             // ZapiszBtn
             // 
             this.ZapiszBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ZapiszBtn.Location = new System.Drawing.Point(514, 394);
+            this.ZapiszBtn.Location = new System.Drawing.Point(515, 394);
             this.ZapiszBtn.Name = "ZapiszBtn";
             this.ZapiszBtn.Size = new System.Drawing.Size(133, 45);
             this.ZapiszBtn.TabIndex = 4;
             this.ZapiszBtn.Text = "Zapisz się";
             this.ZapiszBtn.UseVisualStyleBackColor = true;
+            this.ZapiszBtn.Click += new System.EventHandler(this.ZapiszBtn_Click);
             // 
             // Zapisy
             // 
@@ -109,6 +111,7 @@ namespace System_obsługi_konferencji
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Zapisy";
             this.Text = "Zapisy";
+            this.Load += new System.EventHandler(this.Zapisy_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -412,9 +412,9 @@ namespace System_obsługi_konferencji
                     DialogResult result2;
                     result2 = MessageBox.Show(message2, caption2, buttons2);
                 }
-                else if(atCount != 1 || dotCount == 0 || tbxEMail.Text.EndsWith(".") || tbxEMail.Text.EndsWith("@"))////////////////////////////////////////
+                else if(atCount != 1 || dotCount == 0 || tbxEMail.Text.EndsWith(".") || tbxEMail.Text.EndsWith("@"))
                 {
-                    string message2 = "Niepoprawny ulicaDom email.";
+                    string message2 = "Niepoprawny email.";
                     string caption2 = "";
                     MessageBoxButtons buttons2 = MessageBoxButtons.OK;
                     DialogResult result2;

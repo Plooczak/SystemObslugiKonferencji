@@ -22,8 +22,6 @@
       <Email>karbownikmartyna984@gmail.com</Email>
     </Sluchacz>
   </Sluchacze>
-  <Prelegenci>
-  </Prelegenci>
-  <Organizatorzy>
-  </Organizatorzy>
+  <Prelegenci />
+  <Organizatorzy />
 </DataStore>

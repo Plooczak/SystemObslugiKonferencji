@@ -26,9 +26,9 @@ namespace System_obsługi_konferencji
         public void DataStore_save(DataStore ds)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(DataStore));
-            
-            //using (TextWriter writer = new StreamWriter("C:/Users/karbo/source/repos/Plooczak/SystemObs-ugiKonferencji/System obsługi konferencji/BazaUzytkownikow.xml"))
-            using (TextWriter writer = new StreamWriter("C:/Users/Paweł/Desktop/Studia/AGH/Semestr III/Programowanie obiektowe/System obsługi konferencji/ESSGit/System obsługi konferencji/BazaUzytkownikow.xml"))
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\BazaUzytkownikow.xml";
+
+            using (TextWriter writer = new StreamWriter(path))
             {
                 serializer.Serialize(writer, ds);
             }
@@ -36,10 +36,9 @@ namespace System_obsługi_konferencji
         public static DataStore DataStore_load()
         {
             XmlSerializer deserializer = new XmlSerializer(typeof(DataStore));
-            //using (TextReader reader = new StreamReader(Path.Combine(Directory.GetCurrentDirectory(), "\\BazaUzytkownikow.xml")))
-         
-            //using (TextReader reader = new StreamReader("C:/Users/karbo/source/repos/Plooczak/SystemObs-ugiKonferencji/System obsługi konferencji/BazaUzytkownikow.xml"))
-            using (TextReader reader = new StreamReader("C:/Users/Paweł/Desktop/Studia/AGH/Semestr III/Programowanie obiektowe/System obsługi konferencji/ESSGit/System obsługi konferencji/BazaUzytkownikow.xml"))
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\BazaUzytkownikow.xml";
+
+            using (TextReader reader = new StreamReader(path))
             {
                 object ds = deserializer.Deserialize(reader);
                 return ds as DataStore;

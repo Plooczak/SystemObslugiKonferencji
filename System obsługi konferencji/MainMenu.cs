@@ -200,7 +200,7 @@ namespace System_obsługi_konferencji
             button2.TabIndex = 9;
             button2.Text = "Wyjdź";
             button2.UseVisualStyleBackColor = true;
-            button1.Click += new System.EventHandler(DlgProfileCancel);
+            button2.Click += new System.EventHandler(DlgProfileCancel);
 
             dlgProfile.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             dlgProfile.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);

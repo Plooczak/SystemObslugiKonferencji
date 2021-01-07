@@ -11,15 +11,19 @@
       <NrTelefonu>123321123</NrTelefonu>
       <Email>jaca@gmail.com</Email>
     </Sluchacz>
+    <Sluchacz>
+      <Login>pirateska</Login>
+      <Haslo>martynka</Haslo>
+      <Imie>Martyna</Imie>
+      <Nazwisko>Karbownik</Nazwisko>
+      <Plec>K</Plec>
+      <DataUrodzenia>11.11.1999</DataUrodzenia>
+      <NrTelefonu>888888888</NrTelefonu>
+      <Email>karbownikmartyna984@gmail.com</Email>
+    </Sluchacz>
   </Sluchacze>
   <Prelegenci>
-    <Prelegent>
-      <Login>Jacek</Login>
-      <Haslo>Jacek</Haslo>
-      <stopienNaukowy>Magister inżynier</stopienNaukowy>
-      <dziedzina>Dupa</dziedzina>
-      <opis>Kieta etykieta jestem kurwa jak rakieta wjedzie seta wjedzie seta dożynki jedzie bagieta ej kupie szewroleta witam siema katecheta ona chciałaby faceta ja mówie sory żaneta</opis>
-    </Prelegent>
   </Prelegenci>
-  <Organizatorzy />
+  <Organizatorzy>
+  </Organizatorzy>
 </DataStore>

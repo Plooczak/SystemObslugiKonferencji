@@ -89,15 +89,17 @@ namespace System_obsługi_konferencji
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(283, 22);
             this.textBox1.TabIndex = 4;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox2.Location = new System.Drawing.Point(21, 92);
+            this.textBox2.Location = new System.Drawing.Point(23, 92);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(354, 135);
             this.textBox2.TabIndex = 5;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label4
             // 
@@ -131,6 +133,7 @@ namespace System_obsługi_konferencji
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(41, 24);
             this.numericUpDown1.TabIndex = 8;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // numericUpDown2
             // 
@@ -144,6 +147,7 @@ namespace System_obsługi_konferencji
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(41, 24);
             this.numericUpDown2.TabIndex = 9;
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // Dodaj_referat
             // 
@@ -162,6 +166,7 @@ namespace System_obsługi_konferencji
             this.Controls.Add(this.button1);
             this.Name = "Dodaj_referat";
             this.Text = "Dodaj_referat";
+            this.Load += new System.EventHandler(this.Dodaj_referat_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);

@@ -31,5 +31,10 @@ namespace System_obsługi_konferencji
         {
 
         }
+
+        private void WyslijZaproszenie_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

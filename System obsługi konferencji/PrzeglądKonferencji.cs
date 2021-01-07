@@ -61,5 +61,10 @@ namespace System_obsługi_konferencji
         {
 
         }
+
+        private void ListViewConferece_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

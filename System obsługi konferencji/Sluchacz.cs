@@ -57,28 +57,6 @@ namespace System_obsługi_konferencji
             return base.ToString();
         }
 
-        //public int CompareTo(object obj)
-        //{
-        //    if (obj != null)
-        //    {
-        //        Sluchacz s = obj as Sluchacz;
-        //        int pom = this.Login.CompareTo(s.login);
-
-        //        if (pom != 0)
-        //        {
-        //            return pom;
-        //        }
-
-        //        else
-        //        {
-        //            return this.haslo.CompareTo(s.Haslo);
-        //        }
-        //    }
-
-        //    else
-        //        return 1;
-        //}
-
         public bool Equals(Sluchacz other)
         {
             if (login.Equals(other.Login))

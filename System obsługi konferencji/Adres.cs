@@ -28,7 +28,7 @@ namespace System_obsługi_konferencji
             this.numerBudynku = null;
             this.numerLokalu = null;
         }
-        public Adres(string ulica, string miejscowosc, string kodPocztowy, string numerBudynku, string numerLokalu)
+        public Adres(string ulica, string miejscowosc, string kodPocztowy, string numerBudynku, string numerLokalu) : this()
         {
             this.ulica = ulica;
             this.miejscowosc = miejscowosc;

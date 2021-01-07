@@ -29,6 +29,20 @@ namespace System_obsługi_konferencji
             listaKonferencji = new LinkedList<Konferencja>(nowaLista);
         }
 
+        public void SortujPoDacieOdKonca()
+        {
+            List<Konferencja> nowaLista = new List<Konferencja>(listaKonferencji);
+            nowaLista.Sort(new DataComparator2());
+            listaKonferencji = new LinkedList<Konferencja>(nowaLista);
+        }
+
+        public void SortujPoTemacie()
+        {
+            List<Konferencja> nowaLista = new List<Konferencja>(listaKonferencji);
+            nowaLista.Sort(new DataComparator3());
+            listaKonferencji = new LinkedList<Konferencja>(nowaLista);
+        }
+
         public void PokazNadchodzace()
         {
             List<Konferencja> nowaLista = new List<Konferencja>(listaKonferencji);
@@ -76,6 +90,32 @@ namespace System_obsługi_konferencji
             if (x != null && y != null)
             {
                 return x.DataKonferencji.CompareTo(y.DataKonferencji);
+            }
+
+            return 0;
+        }
+    }
+
+    public class DataComparator2 : IComparer<Konferencja>
+    {
+        int IComparer<Konferencja>.Compare(Konferencja x, Konferencja y)
+        {
+            if (x != null && y != null)
+            {
+                return y.DataKonferencji.CompareTo(x.DataKonferencji);
+            }
+
+            return 0;
+        }
+    }
+
+    public class DataComparator3 : IComparer<Konferencja>
+    {
+        int IComparer<Konferencja>.Compare(Konferencja x, Konferencja y)
+        {
+            if (x != null && y != null)
+            {
+                return x.Temat.CompareTo(y.Temat);
             }
 
             return 0;

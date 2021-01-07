@@ -9,10 +9,7 @@ namespace System_obsługi_konferencji
 {
     public class Organizator : Uzytkownik, IComparable, IEquatable<Sluchacz>
     {
-        public string ulicaDom { get; set; }
-        public string numerLokalu { get; set; }
-        public string kodPocztowy { get; set; }
-        public string miasto { get; set; }
+        public Adres adres { get; set; }
         public string numerKonta { get; set; }
         public static bool czyFirma { get; set; }
         public string nip { get; set; }
@@ -21,44 +18,39 @@ namespace System_obsługi_konferencji
         public Organizator()
         {
             czyFirma = false;
-            ulicaDom = null;
-            numerLokalu = null;
-            kodPocztowy = null;
-            miasto = null;
+            adres = new Adres();
             numerKonta = null;
-            nip = null;
             nip = null;
             nazwaFirmy = null;
         }
         public Organizator(string login, string haslo):base(login,haslo)
         {
             czyFirma = false;
-            ulicaDom = null;
-            numerLokalu = null;
-            kodPocztowy = null;
-            miasto = null;
+            adres = null;
             numerKonta = null;
             nip = null;
             nazwaFirmy = null;
         }
-        public Organizator(string login, string haslo, string ulicaDom, string numerLokalu, string kodPocztowy, string miasto, string numerKonta) : base(login, haslo)
+        public Organizator(string login, string haslo, string ulica, string miejscowosc, string kodPocztowy, string numerBudynku, string numerLokalu, string numerKonta) : base(login, haslo)
         {
-            this.ulicaDom = ulicaDom;
-            this.numerLokalu = numerLokalu;
-            this.kodPocztowy = kodPocztowy;
-            this.miasto = miasto;
-            this.numerKonta = numerKonta;
+            adres.Ulica = ulica;
+            adres.Miejscowosc = miejscowosc;
+            adres.KodPocztowy = kodPocztowy;
+            adres.NumerBudynku = numerBudynku;
+            adres.NumerLokalu = numerLokalu;
             czyFirma = false;
             nip = null;
             nazwaFirmy = null;
         }
 
-        public Organizator(string login, string haslo, string ulicaDom, string numerLokalu, string kodPocztowy, string miasto, string numerKonta, string nip, string nazwaFirmy) : base(login, haslo)
+        public Organizator(string login, string haslo, string ulica, string miejscowosc, string kodPocztowy, string numerBudynku, string numerLokalu,
+            string numerKonta, string nip, string nazwaFirmy) : base(login, haslo)
         {
-            this.ulicaDom = ulicaDom;
-            this.numerLokalu = numerLokalu;
-            this.kodPocztowy = kodPocztowy;
-            this.miasto = miasto;
+            adres.Ulica = ulica;
+            adres.Miejscowosc = miejscowosc;
+            adres.KodPocztowy = kodPocztowy;
+            adres.NumerBudynku = numerBudynku;
+            adres.NumerLokalu = numerLokalu;
             this.numerKonta = numerKonta;
             czyFirma = true;
             this.nip = nip;

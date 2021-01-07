@@ -8,17 +8,11 @@ namespace System_obsługi_konferencji
 {
     public class Adres
     {
-        protected string ulica;
-        protected string miejscowosc;
-        protected string kodPocztowy;
-        protected string numerBudynku;
-        protected string numerLokalu;
-
-        public string Ulica { get => ulica; set => ulica = value; }
-        public string Miejscowosc { get => miejscowosc; set => miejscowosc = value; }
-        public string KodPocztowy { get => kodPocztowy; set => kodPocztowy = value; }
-        public string NumerBudynku { get => numerBudynku; set => numerBudynku = value; }
-        public string NumerLokalu { get => numerLokalu; set => numerLokalu = value; }
+        public string ulica { get; set; }
+        public string miejscowosc { get; set; }
+        public string kodPocztowy { get; set; }
+        public string numerBudynku { get; set; }
+        public string numerLokalu { get; set; }
 
         public Adres()
         {

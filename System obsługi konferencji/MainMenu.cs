@@ -19,7 +19,7 @@ namespace System_obsługi_konferencji
             InitializeComponent();
         }//Przekazanie DataStore i użytkownika zalogowanego ze Start.cs
 
-        private void openParticipant(object sender, EventArgs e)
+        private void openParticipant(object sender, EventArgs e)//Zrobione, dodać przekazywanie do konstruktowa
         {
             this.Hide();
             var participantMenu = new ParticipantMenu();
@@ -27,20 +27,44 @@ namespace System_obsługi_konferencji
             participantMenu.Show();
         }
 
-        private void openSpeaker(object sender, EventArgs e)
+        private void openSpeaker(object sender, EventArgs e)//Zrobione, dodać przekazywanie do konstruktowa
         {
-            this.Hide();
-            var speakerMenu = new SpeakerMenu();
-            speakerMenu.Closed += (s, args) => this.Show();
-            speakerMenu.Show();
+            prelegent = new Prelegent(_sluchacz.Login, _sluchacz.Haslo);
+            if (_ds.Prelegenci.Contains(prelegent))
+            {
+                this.Hide();
+                var speakerMenu = new SpeakerMenu();
+                speakerMenu.Closed += (s, args) => this.Show();
+                speakerMenu.Show();
+            }
+            else
+            {
+                string message = "Nie posiadasz uprawnień prelegenta. Aby to zmienić, kliknij ikonkę profilu w prawym górnym rogu.";
+                string caption = "Brak uprawnień";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+                result = MessageBox.Show(message, caption, buttons);
+            }
         }
 
-        private void openOrganizer(object sender, EventArgs e)
+        private void openOrganizer(object sender, EventArgs e)//Zrobione, dodać przekazywanie do konstruktowa
         {
-            this.Hide();
-            var organizerMenu = new OrganizerMenu();
-            organizerMenu.Closed += (s, args) => this.Show();
-            organizerMenu.Show();
+            organizator = new Organizator(_sluchacz.Login, _sluchacz.Haslo);
+            if (_ds.Organizatorzy.Contains(organizator))
+            {
+                this.Hide();
+                var organizerMenu = new OrganizerMenu();
+                organizerMenu.Closed += (s, args) => this.Show();
+                organizerMenu.Show();
+            }
+            else
+            {
+                string message = "Nie posiadasz uprawnień organizatora. Aby to zmienić, kliknij ikonkę profilu w prawym górnym rogu.";
+                string caption = "Brak uprawnień";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+                result = MessageBox.Show(message, caption, buttons);
+            }
         }
 
         private void pbxCloseClick(object sender, EventArgs e)
@@ -72,7 +96,7 @@ namespace System_obsługi_konferencji
             }
         }//Zrobione
 
-        private void pbxProfileClick(object sender, EventArgs e)
+        private void pbxProfileClick(object sender, EventArgs e)//Zrobione
         {
             Form dlgProfile = new Form();
             dlgProfile.Height = 290;
@@ -793,9 +817,6 @@ namespace System_obsługi_konferencji
 
                             void CreateOrganizer(object sender4, EventArgs e4)
                             {
-                                var poczt1 = tbxPostalCode.Text.Substring(0, 2);
-                                var poczt2 = tbxPostalCode.Text.Substring(2, 1);
-                                var poczt3 = tbxPostalCode.Text.Substring(3, 3);
                                 Adres adresik = new Adres();
                                 if (btnSwitch.Text.Equals("Konto prywatne"))
                                 {
@@ -809,7 +830,7 @@ namespace System_obsługi_konferencji
                                         DialogResult result;
                                         result = MessageBox.Show(message, caption, buttons);
                                     }
-                                    else if (!tbxAppartment.Text.Any(char.IsDigit) || !tbxBuilding.Text.Any(char.IsDigit) || !tbxBankAccount.Text.All(char.IsDigit))
+                                    else if (!tbxAppartment.Text.Any(char.IsDigit) || !tbxBuilding.Text.Any(char.IsDigit) || !tbxBankAccount.Text.Any(char.IsDigit))
                                     {
                                         string message = "Numery zwykle zawierają cyfry.";
                                         string caption = "";
@@ -817,9 +838,17 @@ namespace System_obsługi_konferencji
                                         DialogResult result;
                                         result = MessageBox.Show(message, caption, buttons);
                                     }
-                                    else if (!poczt1.All(char.IsDigit) || !poczt2.Equals("-") || !poczt3.All(char.IsDigit))
+                                    else if (tbxPostalCode.Text.Length < 6)
                                     {
-                                        string message = "Niepoprawny kod pocztowy.";
+                                        string message = "Uzupełnij kod pocztowy według wzoru: XX-XXX";
+                                        string caption = "";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                    }
+                                    else if(!tbxPostalCode.Text.Substring(0, 2).All(char.IsDigit) || !tbxPostalCode.Text.Substring(2, 1).Equals("-") || !tbxPostalCode.Text.Substring(3, 3).All(char.IsDigit))
+                                    {
+                                        string message = "Uzupełnij kod pocztowy według wzoru: XX-XXX";
                                         string caption = "";
                                         MessageBoxButtons buttons = MessageBoxButtons.OK;
                                         DialogResult result;
@@ -880,9 +909,17 @@ namespace System_obsługi_konferencji
                                         DialogResult result;
                                         result = MessageBox.Show(message, caption, buttons);
                                     }
-                                    else if (!poczt1.All(char.IsDigit) || !poczt2.Equals("-") || !poczt3.All(char.IsDigit))
+                                    else if (tbxPostalCode.Text.Length < 6)
                                     {
-                                        string message = "Niepoprawny kod pocztowy.";
+                                        string message = "Uzupełnij kod pocztowy według wzoru: XX-XXX";
+                                        string caption = "";
+                                        MessageBoxButtons buttons = MessageBoxButtons.OK;
+                                        DialogResult result;
+                                        result = MessageBox.Show(message, caption, buttons);
+                                    }
+                                    else if (!tbxPostalCode.Text.Substring(0, 2).All(char.IsDigit) || !tbxPostalCode.Text.Substring(2, 1).Equals("-") || !tbxPostalCode.Text.Substring(3, 3).All(char.IsDigit))
+                                    {
+                                        string message = "Uzupełnij kod pocztowy według wzoru: XX-XXX";
                                         string caption = "";
                                         MessageBoxButtons buttons = MessageBoxButtons.OK;
                                         DialogResult result;

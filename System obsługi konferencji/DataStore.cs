@@ -25,6 +25,7 @@ namespace System_obsługi_konferencji
         //}
         public void DataStore_save(DataStore ds)
         {
+            ds.SortAll(ds);
             XmlSerializer serializer = new XmlSerializer(typeof(DataStore));
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\BazaUzytkownikow.xml";
 
@@ -44,6 +45,12 @@ namespace System_obsługi_konferencji
                 return ds as DataStore;
             }
 
+        }
+        public void SortAll(DataStore ds)
+        {
+            ds.Sluchacze.Sort();
+            ds.Prelegenci.Sort();
+            ds.Organizatorzy.Sort();
         }
     }
 }

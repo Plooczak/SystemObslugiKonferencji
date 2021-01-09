@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    public class Sluchacz : Uzytkownik, IEquatable<Sluchacz>, ICloneable
+    public class Sluchacz : Uzytkownik, IEquatable<Sluchacz>, IComparable<Sluchacz>, ICloneable
     {
         private string imie;
         private string nazwisko;
@@ -63,6 +63,7 @@ namespace System_obsługi_konferencji
                 return (haslo.Equals(other.Haslo));
             else return false;
         }
+        public int CompareTo(Sluchacz other) => login.CompareTo(other.login);
 
         public object Clone()
         {

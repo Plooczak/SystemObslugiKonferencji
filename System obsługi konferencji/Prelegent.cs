@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    public class Prelegent : Uzytkownik, IComparable, IEquatable<Prelegent>
+    public class Prelegent : Uzytkownik, IComparable<Prelegent>, IEquatable<Prelegent>
     {
         public string stopienNaukowy { get; set; }
         public string dziedzina { get; set; }
@@ -39,27 +39,8 @@ namespace System_obsługi_konferencji
             return base.ToString();
         }
 
-        public int CompareTo(object obj)
-        {
-            if (obj != null)
-            {
-                Prelegent p = (Prelegent)obj;
-                int pom = this.Login.CompareTo(p.login);
+        public int CompareTo(Prelegent other) => login.CompareTo(other.login);
 
-                if (pom != 0)
-                {
-                    return pom;
-                }
-
-                else
-                {
-                    return this.haslo.CompareTo(p.Haslo);
-                }
-            }
-
-            else
-                return 1;
-        }
 
         public bool Equals(Prelegent other)
         {

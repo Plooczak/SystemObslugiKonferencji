@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,19 +8,64 @@ using System.Threading.Tasks;
 
 namespace System_obsługi_konferencji
 {
-    class ListaKonferencji
+    public class ListaKonferencji: IAktualizujListe//, IEnumerable<Konferencja>
     {
         public LinkedList<Konferencja> listaKonferencji;
-        private LinkedList<Konferencja> Lista { get => listaKonferencji; set => listaKonferencji = value; }
+        public LinkedList<Konferencja> Lista_Konferencji { get => listaKonferencji; set => listaKonferencji = value; }
+        //public ListaKonferencji(System.Collections.Generic.IEnumerable<Konferencja> collection) { }
 
         public ListaKonferencji()
         {
             listaKonferencji = new LinkedList<Konferencja>();
         }
 
-        public void DodajKonferencje(Konferencja konferencja)
+        public void DodajObiekt(dynamic konferencja)
         {
             listaKonferencji.AddLast(konferencja);
+        }
+        public bool UsunObiekt(string temat)
+        {
+            var currentNode = listaKonferencji.First;
+            bool czyUsunieto = false;
+            while (currentNode != null)
+            {
+                if (currentNode.Value.Temat == temat)
+                {
+                    var toRemove = currentNode;
+                    currentNode = currentNode.Next;
+                    listaKonferencji.Remove(toRemove);
+                    czyUsunieto = true;
+                }
+                else
+                {
+                    currentNode = currentNode.Next;
+                }
+            }
+            return czyUsunieto;
+        }
+
+        public int PoliczObiekty()
+        {
+            return listaKonferencji.Count();
+        }
+
+        public void Wyczysc()
+        {
+            listaKonferencji.Clear();
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            //sb.AppendLine("NLista Konferencji \n");
+            foreach (Konferencja konf in listaKonferencji)
+            {
+                int i = 1;
+                sb.AppendLine(i + "." + " \"" + konf.Temat.ToString() + "\" ");
+                i++;
+            }
+
+            return sb.ToString();
         }
 
         public void SortujPoDacie()
@@ -77,6 +123,43 @@ namespace System_obsługi_konferencji
             listaKonferencji = new LinkedList<Konferencja>(nowaLista);
         }
 
+        public Konferencja ZnajdzKonferencje(string temat)
+        {
+            Konferencja k = new Konferencja();
+            bool f = false;
+
+            foreach (Konferencja konf in listaKonferencji)
+            {
+                if (k.Temat.Equals(temat))
+                {
+                    k = konf;
+                    f = true;
+                }
+
+            }
+
+            if (!f)
+            {
+                throw new KonferencjaNotFoundException();
+            }
+
+            return k;
+        }
+
+        //public ListaKonferencjiEnumerator(LinkedList<Konferencja> collection)
+        //{
+        //}
+
+
+        //public IEnumerator<Konferencja> GetEnumerator()
+        //{
+          //  return new ListaKonferencjiEnumerator<Konferencja>(this);
+        //}
+
+        //IEnumerator IEnumerable.GetEnumerator()
+        //{
+          //  return new NotImplementedException();
+        //}
     }
 
     //Pokaż nadchodzące posortowane datami 

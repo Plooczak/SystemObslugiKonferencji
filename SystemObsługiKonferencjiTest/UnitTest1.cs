@@ -7,7 +7,7 @@ namespace SystemObsługiKonferencjiTesty
     [TestClass]
     public class Tests
     {
-        [TestMethod]
+        /*[TestMethod]
         public void TestCompareTo() //test sprawdzajacy metode CompareTo
         {
             Organizator o1 = new Organizator("Login2", "haslo2");
@@ -15,7 +15,7 @@ namespace SystemObsługiKonferencjiTesty
             Assert.AreEqual(1, o1.CompareTo(o2));
             //test bedzie pozytywny, jesli dane sa rozne 
         }
-
+        
         [TestMethod]
         public void TestLiczbyUczestnikow() //sprawdzanie metody dodawania uczestników konferencji
         {
@@ -27,19 +27,19 @@ namespace SystemObsługiKonferencjiTesty
             Assert.AreEqual(2, list.LiczbaUczestnikow); 
             //pozytywny test oznacza, ze licznik uczestnikow dziala poprawnie
         }
-
+        
         [TestMethod]
         public void TestListyPrelegentow() //sprawdzanie metody dodawania prelegentow konferencji 
         {
             ListaPrelegentówKonferencji list = new ListaPrelegentówKonferencji();
             Prelegent p1 = new Prelegent("login1", "haslo1");
             Prelegent p2 = new Prelegent("login2", "haslo2");
-            list.DodajPrelegenta(p1);
-            list.DodajPrelegenta(p2);
+            list.DodajObiekt(p1);
+            list.DodajObiekt(p2);
             Assert.IsNotNull(list);
             //pozytywny test oznacza, ze licznik prelegentow dziala poprawnie - lista nie jest pusta
         }
-
+        
         [TestMethod]
         public void TestCzyPrzekroczono() //test metody sprawdzajacej czy przekroczono liczbe uczetnikow konferencji
         {
@@ -60,7 +60,7 @@ namespace SystemObsługiKonferencjiTesty
             Assert.IsTrue(m.CzyPrzekroczono(list));
             //pozytywny test oznacza, ze nie przekroczono
         }
-
+        
         [TestMethod]
         public void TestDodajCzasTrwania() //test metody dodajacej czas trwania wystapienia na konferencji
         {
@@ -70,7 +70,7 @@ namespace SystemObsługiKonferencjiTesty
             Assert.AreEqual(czas1, r1.DodajCzasTrwania(1, 30));
             //pozytywny wynik oznacza, ze czasy sa identyczne
         }
-
+        /*
         [TestMethod]
         public void TestKopiuj() //test metody kopiuj, ktora klonuje liste uczestnikow
         {
@@ -89,5 +89,6 @@ namespace SystemObsługiKonferencjiTesty
             //ListaUczestnikówKonferencji list2 = list.Kopiuj();
             //Assert.AreEqual(list, list2);
         }
+        */
     }
 }

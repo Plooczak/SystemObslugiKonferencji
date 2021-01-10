@@ -31,7 +31,7 @@ namespace System_obsługi_konferencji
 
         public bool CzyPrzekroczono(ListaUczestnikówKonferencji listaUczestnikówKonferencji)
         {
-            if (iloscMiejsc < listaUczestnikówKonferencji.LiczbaUczestnikow)
+            if (iloscMiejsc < listaUczestnikówKonferencji.PoliczObiekty())
             {
                 return true;
             }

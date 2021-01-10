@@ -6,23 +6,66 @@ using System.Threading.Tasks;
 
 namespace System_obsługi_konferencji
 {
-    public class ListaUczestnikówKonferencji : ICloneable
+    public class ListaUczestnikówKonferencji : ICloneable, IAktualizujListe
     {
-        private int liczbaUczestnikow;
-        public int LiczbaUczestnikow { get => liczbaUczestnikow; set => liczbaUczestnikow = value; }
+        //private int liczbaUczestnikow;
+        //public int LiczbaUczestnikow { get => liczbaUczestnikow; set => liczbaUczestnikow = value; }
         private LinkedList<Sluchacz> listaUczestnikow;
         public LinkedList<Sluchacz> Lista { get => listaUczestnikow; set => listaUczestnikow = value; }
 
         public ListaUczestnikówKonferencji()
         {
             listaUczestnikow = new LinkedList<Sluchacz>();
-            liczbaUczestnikow = 0;
+            //liczbaUczestnikow = 0;
         }
 
-        public void DodajUczestnika(Sluchacz sluchacz)
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Lista uczestnikow: ");
+            foreach (Sluchacz s in listaUczestnikow)
+            {
+                sb.AppendLine(s.ToString());
+            }
+
+            return sb.ToString();
+        }
+
+        public void DodajObiekt(dynamic sluchacz)
         {
             listaUczestnikow.AddLast(sluchacz);
-            liczbaUczestnikow++;
+            //liczbaUczestnikow++;
+        }
+
+        public bool UsunObiekt(string login)
+        {
+            var currentNode = listaUczestnikow.First;
+            bool czyUsunieto = false;
+            while (currentNode != null)
+            {
+                if (currentNode.Value.Login == login)
+                {
+                    var toRemove = currentNode;
+                    currentNode = currentNode.Next;
+                    listaUczestnikow.Remove(toRemove);
+                    czyUsunieto = true;
+                }
+                else
+                {
+                    currentNode = currentNode.Next;
+                }
+            }
+            return czyUsunieto;
+        }
+
+        public int PoliczObiekty()
+        {
+            return listaUczestnikow.Count();
+        }
+
+        public void Wyczysc()
+        {
+            listaUczestnikow.Clear();
         }
 
         public object Clone()

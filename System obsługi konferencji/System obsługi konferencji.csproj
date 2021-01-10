@@ -75,6 +75,8 @@
     <Compile Include="DodajMiejsce.Designer.cs">
       <DependentUpon>DodajMiejsce.cs</DependentUpon>
     </Compile>
+    <Compile Include="IAktualizujListe.cs" />
+    <Compile Include="KonferencjaNotFoundException.cs" />
     <Compile Include="KonferencjaSzczegoly.cs">
       <SubType>Form</SubType>
     </Compile>

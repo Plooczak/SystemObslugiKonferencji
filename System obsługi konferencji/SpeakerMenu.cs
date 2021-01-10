@@ -29,7 +29,7 @@ namespace System_obsługi_konferencji
             przegladKonferencji.Width = 773;
 
             #region layout
-            ListView ListViewConferece = new System.Windows.Forms.ListView();
+            ListBox ListViewConferece = new System.Windows.Forms.ListBox();
             ColumnHeader Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ColumnHeader SubjectOfConference = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ColumnHeader Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -40,22 +40,30 @@ namespace System_obsługi_konferencji
             tableLayoutPanel1.SuspendLayout();
             przegladKonferencji.SuspendLayout();
 
+
+            ListViewConferece.FormattingEnabled = true;
+            ListViewConferece.ItemHeight = 18;
+            ListViewConferece.Location = new System.Drawing.Point(128, 121);
+            ListViewConferece.Name = "listBoxPokaz";
+            ListViewConferece.Size = new System.Drawing.Size(560, 337);
+            ListViewConferece.TabIndex = 5;
+
             // 
             // ListViewConferece
             // 
-            ListViewConferece.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            ListViewConferece.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            Number,
-            SubjectOfConference,
-            });
-            ListViewConferece.GridLines = true;
-            ListViewConferece.HideSelection = false;
-            ListViewConferece.Location = new System.Drawing.Point(128, 121);
-            ListViewConferece.Name = "ListViewConferece";
-            ListViewConferece.Size = new System.Drawing.Size(560, 337);
-            ListViewConferece.TabIndex = 5;
-            ListViewConferece.UseCompatibleStateImageBehavior = false;
-            ListViewConferece.View = System.Windows.Forms.View.Details;
+            //ListViewConferece.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            //ListViewConferece.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            //Number,
+            //SubjectOfConference,
+            //});
+            //ListViewConferece.GridLines = true;
+            //ListViewConferece.HideSelection = false;
+            //ListViewConferece.Location = new System.Drawing.Point(128, 121);
+            //ListViewConferece.Name = "ListViewConferece";
+            //ListViewConferece.Size = new System.Drawing.Size(560, 337);
+            //ListViewConferece.TabIndex = 5;
+            //ListViewConferece.UseCompatibleStateImageBehavior = false;
+            //ListViewConferece.View = System.Windows.Forms.View.Details;
             //ListViewConferece.SelectedIndexChanged += new System.EventHandler(ListViewConferece_SelectedIndexChanged);
 
             // 

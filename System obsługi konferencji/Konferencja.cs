@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    class Konferencja
+    public class Konferencja
     {
         public static int idKonferencji = 0;
         private string temat;
@@ -24,6 +24,8 @@ namespace System_obsługi_konferencji
         public DateTime DataKonferencji { get => dataKonferencji; set => dataKonferencji = value; }
         public DateTime TerminRejestracji { get => terminRejestracji; set => terminRejestracji = value; }
         internal Organizator Organizator { get => organizator; set => organizator = value; }
+
+
         internal ListaPrelegentówKonferencji Prelegenci { get => prelegenci; set => prelegenci = value; }
         internal ListaUczestnikówKonferencji Uczestnicy { get => uczestnicy; set => uczestnicy = value; }
         internal PlanKonferencji Plan { get => plan; set => plan = value; }
@@ -35,16 +37,13 @@ namespace System_obsługi_konferencji
             idKonferencji++;
             temat = null;
             dataKonferencji = DateTime.MinValue;
-            //terminRejestracji = dataKonferencji.AddDays(-7);
-            //organizator = null;
-            //prelegenci = null; 
         }
 
         public Konferencja(string temat, string data_Konferencji, Organizator organizator, MiejsceKonferencji miejsce) : this()
         {
             this.temat = temat;
             DateTime.TryParseExact(data_Konferencji, new[] { "dd-MM-yyyy" }, null, DateTimeStyles.None, out dataKonferencji);
-            terminRejestracji = dataKonferencji.AddDays(-7);
+            terminRejestracji = dataKonferencji;
             this.organizator = organizator;
             //this.prelegenci = prelegenci;
             //this.uczestnicy = uczestnicy;

@@ -10,10 +10,24 @@ using System.Windows.Forms;
 
 namespace System_obsługi_konferencji
 {
+
     public partial class OrganizerMenu : Form
     {
-        public OrganizerMenu()
+        DataStore _ds;
+        Sluchacz _sluchacz;
+        Prelegent prelegent = new Prelegent();
+        Prelegent prelegentLogin = new Prelegent();
+        Organizator organizator = new Organizator();
+        Organizator organizatorLogin = new Organizator();
+        MiejsceKonferencji miejsce = new MiejsceKonferencji();
+        Konferencja konferencja1 = new Konferencja();
+        ListaUczestnikówKonferencji listaUczestnikow = new ListaUczestnikówKonferencji();
+        ListaPrelegentówKonferencji listaPrelegentow = new ListaPrelegentówKonferencji();
+
+        public OrganizerMenu(DataStore ds, Sluchacz sluchacz, Organizator organizator)
         {
+            _ds = ds;
+            _sluchacz = sluchacz;
             InitializeComponent();
         }
 
@@ -29,7 +43,7 @@ namespace System_obsługi_konferencji
             przegladKonferencji.Width = 773;
 
             #region layout
-            ListView ListViewConferece = new System.Windows.Forms.ListView();
+            ListBox ListViewConferece = new System.Windows.Forms.ListBox();
             ColumnHeader Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ColumnHeader SubjectOfConference = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ColumnHeader Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -40,22 +54,29 @@ namespace System_obsługi_konferencji
             tableLayoutPanel1.SuspendLayout();
             przegladKonferencji.SuspendLayout();
 
+            ListViewConferece.FormattingEnabled = true;
+            ListViewConferece.ItemHeight = 18;
+            ListViewConferece.Location = new System.Drawing.Point(128, 121);
+            ListViewConferece.Name = "listBoxPokaz";
+            ListViewConferece.Size = new System.Drawing.Size(560, 337);
+            ListViewConferece.TabIndex = 5;
+
             // 
             // ListViewConferece
             // 
-            ListViewConferece.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            ListViewConferece.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            Number,
-            SubjectOfConference,
-            });
-            ListViewConferece.GridLines = true;
-            ListViewConferece.HideSelection = false;
-            ListViewConferece.Location = new System.Drawing.Point(128, 121);
-            ListViewConferece.Name = "ListViewConferece";
-            ListViewConferece.Size = new System.Drawing.Size(560, 337);
-            ListViewConferece.TabIndex = 5;
-            ListViewConferece.UseCompatibleStateImageBehavior = false;
-            ListViewConferece.View = System.Windows.Forms.View.Details;
+            //ListViewConferece.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            //ListViewConferece.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            //Number,
+            //SubjectOfConference,
+            //});
+            //ListViewConferece.GridLines = true;
+            //ListViewConferece.HideSelection = false;
+            //ListViewConferece.Location = new System.Drawing.Point(128, 121);
+            //ListViewConferece.Name = "ListViewConferece";
+            //ListViewConferece.Size = new System.Drawing.Size(560, 337);
+            //ListViewConferece.TabIndex = 5;
+            //ListViewConferece.UseCompatibleStateImageBehavior = false;
+            //ListViewConferece.View = System.Windows.Forms.View.Details;
             //ListViewConferece.SelectedIndexChanged += new System.EventHandler(ListViewConferece_SelectedIndexChanged);
 
             // 
@@ -374,7 +395,6 @@ namespace System_obsługi_konferencji
                 utworzWydarzenie.ResumeLayout(false);
                 utworzWydarzenie.PerformLayout();
                 utworzWydarzenie.ShowDialog();
-                organizacja.Hide();
                 #endregion
 
                 void buttonDodajMiejsce(object sender3, EventArgs e3)
@@ -452,6 +472,7 @@ namespace System_obsługi_konferencji
                     BtnDodaj.TabIndex = 0;
                     BtnDodaj.Text = "Dodaj";
                     BtnDodaj.UseVisualStyleBackColor = true;
+                    BtnDodaj.Click += new System.EventHandler(Dodaj_Click);
                     // 
                     // lblUlica
                     // 
@@ -595,8 +616,6 @@ namespace System_obsługi_konferencji
                     // 
                     // DodajMiejsce
                     // 
-
-
                     noweMiejsce.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
                     noweMiejsce.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                     noweMiejsce.ClientSize = new System.Drawing.Size(447, 447);
@@ -620,11 +639,19 @@ namespace System_obsługi_konferencji
                     noweMiejsce.ResumeLayout(false);
                     noweMiejsce.PerformLayout();
                     noweMiejsce.ShowDialog();
-                    utworzWydarzenie.Hide();
-                    //noweMiejsce.Closed += (s, args) => utworzWydarzenie.Show();
+                    
+
+                    //utworzWydarzenie.Hide();
+                    noweMiejsce.Closed += (s, args) => utworzWydarzenie.Show();
                     
                     //noweMiejsce.Show();
                     #endregion
+
+                    void Dodaj_Click (object sender2, EventArgs e2)
+                    {
+
+                    }
+
                 }
 
             }
@@ -829,7 +856,7 @@ namespace System_obsługi_konferencji
             usunBtn.TabIndex = 3;
             usunBtn.Text = "Usuń";
             usunBtn.UseVisualStyleBackColor = true;
-            usunBtn.Click += new System.EventHandler(button2_Click);
+            //usunBtn.Click += new System.EventHandler(usunBtn_Click);
             // 
             // szczegolyBtn
             // 

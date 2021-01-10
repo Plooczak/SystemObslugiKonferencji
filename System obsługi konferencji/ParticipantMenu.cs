@@ -22,6 +22,21 @@ namespace System_obsługi_konferencji
             this.Close();
         }
 
+        private void pbxCloseClick(object sender, EventArgs e)
+        {
+            string message = "Czy na pewno chcesz opuścić aplikację?";
+            string caption = "Nie odchodź :(";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+
+            result = MessageBox.Show(message, caption, buttons);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                //_ds.DataStore_save(_ds);
+                Application.Exit();
+            }
+        }//Zrobione
+
         private void button1_Click(object sender, EventArgs e)
         {
             Form przegladKonferencji = new Form();
@@ -29,7 +44,7 @@ namespace System_obsługi_konferencji
             przegladKonferencji.Width = 773;
 
             #region layout
-            ListView ListViewConferece = new System.Windows.Forms.ListView();
+            ListBox ListViewConferece = new System.Windows.Forms.ListBox();
             ColumnHeader Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ColumnHeader SubjectOfConference = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ColumnHeader Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -40,22 +55,57 @@ namespace System_obsługi_konferencji
             tableLayoutPanel1.SuspendLayout();
             przegladKonferencji.SuspendLayout();
 
+
+
+            Adres adresik = new Adres("Sienkiewicza", "Krakow", "22-600", "123", "13");
+            MiejsceKonferencji miejsce = new MiejsceKonferencji(adresik.ulica, adresik.miejscowosc, adresik.kodPocztowy, adresik.numerBudynku, adresik.numerLokalu, 112, 100);
+            Organizator o = new Organizator("pirateska", "martynka");
+            Sluchacz s = new Sluchacz("kasia", "basia", "kasia", "kasia1", "kobieta", "14.10.9999", "696454787", "kasia@gmail.com");
+            Prelegent p = new Prelegent("karol", "karol");
+            ListaUczestnikówKonferencji Lp = new ListaUczestnikówKonferencji();
+            Lp.DodajObiekt(s);
+            ListaPrelegentówKonferencji LLP = new ListaPrelegentówKonferencji();
+            LLP.DodajObiekt(p);
+            Referat r = new Referat("kas", "bla,bla", p);
+            PlanKonferencji plan = new PlanKonferencji();
+            plan.DodajReferat(r);
+
+            Konferencja GonKon = new Konferencja("jutrobedziedeszcz", "12.13.1333", o, miejsce);
+            GonKon.Uczestnicy = Lp;
+            GonKon.Prelegenci = LLP;
+            GonKon.Plan = plan;
+
+            ListaKonferencji listaKon = new ListaKonferencji();
+            listaKon.DodajObiekt(GonKon);
+
+
+            ListViewConferece.FormattingEnabled = true;
+            ListViewConferece.ItemHeight = 18;
+            ListViewConferece.Location = new System.Drawing.Point(128, 121);
+            ListViewConferece.Name = "listBoxPokaz";
+            ListViewConferece.Size = new System.Drawing.Size(560, 337);
+            ListViewConferece.TabIndex = 5;
+
+            ListViewConferece.Items.Add(listaKon.ToString());
+            ListViewConferece.SelectionMode = SelectionMode.One;
+
+
             // 
             // ListViewConferece
             // 
-            ListViewConferece.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            ListViewConferece.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            Number,
-            SubjectOfConference,
-            });
-            ListViewConferece.GridLines = true;
-            ListViewConferece.HideSelection = false;
-            ListViewConferece.Location = new System.Drawing.Point(128, 121);
-            ListViewConferece.Name = "ListViewConferece";
-            ListViewConferece.Size = new System.Drawing.Size(560, 337);
-            ListViewConferece.TabIndex = 5;
-            ListViewConferece.UseCompatibleStateImageBehavior = false;
-            ListViewConferece.View = System.Windows.Forms.View.Details;
+            //ListViewConferece.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            //ListViewConferece.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            //Number,
+            //SubjectOfConference,
+            //});
+            //ListViewConferece.GridLines = true;
+            //ListViewConferece.HideSelection = false;
+            //ListViewConferece.Location = new System.Drawing.Point(128, 121);
+            //ListViewConferece.Name = "ListViewConferece";
+            //ListViewConferece.Size = new System.Drawing.Size(560, 337);
+            //ListViewConferece.TabIndex = 5;
+            //ListViewConferece.UseCompatibleStateImageBehavior = false;
+            //ListViewConferece.View = System.Windows.Forms.View.Details;
             //ListViewConferece.SelectedIndexChanged += new System.EventHandler(ListViewConferece_SelectedIndexChanged);
 
             // 
@@ -86,7 +136,7 @@ namespace System_obsługi_konferencji
             ShowDetails.TabIndex = 4;
             ShowDetails.Text = "Pokaż szczegóły";
             ShowDetails.UseVisualStyleBackColor = true;
-
+            ShowDetails.Click += new EventHandler(ShowDetails_Click);
             // 
             // SortComboBox1
             // 
@@ -100,7 +150,7 @@ namespace System_obsługi_konferencji
             SortComboBox1.Name = "SortComboBox1";
             SortComboBox1.Size = new System.Drawing.Size(159, 24);
             SortComboBox1.TabIndex = 2;
-            SortComboBox1.SelectedIndexChanged += new System.EventHandler(comboBox1_SelectedIndexChanged);
+            //SortComboBox1.SelectedIndexChanged += new System.EventHandler(comboBox1_SelectedIndexChanged);
 
             // 
             // SortBtn
@@ -158,39 +208,212 @@ namespace System_obsługi_konferencji
             przegladKonferencji.ShowDialog();
             #endregion
 
-            void textBox1_TextChanged(object sender2, EventArgs e2)
+            void ShowDetails_Click(object sender2, EventArgs e2)
             {
+                foreach (Object obj in ListViewConferece.SelectedItems)
+                {
+                    Form szczegolyKonf = new Form();
+                    szczegolyKonf.Height = 553;
+                    szczegolyKonf.Width = 713;
 
-            }
+                    #region layout
 
-            void tableLayoutPanel1_Paint(object sender2, PaintEventArgs e2)
-            {
-
-            }
-
-            void listBox1_SelectedIndexChanged(object sender2, EventArgs e2)
-            {
-
-            }
-
-            void comboBox1_SelectedIndexChanged(object sender2, EventArgs e2)
-            {
-
-            }
-
-            void FormularzTestowy_Load(object sender2, EventArgs e2)
-            {
-
-            }
-
-            void listView1_SelectedIndexChanged(object sender2, EventArgs e2)
-            {
-
-            }
-
-            void numericUpDown1_ValueChanged(object sender2, EventArgs e2)
-            {
-
+                    Label labelM = new System.Windows.Forms.Label();
+                    Label labelN = new System.Windows.Forms.Label();
+                    Label labelO = new System.Windows.Forms.Label();
+                    Label labelP = new System.Windows.Forms.Label();
+                    Label labelX = new System.Windows.Forms.Label();
+                    Label labelY = new System.Windows.Forms.Label();
+                    ListView listView1 = new System.Windows.Forms.ListView();
+                    ColumnHeader ColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                    ColumnHeader ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                    ColumnHeader ColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                    Label labelU = new System.Windows.Forms.Label();
+                    Label labelJ = new System.Windows.Forms.Label();
+                    Label labelG = new System.Windows.Forms.Label();
+                    Label labelM0 = new System.Windows.Forms.Label();
+                    Label labelM1 = new System.Windows.Forms.Label();
+                    this.SuspendLayout();
+                    // 
+                    // labelM
+                    // 
+                    labelM.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelM.AutoSize = true;
+                    labelM.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelM.Location = new System.Drawing.Point(43, 43);
+                    labelM.Name = "labelM";
+                    labelM.Size = new System.Drawing.Size(73, 25);
+                    labelM.TabIndex = 0;
+                    labelM.Text = "Temat";
+                    // 
+                    // labelN
+                    // 
+                    labelN.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelN.AutoSize = true;
+                    labelN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelN.Location = new System.Drawing.Point(43, 88);
+                    labelN.Name = "labelN";
+                    labelN.Size = new System.Drawing.Size(125, 25);
+                    labelN.TabIndex = 1;
+                    labelN.Text = "Organizator";
+                    //labelN.Click += new System.EventHandler(labelN_Click);
+                    // 
+                    // labelO
+                    // 
+                    labelO.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelO.AutoSize = true;
+                    labelO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelO.Location = new System.Drawing.Point(43, 132);
+                    labelO.Name = "labelO";
+                    labelO.Size = new System.Drawing.Size(57, 25);
+                    labelO.TabIndex = 2;
+                    labelO.Text = "Data";
+                    // 
+                    // labelP
+                    // 
+                    labelP.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelP.AutoSize = true;
+                    labelP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelP.Location = new System.Drawing.Point(43, 178);
+                    labelP.Name = "labelP";
+                    labelP.Size = new System.Drawing.Size(86, 25);
+                    labelP.TabIndex = 3;
+                    labelP.Text = "Miejsce";
+                    // 
+                    // labelX
+                    // 
+                    labelX.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelX.AutoSize = true;
+                    labelX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelX.Location = new System.Drawing.Point(43, 224);
+                    labelX.Name = "labelX";
+                    labelX.Size = new System.Drawing.Size(226, 25);
+                    labelX.TabIndex = 4;
+                    labelX.Text = "Liczba wolnych miejsc";
+                    // 
+                    // labelY
+                    // 
+                    labelY.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelY.AutoSize = true;
+                    labelY.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelY.Location = new System.Drawing.Point(43, 271);
+                    labelY.Name = "labelY";
+                    labelY.Size = new System.Drawing.Size(170, 25);
+                    labelY.TabIndex = 5;
+                    labelY.Text = "Plan Konferencji";
+                    // 
+                    // listView1
+                    // 
+                    listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            ColumnHeader2,
+            ColumnHeader1,
+            ColumnHeader});
+                    listView1.GridLines = true;
+                    listView1.HideSelection = false;
+                    listView1.Location = new System.Drawing.Point(48, 299);
+                    listView1.Name = "listView1";
+                    listView1.Size = new System.Drawing.Size(618, 177);
+                    listView1.TabIndex = 6;
+                    listView1.UseCompatibleStateImageBehavior = false;
+                    listView1.View = System.Windows.Forms.View.Details;
+                    // 
+                    // ColumnHeader2
+                    // 
+                    ColumnHeader2.Text = "Nr";
+                    ColumnHeader2.Width = 30;
+                    // 
+                    // ColumnHeader1
+                    // 
+                    ColumnHeader1.Text = "TematReferatu";
+                    ColumnHeader1.Width = 400;
+                    // 
+                    // ColumnHeader
+                    // 
+                    ColumnHeader.Text = "Autor";
+                    ColumnHeader.Width = 200;
+                    // 
+                    // labelU
+                    // 
+                    labelU.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelU.AutoSize = true;
+                    labelU.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelU.Location = new System.Drawing.Point(267, 224);
+                    labelU.Name = "labelU";
+                    labelU.Size = new System.Drawing.Size(23, 25);
+                    labelU.TabIndex = 9;
+                    labelU.Text = " _ ";
+                    // 
+                    // labelJ
+                    // 
+                    labelJ.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelJ.AutoSize = true;
+                    labelJ.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelJ.Location = new System.Drawing.Point(134, 178);
+                    labelJ.Name = "labelJ";
+                    labelJ.Size = new System.Drawing.Size(23, 25);
+                    labelJ.TabIndex = 10;
+                    labelJ.Text = "_";
+                    // 
+                    // labelG
+                    // 
+                    labelG.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelG.AutoSize = true;
+                    labelG.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelG.Location = new System.Drawing.Point(112, 132);
+                    labelG.Name = "labelG";
+                    labelG.Size = new System.Drawing.Size(23, 25);
+                    labelG.TabIndex = 11;
+                    labelG.Text = "_";
+                    // 
+                    // labelM0
+                    // 
+                    labelM0.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelM0.AutoSize = true;
+                    labelM0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelM0.Location = new System.Drawing.Point(174, 88);
+                    labelM0.Name = "labelM0";
+                    labelM0.Size = new System.Drawing.Size(23, 25);
+                    labelM0.TabIndex = 12;
+                    labelM0.Text = "_";
+                    // 
+                    // labelM1
+                    // 
+                    labelM1.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelM1.AutoSize = true;
+                    labelM1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelM1.Location = new System.Drawing.Point(134, 43);
+                    labelM1.Name = "labelM1";
+                    labelM1.Size = new System.Drawing.Size(23, 25);
+                    labelM1.TabIndex = 13;
+                    labelM1.Text = "_";
+                    // 
+                    // KonferencjaSzczegoly
+                    // 
+                    szczegolyKonf.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+                    szczegolyKonf.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+                    szczegolyKonf.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                    szczegolyKonf.ClientSize = new System.Drawing.Size(695, 506);
+                    szczegolyKonf.Controls.Add(labelM1);
+                    szczegolyKonf.Controls.Add(labelM0);
+                    szczegolyKonf.Controls.Add(labelG);
+                    szczegolyKonf.Controls.Add(labelJ);
+                    szczegolyKonf.Controls.Add(labelU);
+                    szczegolyKonf.Controls.Add(listView1);
+                    szczegolyKonf.Controls.Add(labelY);
+                    szczegolyKonf.Controls.Add(labelX);
+                    szczegolyKonf.Controls.Add(labelP);
+                    szczegolyKonf.Controls.Add(labelO);
+                    szczegolyKonf.Controls.Add(labelN);
+                    szczegolyKonf.Controls.Add(labelM);
+                    szczegolyKonf.Name = "KonferencjaSzczegoly";
+                    szczegolyKonf.Text = "KonferencjaSzczegoly";
+                    szczegolyKonf.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+                    // szczegolyKonf.Load += new System.EventHandler(thiKonferencjaSzczegoly_Load);
+                    szczegolyKonf.ResumeLayout(false);
+                    szczegolyKonf.PerformLayout();
+                    szczegolyKonf.ShowDialog();
+                    #endregion
+                }
             }
         }
 
@@ -231,7 +454,7 @@ namespace System_obsługi_konferencji
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 128F));
             tableLayoutPanel1.Size = new System.Drawing.Size(727, 520);
             tableLayoutPanel1.TabIndex = 0;
-            tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(tableLayoutPanel1_Paint);
+            //tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(tableLayoutPanel1_Paint);
             // 
             // pictureBox1
             // 
@@ -253,7 +476,7 @@ namespace System_obsługi_konferencji
             label1.Size = new System.Drawing.Size(298, 33);
             label1.TabIndex = 2;
             label1.Text = "Dostępne konferencje";
-            label1.Click += new System.EventHandler(label1_Click);
+            //label1.Click += new System.EventHandler(label1_Click);
             // 
             // listBoxZapisz
             // 
@@ -296,31 +519,6 @@ namespace System_obsługi_konferencji
             zapisy.ShowDialog();
 
             #endregion
-            void tableLayoutPanel1_Paint(object sender1, PaintEventArgs e1)
-            {
-
-            }
-
-            void label1_Click(object sender1, EventArgs e1)
-            {
-
-            }
-
-            void Zapisy_Load(object sender1, EventArgs e1)
-            {
-
-            }
-
-            void listBoxZapisz_SelectedIndexChanged(object sender1, EventArgs e1)
-            {
-
-            }
-
-            void ZapiszBtn_Click(object sender1, EventArgs e1)
-            {
-
-            }
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -329,8 +527,29 @@ namespace System_obsługi_konferencji
             twojeWydarzenia.Height = 356;
             twojeWydarzenia.Width = 577;
 
-            #region layout
+            Adres adresik = new Adres("Sienkiewicza", "Krakow", "22-600", "123", "13");
+            MiejsceKonferencji miejsce = new MiejsceKonferencji(adresik.ulica, adresik.miejscowosc, adresik.kodPocztowy, adresik.numerBudynku, adresik.numerLokalu, 112, 100);
+            Organizator o = new Organizator("pirateska", "martynka");
+            Sluchacz s = new Sluchacz("kasia", "basia", "kasia", "kasia1", "kobieta", "14.10.9999", "696454787", "kasia@gmail.com");
+            Prelegent p = new Prelegent("karol", "karol");
+            ListaUczestnikówKonferencji Lp = new ListaUczestnikówKonferencji();
+            Lp.DodajObiekt(s);
+            ListaPrelegentówKonferencji LLP = new ListaPrelegentówKonferencji();
+            LLP.DodajObiekt(p);
+            Referat r = new Referat("kas", "bla,bla", p);
+            PlanKonferencji plan = new PlanKonferencji();
+            plan.DodajReferat(r);
 
+            Konferencja GonKon = new Konferencja("jutrobedziedeszcz", "12.13.1333", o, miejsce);
+            GonKon.Uczestnicy = Lp;
+            GonKon.Prelegenci = LLP;
+            GonKon.Plan = plan;
+
+            ListaKonferencji listaKon = new ListaKonferencji();
+            listaKon.DodajObiekt(GonKon);
+
+
+            #region layout
             Label label1 = new System.Windows.Forms.Label();
             ListBox listBox1 = new System.Windows.Forms.ListBox();
             Button button2 = new System.Windows.Forms.Button();
@@ -355,6 +574,10 @@ namespace System_obsługi_konferencji
             listBox1.Name = "listBox1";
             listBox1.Size = new System.Drawing.Size(577, 356);
             listBox1.TabIndex = 2;
+
+            listBox1.Items.Add(listaKon.ToString());
+            listBox1.SelectionMode = SelectionMode.One;
+
             // 
             // button2
             // 
@@ -374,10 +597,11 @@ namespace System_obsługi_konferencji
             button3.TabIndex = 5;
             button3.Text = "Szczegóły";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += new System.EventHandler(szczegoly_Click);
+
             // 
             // TwojeWydarzeniaUczestnik
             // 
-
             twojeWydarzenia.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             twojeWydarzenia.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             twojeWydarzenia.ClientSize = new System.Drawing.Size(623, 492);
@@ -393,18 +617,212 @@ namespace System_obsługi_konferencji
             twojeWydarzenia.ShowDialog();
             #endregion
 
-            void button3_Click(object sender1, EventArgs e1)
-            {
+            void szczegoly_Click(object sender3, EventArgs e3) {
 
-            }
+                foreach (Object obj in listBox1.SelectedItems)
+                {
+                    Form szczegolyKonf = new Form();
+                    szczegolyKonf.Height = 553;
+                    szczegolyKonf.Width = 713;
 
-            void button2_Click(object sender1, EventArgs e1)
-            {
+                    #region layout
 
-            }
-
-            void listBox1_SelectedIndexChanged(object sender1, EventArgs e1)
-            {
+                    Label labelM = new System.Windows.Forms.Label();
+                    Label labelN = new System.Windows.Forms.Label();
+                    Label labelO = new System.Windows.Forms.Label();
+                    Label labelP = new System.Windows.Forms.Label();
+                    Label labelX = new System.Windows.Forms.Label();
+                    Label labelY = new System.Windows.Forms.Label();
+                    ListView listView1 = new System.Windows.Forms.ListView();
+                    ColumnHeader ColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                    ColumnHeader ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                    ColumnHeader ColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                    Label labelU = new System.Windows.Forms.Label();
+                    Label labelJ = new System.Windows.Forms.Label();
+                    Label labelG = new System.Windows.Forms.Label();
+                    Label labelM0 = new System.Windows.Forms.Label();
+                    Label labelM1 = new System.Windows.Forms.Label();
+                    this.SuspendLayout();
+                    // 
+                    // labelM
+                    // 
+                    labelM.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelM.AutoSize = true;
+                    labelM.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelM.Location = new System.Drawing.Point(43, 43);
+                    labelM.Name = "labelM";
+                    labelM.Size = new System.Drawing.Size(73, 25);
+                    labelM.TabIndex = 0;
+                    labelM.Text = "Temat";
+                    // 
+                    // labelN
+                    // 
+                    labelN.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelN.AutoSize = true;
+                    labelN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelN.Location = new System.Drawing.Point(43, 88);
+                    labelN.Name = "labelN";
+                    labelN.Size = new System.Drawing.Size(125, 25);
+                    labelN.TabIndex = 1;
+                    labelN.Text = "Organizator";
+                    //labelN.Click += new System.EventHandler(labelN_Click);
+                    // 
+                    // labelO
+                    // 
+                    labelO.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelO.AutoSize = true;
+                    labelO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelO.Location = new System.Drawing.Point(43, 132);
+                    labelO.Name = "labelO";
+                    labelO.Size = new System.Drawing.Size(57, 25);
+                    labelO.TabIndex = 2;
+                    labelO.Text = "Data";
+                    // 
+                    // labelP
+                    // 
+                    labelP.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelP.AutoSize = true;
+                    labelP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelP.Location = new System.Drawing.Point(43, 178);
+                    labelP.Name = "labelP";
+                    labelP.Size = new System.Drawing.Size(86, 25);
+                    labelP.TabIndex = 3;
+                    labelP.Text = "Miejsce";
+                    // 
+                    // labelX
+                    // 
+                    labelX.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelX.AutoSize = true;
+                    labelX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelX.Location = new System.Drawing.Point(43, 224);
+                    labelX.Name = "labelX";
+                    labelX.Size = new System.Drawing.Size(226, 25);
+                    labelX.TabIndex = 4;
+                    labelX.Text = "Liczba wolnych miejsc";
+                    // 
+                    // labelY
+                    // 
+                    labelY.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelY.AutoSize = true;
+                    labelY.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelY.Location = new System.Drawing.Point(43, 271);
+                    labelY.Name = "labelY";
+                    labelY.Size = new System.Drawing.Size(170, 25);
+                    labelY.TabIndex = 5;
+                    labelY.Text = "Plan Konferencji";
+                    // 
+                    // listView1
+                    // 
+                    listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            ColumnHeader2,
+            ColumnHeader1,
+            ColumnHeader});
+                    listView1.GridLines = true;
+                    listView1.HideSelection = false;
+                    listView1.Location = new System.Drawing.Point(48, 299);
+                    listView1.Name = "listView1";
+                    listView1.Size = new System.Drawing.Size(618, 177);
+                    listView1.TabIndex = 6;
+                    listView1.UseCompatibleStateImageBehavior = false;
+                    listView1.View = System.Windows.Forms.View.Details;
+                    // 
+                    // ColumnHeader2
+                    // 
+                    ColumnHeader2.Text = "Nr";
+                    ColumnHeader2.Width = 30;
+                    // 
+                    // ColumnHeader1
+                    // 
+                    ColumnHeader1.Text = "TematReferatu";
+                    ColumnHeader1.Width = 400;
+                    // 
+                    // ColumnHeader
+                    // 
+                    ColumnHeader.Text = "Autor";
+                    ColumnHeader.Width = 200;
+                    // 
+                    // labelU
+                    // 
+                    labelU.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelU.AutoSize = true;
+                    labelU.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelU.Location = new System.Drawing.Point(267, 224);
+                    labelU.Name = "labelU";
+                    labelU.Size = new System.Drawing.Size(23, 25);
+                    labelU.TabIndex = 9;
+                    labelU.Text = " _ ";
+                    // 
+                    // labelJ
+                    // 
+                    labelJ.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelJ.AutoSize = true;
+                    labelJ.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelJ.Location = new System.Drawing.Point(134, 178);
+                    labelJ.Name = "labelJ";
+                    labelJ.Size = new System.Drawing.Size(23, 25);
+                    labelJ.TabIndex = 10;
+                    labelJ.Text = "_";
+                    // 
+                    // labelG
+                    // 
+                    labelG.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelG.AutoSize = true;
+                    labelG.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelG.Location = new System.Drawing.Point(112, 132);
+                    labelG.Name = "labelG";
+                    labelG.Size = new System.Drawing.Size(23, 25);
+                    labelG.TabIndex = 11;
+                    labelG.Text = "_";
+                    // 
+                    // labelM0
+                    // 
+                    labelM0.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelM0.AutoSize = true;
+                    labelM0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelM0.Location = new System.Drawing.Point(174, 88);
+                    labelM0.Name = "labelM0";
+                    labelM0.Size = new System.Drawing.Size(23, 25);
+                    labelM0.TabIndex = 12;
+                    labelM0.Text = "_";
+                    // 
+                    // labelM1
+                    // 
+                    labelM1.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    labelM1.AutoSize = true;
+                    labelM1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    labelM1.Location = new System.Drawing.Point(134, 43);
+                    labelM1.Name = "labelM1";
+                    labelM1.Size = new System.Drawing.Size(23, 25);
+                    labelM1.TabIndex = 13;
+                    labelM1.Text = "_";
+                    // 
+                    // KonferencjaSzczegoly
+                    // 
+                    szczegolyKonf.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+                    szczegolyKonf.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+                    szczegolyKonf.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                    szczegolyKonf.ClientSize = new System.Drawing.Size(695, 506);
+                    szczegolyKonf.Controls.Add(labelM1);
+                    szczegolyKonf.Controls.Add(labelM0);
+                    szczegolyKonf.Controls.Add(labelG);
+                    szczegolyKonf.Controls.Add(labelJ);
+                    szczegolyKonf.Controls.Add(labelU);
+                    szczegolyKonf.Controls.Add(listView1);
+                    szczegolyKonf.Controls.Add(labelY);
+                    szczegolyKonf.Controls.Add(labelX);
+                    szczegolyKonf.Controls.Add(labelP);
+                    szczegolyKonf.Controls.Add(labelO);
+                    szczegolyKonf.Controls.Add(labelN);
+                    szczegolyKonf.Controls.Add(labelM);
+                    szczegolyKonf.Name = "KonferencjaSzczegoly";
+                    szczegolyKonf.Text = "KonferencjaSzczegoly";
+                    szczegolyKonf.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+                    // szczegolyKonf.Load += new System.EventHandler(thiKonferencjaSzczegoly_Load);
+                    szczegolyKonf.ResumeLayout(false);
+                    szczegolyKonf.PerformLayout();
+                    szczegolyKonf.ShowDialog();
+                    #endregion
+                }
 
             }
         }

@@ -8,15 +8,15 @@ namespace System_obsługi_konferencji
 {
     public class ListaUczestnikówKonferencji : ICloneable, IAktualizujListe
     {
-        //private int liczbaUczestnikow;
-        //public int LiczbaUczestnikow { get => liczbaUczestnikow; set => liczbaUczestnikow = value; }
+        private int liczbaUczestnikow;
+        public int LiczbaUczestnikow { get => liczbaUczestnikow; set => liczbaUczestnikow = value; }
         private LinkedList<Sluchacz> listaUczestnikow;
         public LinkedList<Sluchacz> Lista { get => listaUczestnikow; set => listaUczestnikow = value; }
 
         public ListaUczestnikówKonferencji()
         {
             listaUczestnikow = new LinkedList<Sluchacz>();
-            //liczbaUczestnikow = 0;
+            liczbaUczestnikow = 0;
         }
 
         public override string ToString()
@@ -34,7 +34,7 @@ namespace System_obsługi_konferencji
         public void DodajObiekt(dynamic sluchacz)
         {
             listaUczestnikow.AddLast(sluchacz);
-            //liczbaUczestnikow++;
+            liczbaUczestnikow++;
         }
 
         public bool UsunObiekt(string login)

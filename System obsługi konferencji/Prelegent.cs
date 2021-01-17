@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace System_obsługi_konferencji
 {
-    public class Prelegent : Uzytkownik, IComparable<Prelegent>, IEquatable<Prelegent>
+    public class Prelegent : Uzytkownik, IComparable<Prelegent>, IEquatable<Prelegent>, ICloneable
     {
         public string stopienNaukowy { get; set; }
         public string dziedzina { get; set; }
@@ -47,5 +47,9 @@ namespace System_obsługi_konferencji
             return (login.Equals(other.Login));
         }
 
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

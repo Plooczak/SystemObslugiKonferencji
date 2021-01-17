@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace System_obsługi_konferencji
 {
-    public class ListaPrelegentówKonferencji: IAktualizujListe 
+    public class ListaPrelegentówKonferencji: IAktualizujListe, ICloneable
     {
         //private int liczbaPrelegentow;
         //public int LiczbaPrelegentow { get => liczbaPrelegentow; set => liczbaPrelegentow = value; }
@@ -57,30 +57,26 @@ namespace System_obsługi_konferencji
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Lista prelegoento: ");
+            sb.AppendLine("Lista prelegentow: ");
             foreach (Prelegent speaker in listaPrelegentow)
             {
                 sb.AppendLine(speaker.ToString());
             }
             return sb.ToString();
         }
+
+        public object Clone()
+        {
+            return (ListaPrelegentówKonferencji)this.MemberwiseClone();
+        }
+
+        public ListaPrelegentówKonferencji Kopiuj()
+        {
+            ListaPrelegentówKonferencji kopia = (ListaPrelegentówKonferencji)this.Clone();
+            kopia.listaPrelegentow = new LinkedList<Prelegent>(listaPrelegentow.Select(x => (Prelegent)x.Clone()));
+            return kopia;
+        }
     }
 }
 
-/*
-        public List<Prelegent> ZnajdzKonferencjePrelegenta(Login login)
-        {
-            List<Prelegent> nowaLista = new List<Prelegent>();
 
-            foreach (Prelegent p in listaPrelegentow)
-            {
-                if (p.Login.Equals(Login))
-                {
-                    nowaLista.Add(p);
-                }
-            }
-
-            return nowaLista.Count == 0 ? null : nowaLista;
-        }
-
-*/

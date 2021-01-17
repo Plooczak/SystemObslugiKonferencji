@@ -1,13 +1,14 @@
 using System;
 using System_obsługi_konferencji;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace SystemObsługiKonferencjiTesty
 {
     [TestClass]
     public class Tests
     {
-        /*[TestMethod]
+        [TestMethod]
         public void TestCompareTo() //test sprawdzajacy metode CompareTo
         {
             Organizator o1 = new Organizator("Login2", "haslo2");
@@ -22,12 +23,24 @@ namespace SystemObsługiKonferencjiTesty
             Sluchacz s1 = new Sluchacz("login1", "haslo1");
             Sluchacz s2 = new Sluchacz("login2", "haslo2");
             ListaUczestnikówKonferencji list = new ListaUczestnikówKonferencji();
-            list.DodajUczestnika(s1);
-            list.DodajUczestnika(s2);
+            list.DodajObiekt(s1);
+            list.DodajObiekt(s2);
             Assert.AreEqual(2, list.LiczbaUczestnikow); 
             //pozytywny test oznacza, ze licznik uczestnikow dziala poprawnie
         }
-        
+
+        [TestMethod]
+        public void TestLiczbyUczestniko_Count() //sprawdzanie metody Count
+        {
+            Sluchacz s1 = new Sluchacz("login1", "haslo1");
+            Sluchacz s2 = new Sluchacz("login2", "haslo2");
+            ListaUczestnikówKonferencji list = new ListaUczestnikówKonferencji();
+            list.DodajObiekt(s1);
+            list.DodajObiekt(s2);
+            Assert.AreEqual(2, list.PoliczObiekty());
+            //pozytywny test oznacza, ze metoda dziala poprawnie
+        }
+
         [TestMethod]
         public void TestListyPrelegentow() //sprawdzanie metody dodawania prelegentow konferencji 
         {
@@ -41,6 +54,22 @@ namespace SystemObsługiKonferencjiTesty
         }
         
         [TestMethod]
+        public void TestUsunObiekt() //sprawdzenie metody usuwania obiektu
+        {
+            ListaPrelegentówKonferencji list = new ListaPrelegentówKonferencji();
+            Prelegent p1 = new Prelegent("login1", "haslo1");
+            Prelegent p2 = new Prelegent("login2", "haslo2");
+            Prelegent p3 = new Prelegent("login3", "haslo3");
+            list.DodajObiekt(p1);
+            list.DodajObiekt(p2);
+            list.DodajObiekt(p3);
+            ListaPrelegentówKonferencji list2 = list.Kopiuj();
+            list.UsunObiekt("login2");
+            Assert.AreNotSame(list, list2);
+            //pozytywny test oznacza, ze metoda usun obiekt dziala poprawnie 
+        }
+
+        [TestMethod]
         public void TestCzyPrzekroczono() //test metody sprawdzajacej czy przekroczono liczbe uczetnikow konferencji
         {
             ListaUczestnikówKonferencji list = new ListaUczestnikówKonferencji();
@@ -50,12 +79,12 @@ namespace SystemObsługiKonferencjiTesty
             Sluchacz s4 = new Sluchacz("login4", "haslo4");
             Sluchacz s5 = new Sluchacz("login5", "haslo5");
             Sluchacz s6 = new Sluchacz("login6", "haslo6");
-            list.DodajUczestnika(s1);
-            list.DodajUczestnika(s2);
-            list.DodajUczestnika(s3);
-            list.DodajUczestnika(s4);
-            list.DodajUczestnika(s5);
-            list.DodajUczestnika(s6);
+            list.DodajObiekt(s1);
+            list.DodajObiekt(s2);
+            list.DodajObiekt(s3);
+            list.DodajObiekt(s4);
+            list.DodajObiekt(s5);
+            list.DodajObiekt(s6);
             MiejsceKonferencji m = new MiejsceKonferencji("Kwiatowa", "Krakow", "30-332", "5", "6", 1, 5);
             Assert.IsTrue(m.CzyPrzekroczono(list));
             //pozytywny test oznacza, ze nie przekroczono
@@ -70,25 +99,21 @@ namespace SystemObsługiKonferencjiTesty
             Assert.AreEqual(czas1, r1.DodajCzasTrwania(1, 30));
             //pozytywny wynik oznacza, ze czasy sa identyczne
         }
-        /*
+
         [TestMethod]
-        public void TestKopiuj() //test metody kopiuj, ktora klonuje liste uczestnikow
+        public void TestWyczysc() //test metody wyczysc
         {
-            //ListaUczestnikówKonferencji list = new ListaUczestnikówKonferencji();
-            //Sluchacz s1 = new Sluchacz("login1", "haslo1");
-            //Sluchacz s2 = new Sluchacz("login2", "haslo2");
-            //Sluchacz s3 = new Sluchacz("login3", "haslo3");
-            //Sluchacz s4 = new Sluchacz("login4", "haslo4");
-            //Sluchacz s5 = new Sluchacz("login5", "haslo5");
-            //list.DodajUczestnika(s1);
-            //list.DodajUczestnika(s2);
-            //list.DodajUczestnika(s3);
-            //list.DodajUczestnika(s4);
-            //list.DodajUczestnika(s5);
-            
-            //ListaUczestnikówKonferencji list2 = list.Kopiuj();
-            //Assert.AreEqual(list, list2);
+            MiejsceKonferencji m1 = new MiejsceKonferencji("Kwiatowa", "Krakow", "30-332", "5", "6", 1, 50);
+            MiejsceKonferencji m2 = new MiejsceKonferencji("Sloneczna", "Krakow", "30-002", "12", "10", 1, 50);
+            MiejsceKonferencji m3 = new MiejsceKonferencji("Kolejowa", "Krakow", "31-932", "17", "6", 3, 75);
+            ListaMiejsc list = new ListaMiejsc();
+            list.DodajObiekt(m1);
+            list.DodajObiekt(m2);
+            list.DodajObiekt(m3);
+            list.Wyczysc();
+            int liczba = 0;
+            Assert.IsTrue(list.PoliczObiekty() == liczba);
+            //pozytywny wynik oznacza, ze lista jest pusta
         }
-        */
     }
 }

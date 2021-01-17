@@ -8,17 +8,14 @@ namespace System_obsługi_konferencji
 {
     public class MiejsceKonferencji: Adres
     {
-        private Adres adres;
         private int nrSali;
         private int iloscMiejsc;
 
-        public Adres Adres { get => adres; set => adres = value; }
         public int NrSali { get => nrSali; set => nrSali = value; }
         public int IloscMiejsc { get => iloscMiejsc; set => iloscMiejsc = value; }
 
         public MiejsceKonferencji()
         {
-            this.adres = null;
             this.nrSali = 0;
             this.iloscMiejsc = 0;
         }

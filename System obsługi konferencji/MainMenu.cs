@@ -53,7 +53,7 @@ namespace System_obsługi_konferencji
             if (_ds.Organizatorzy.Contains(organizator))
             {
                 this.Hide();
-                var organizerMenu = new OrganizerMenu();
+                var organizerMenu = new OrganizerMenu(_ds, _sluchacz, organizator);
                 organizerMenu.Closed += (s, args) => this.Show();
                 organizerMenu.Show();
             }

@@ -609,6 +609,7 @@ namespace System_obsługi_konferencji
                             tbxCompanyName.Name = "tbxCompanyName";
                             tbxCompanyName.Size = new System.Drawing.Size(272, 22);
                             tbxCompanyName.TabIndex = 7;
+                            tbxCompanyName.MaxLength = 20;
                             // 
                             // tbxNIP1
                             // 

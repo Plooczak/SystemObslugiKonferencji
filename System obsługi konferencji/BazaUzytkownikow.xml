@@ -2,67 +2,56 @@
 <DataStore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Sluchacze>
     <Sluchacz>
-      <Login>Barnabaa</Login>
-      <Haslo>asd</Haslo>
-      <Imie>Barnaba</Imie>
-      <Nazwisko>Barnabeusz</Nazwisko>
-      <Plec>M</Plec>
-      <DataUrodzenia>01.03.2000</DataUrodzenia>
-      <NrTelefonu>123123123</NrTelefonu>
-      <Email>toja@mail.mail</Email>
-    </Sluchacz>
-    <Sluchacz>
-      <Login>Jacek</Login>
-      <Haslo>Jacek</Haslo>
-      <Imie>Jacuś</Imie>
-      <Nazwisko>Placuś</Nazwisko>
-      <Plec>M</Plec>
-      <DataUrodzenia>14.07.2004</DataUrodzenia>
-      <NrTelefonu>123321123</NrTelefonu>
-      <Email>jaca@gmail.com</Email>
-    </Sluchacz>
-    <Sluchacz>
-      <Login>Mięci</Login>
-      <Haslo>Kupa</Haslo>
-      <Imie>Kupa</Imie>
-      <Nazwisko>Mięci</Nazwisko>
+      <Login>Anusia99</Login>
+      <Haslo>Hasełko</Haslo>
+      <Imie>Anna</Imie>
+      <Nazwisko>Wszechstronna</Nazwisko>
       <Plec>K</Plec>
-      <DataUrodzenia>15.07.1999</DataUrodzenia>
-      <NrTelefonu>111222333</NrTelefonu>
-      <Email>projekt@projekt.projekt</Email>
+      <DataUrodzenia>21.08.1999</DataUrodzenia>
+      <NrTelefonu>999888777</NrTelefonu>
+      <Email>toja@gmail.com</Email>
     </Sluchacz>
     <Sluchacz>
-      <Login>pirateska</Login>
-      <Haslo>martynka</Haslo>
-      <Imie>Martyna</Imie>
-      <Nazwisko>Karbownik</Nazwisko>
-      <Plec>K</Plec>
-      <DataUrodzenia>11.11.1999</DataUrodzenia>
-      <NrTelefonu>888888888</NrTelefonu>
-      <Email>karbownikmartyna984@gmail.com</Email>
+      <Login>Jank0</Login>
+      <Haslo>haslo</Haslo>
+      <Imie>Janko</Imie>
+      <Nazwisko>Prelegent</Nazwisko>
+      <Plec>M</Plec>
+      <DataUrodzenia>14.06.1988</DataUrodzenia>
+      <NrTelefonu>123234345</NrTelefonu>
+      <Email>janek@mail.mail</Email>
     </Sluchacz>
   </Sluchacze>
   <Prelegenci>
     <Prelegent>
-      <Login>Jacek</Login>
-      <Haslo>Jacek</Haslo>
-      <stopienNaukowy>Profesor nadzwyczajny inżynier</stopienNaukowy>
-      <dziedzina>Jacek</dziedzina>
-      <opis>Jacek</opis>
+      <Login>Anusia99</Login>
+      <Haslo>Hasełko</Haslo>
+      <stopienNaukowy>Magister</stopienNaukowy>
+      <dziedzina>Dziennikarstwo</dziedzina>
+      <opis>Jestem Ania, bardzo lubię mówić.</opis>
+    </Prelegent>
+    <Prelegent>
+      <Login>Jank0</Login>
+      <Haslo>haslo</Haslo>
+      <stopienNaukowy>Profesor nadzwyczajny</stopienNaukowy>
+      <dziedzina>Muzykologia</dziedzina>
+      <opis>Zawsze chciałem być muzykantem</opis>
     </Prelegent>
   </Prelegenci>
   <Organizatorzy>
     <Organizator>
-      <Login>Jacek</Login>
-      <Haslo>Jacek</Haslo>
+      <Login>Anusia99</Login>
+      <Haslo>Hasełko</Haslo>
       <adres>
-        <ulica>Jacek</ulica>
-        <miejscowosc>Jacek</miejscowosc>
-        <kodPocztowy>34-646</kodPocztowy>
-        <numerBudynku>12</numerBudynku>
-        <numerLokalu>12</numerLokalu>
+        <ulica>Aleja Róż</ulica>
+        <miejscowosc>Kraków</miejscowosc>
+        <kodPocztowy>30-099</kodPocztowy>
+        <numerBudynku>15B</numerBudynku>
+        <numerLokalu>3</numerLokalu>
       </adres>
-      <numerKonta>22222222222222222222222222</numerKonta>
+      <numerKonta>12123412341234123412341234</numerKonta>
+      <nip>55-66-777-888</nip>
+      <nazwaFirmy>Niesamowita Firma Ani</nazwaFirmy>
     </Organizator>
   </Organizatorzy>
 </DataStore>

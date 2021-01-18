@@ -22,6 +22,16 @@
       <Email>jaca@gmail.com</Email>
     </Sluchacz>
     <Sluchacz>
+      <Login>Mięci</Login>
+      <Haslo>Kupa</Haslo>
+      <Imie>Kupa</Imie>
+      <Nazwisko>Mięci</Nazwisko>
+      <Plec>K</Plec>
+      <DataUrodzenia>15.07.1999</DataUrodzenia>
+      <NrTelefonu>111222333</NrTelefonu>
+      <Email>projekt@projekt.projekt</Email>
+    </Sluchacz>
+    <Sluchacz>
       <Login>pirateska</Login>
       <Haslo>martynka</Haslo>
       <Imie>Martyna</Imie>

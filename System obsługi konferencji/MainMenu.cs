@@ -49,11 +49,12 @@ namespace System_obsługi_konferencji
 
         private void openOrganizer(object sender, EventArgs e)//Zrobione, dodać przekazywanie do konstruktowa
         {
-            organizator = new Organizator(_sluchacz.Login, _sluchacz.Haslo);
-            if (_ds.Organizatorzy.Contains(organizator))
+            organizatorLogin = new Organizator(_sluchacz.Login, _sluchacz.Haslo);
+            if (_ds.Organizatorzy.Contains(organizatorLogin))
             {
                 this.Hide();
-                var organizerMenu = new OrganizerMenu(_ds, _sluchacz, organizator);
+                organizator = _ds.Organizatorzy.Find(x => x.Login.Contains(organizatorLogin.Login));
+                var organizerMenu = new OrganizerMenu(_ds, organizator);
                 organizerMenu.Closed += (s, args) => this.Show();
                 organizerMenu.Show();
             }

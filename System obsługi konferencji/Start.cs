@@ -52,8 +52,9 @@ namespace System_obsługi_konferencji
             label1.Text = "Nazwa użytkownika";
 
             textBox2.Location = new System.Drawing.Point(140, 70);
-            textBox2.Name = "tbxSurname";
+            textBox2.Name = "tbxPassword";
             textBox2.Size = new System.Drawing.Size(118, 22);
+            textBox2.UseSystemPasswordChar = true;
 
             label2.AutoSize = true;
             label2.Location = new System.Drawing.Point(93, 72);

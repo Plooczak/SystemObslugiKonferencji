@@ -15,19 +15,17 @@ namespace System_obsługi_konferencji
     {
         DataStore _ds;
         Sluchacz _sluchacz;
-        Prelegent prelegent = new Prelegent();
-        Prelegent prelegentLogin = new Prelegent();
-        Organizator organizator = new Organizator();
+        Organizator _organizator = new Organizator();
         Organizator organizatorLogin = new Organizator();
         MiejsceKonferencji miejsce = new MiejsceKonferencji();
         Konferencja konferencja1 = new Konferencja();
         ListaUczestnikówKonferencji listaUczestnikow = new ListaUczestnikówKonferencji();
         ListaPrelegentówKonferencji listaPrelegentow = new ListaPrelegentówKonferencji();
 
-        public OrganizerMenu(DataStore ds, Sluchacz sluchacz, Organizator organizator)
+        public OrganizerMenu(DataStore ds, Organizator organizator)
         {
             _ds = ds;
-            _sluchacz = sluchacz;
+            _organizator = organizator;
             InitializeComponent();
         }
 
@@ -38,6 +36,12 @@ namespace System_obsługi_konferencji
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string message = "Z uwagi na fakt, że tworzenie całego systemu pod kątem oceny nie przyniosłoby rezultatów (wszystkie funkcje kluczowe z punktu widzenia wymogów projektu zostały już zaimplementowane), twórcy postanowili pozostawić sobie zadanie zaprojektowania działania tego formularza do dalszej, samodzielnej już zabawy z .NET. To, co zostało zaprezentowane tutaj jest wyłącznie wizualną prezentacją potencjalnych funkcji SOKu.";
+            string caption = "To wciąż wersja Alpha :(";
+            MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+            DialogResult result2;
+            result2 = MessageBox.Show(message, caption, buttons2);
+
             Form przegladKonferencji = new Form();
             przegladKonferencji.Height = 610;
             przegladKonferencji.Width = 773;
@@ -121,7 +125,7 @@ namespace System_obsługi_konferencji
             SortComboBox1.Name = "SortComboBox1";
             SortComboBox1.Size = new System.Drawing.Size(159, 24);
             SortComboBox1.TabIndex = 2;
-            SortComboBox1.SelectedIndexChanged += new System.EventHandler(comboBox1_SelectedIndexChanged);
+            //SortComboBox1.SelectedIndexChanged += new System.EventHandler(comboBox1_SelectedIndexChanged);
 
             // 
             // SortBtn
@@ -178,45 +182,16 @@ namespace System_obsługi_konferencji
             przegladKonferencji.PerformLayout();
             przegladKonferencji.ShowDialog();
             #endregion
-
-            void textBox1_TextChanged(object sender2, EventArgs e2)
-            {
-
-            }
-
-            void tableLayoutPanel1_Paint(object sender2, PaintEventArgs e2)
-            {
-
-            }
-
-            void listBox1_SelectedIndexChanged(object sender2, EventArgs e2)
-            {
-
-            }
-
-            void comboBox1_SelectedIndexChanged(object sender2, EventArgs e2)
-            {
-
-            }
-
-            void FormularzTestowy_Load(object sender2, EventArgs e2)
-            {
-
-            }
-
-            void listView1_SelectedIndexChanged(object sender2, EventArgs e2)
-            {
-
-            }
-
-            void numericUpDown1_ValueChanged(object sender2, EventArgs e2)
-            {
-
-            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string message = "Z uwagi na fakt, że tworzenie całego systemu pod kątem oceny nie przyniosłoby rezultatów (wszystkie funkcje kluczowe z punktu widzenia wymogów projektu zostały już zaimplementowane), twórcy postanowili pozostawić sobie zadanie zaprojektowania działania tego formularza do dalszej, samodzielnej już zabawy z .NET. To, co zostało zaprezentowane tutaj jest wyłącznie wizualną prezentacją potencjalnych funkcji SOKu.";
+            string caption = "To wciąż wersja Alpha :(";
+            MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+            DialogResult result2;
+            result2 = MessageBox.Show(message, caption, buttons2);
+
             Form organizacja = new Form();
             organizacja.Height = 610;
             organizacja.Width = 773;
@@ -804,6 +779,12 @@ namespace System_obsługi_konferencji
 
         private void button3_Click(object sender, EventArgs e)
         {
+            string message = "Z uwagi na fakt, że tworzenie całego systemu pod kątem oceny nie przyniosłoby rezultatów (wszystkie funkcje kluczowe z punktu widzenia wymogów projektu zostały już zaimplementowane), twórcy postanowili pozostawić sobie zadanie zaprojektowania działania tego formularza do dalszej, samodzielnej już zabawy z .NET. To, co zostało zaprezentowane tutaj jest wyłącznie wizualną prezentacją potencjalnych funkcji SOKu.";
+            string caption = "To wciąż wersja Alpha :(";
+            MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+            DialogResult result2;
+            result2 = MessageBox.Show(message, caption, buttons2);
+
             Form twojeWydarzenia = new Form();
             twojeWydarzenia.Height = 560;
             twojeWydarzenia.Width = 681;
@@ -886,6 +867,207 @@ namespace System_obsługi_konferencji
             twojeWydarzenia.ShowDialog();
 
             #endregion
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form profilOrganizatora = new Form();
+            profilOrganizatora.Height = 344;
+            profilOrganizatora.Width = 341;
+
+            #region layout
+            Button btnCancel = new System.Windows.Forms.Button();
+            Button btnEdit= new System.Windows.Forms.Button();
+            Label label1 = new System.Windows.Forms.Label();
+            Label label2 = new System.Windows.Forms.Label();
+            Label label3 = new System.Windows.Forms.Label();
+            Label label4 = new System.Windows.Forms.Label();
+            Label label5 = new System.Windows.Forms.Label();
+            Label label6 = new System.Windows.Forms.Label();
+            Label label7 = new System.Windows.Forms.Label();
+            Label label8 = new System.Windows.Forms.Label();
+            Label label9 = new System.Windows.Forms.Label();
+            Label label10 = new System.Windows.Forms.Label();
+            Label label11 = new System.Windows.Forms.Label();
+            // 
+            // btnCancel
+            // 
+            btnCancel.Location = new System.Drawing.Point(12, 238);
+            btnCancel.Name = "btnCreatorCancel";
+            btnCancel.Size = new System.Drawing.Size(140, 43);
+            btnCancel.TabIndex = 4;
+            btnCancel.Text = "OK";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += new System.EventHandler(HideProfile);
+            // 
+            // btnEdit
+            // 
+            btnEdit.Location = new System.Drawing.Point(178, 238);
+            btnEdit.Name = "btnCreatorOK";
+            btnEdit.Size = new System.Drawing.Size(133, 43);
+            btnEdit.TabIndex = 7;
+            btnEdit.Text = "Edytuj";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += new System.EventHandler(EditProfile);
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = System.Drawing.SystemColors.Control;
+            label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            label1.Location = new System.Drawing.Point(22, 20);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(130, 17);
+            label1.TabIndex = 8;
+            label1.Text = "Nazwa użytkownika";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = System.Drawing.SystemColors.Control;
+            label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            label2.Location = new System.Drawing.Point(107, 54);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(45, 17);
+            label2.TabIndex = 9;
+            label2.Text = "Adres";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = System.Drawing.SystemColors.Control;
+            label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            label3.Location = new System.Drawing.Point(63, 115);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(89, 17);
+            label3.TabIndex = 10;
+            label3.Text = "Numer konta";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = System.Drawing.SystemColors.Control;
+            label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            label4.Location = new System.Drawing.Point(68, 164);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(84, 17);
+            label4.TabIndex = 11;
+            label4.Text = "Nazwa firmy";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = System.Drawing.SystemColors.Control;
+            label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            label5.Location = new System.Drawing.Point(122, 193);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(30, 17);
+            label5.TabIndex = 12;
+            label5.Text = "NIP";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(175, 20);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(16, 17);
+            label6.TabIndex = 13;
+            label6.Text = _organizator.Login;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new System.Drawing.Point(175, 54);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(16, 17);
+            label7.TabIndex = 14;
+            label7.Text = _organizator.adres.ulica +' '+ _organizator.adres.numerBudynku+'/'+ _organizator.adres.numerLokalu;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new System.Drawing.Point(175, 86);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(16, 17);
+            label8.TabIndex = 15;
+            label8.Text = _organizator.adres.kodPocztowy+' '+ _organizator.adres.miejscowosc;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new System.Drawing.Point(175, 115);
+            label9.Name = "label9";
+            label9.Size = new System.Drawing.Size(16, 17);
+            label9.TabIndex = 16;
+            label9.Text = _organizator.numerKonta.Substring(0, 2) + ' ' + _organizator.numerKonta.Substring(2, 4) + ' ' + _organizator.numerKonta.Substring(6, 4) + ' ' + 
+                _organizator.numerKonta.Substring(10, 4) + "\n     " + _organizator.numerKonta.Substring(14, 4) + ' ' + _organizator.numerKonta.Substring(18, 4) + ' ' + _organizator.numerKonta.Substring(22, 4);
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new System.Drawing.Point(175, 164);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(24, 17);
+            label10.TabIndex = 17;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new System.Drawing.Point(175, 193);
+            label11.Name = "label11";
+            label11.Size = new System.Drawing.Size(24, 17);
+            label11.TabIndex = 18;
+            if (_organizator.nazwaFirmy != null)
+            {
+                label10.Text = _organizator.nazwaFirmy;
+                label11.Text = _organizator.nip;
+            }
+            else
+            {
+                label10.Text = "-";
+                label11.Text = "-";
+            }
+            // 
+            // Form
+            // 
+            profilOrganizatora.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            profilOrganizatora.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            profilOrganizatora.ClientSize = new System.Drawing.Size(323, 297);
+            profilOrganizatora.Controls.Add(label11);
+            profilOrganizatora.Controls.Add(label10);
+            profilOrganizatora.Controls.Add(label9);
+            profilOrganizatora.Controls.Add(label8);
+            profilOrganizatora.Controls.Add(label7);
+            profilOrganizatora.Controls.Add(label6);
+            profilOrganizatora.Controls.Add(label5);
+            profilOrganizatora.Controls.Add(label4);
+            profilOrganizatora.Controls.Add(label3);
+            profilOrganizatora.Controls.Add(label2);
+            profilOrganizatora.Controls.Add(label1);
+            profilOrganizatora.Controls.Add(btnEdit);
+            profilOrganizatora.Controls.Add(btnCancel);
+            profilOrganizatora.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            profilOrganizatora.Name = "Form";
+            profilOrganizatora.Text = "Twój profil";
+            profilOrganizatora.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            profilOrganizatora.ResumeLayout(false);
+            profilOrganizatora.PerformLayout();
+            profilOrganizatora.ShowDialog();
+
+            #endregion
+
+            void HideProfile(object sender2, EventArgs e2)
+            {
+                profilOrganizatora.Close();
+            }
+            void EditProfile(object sender2, EventArgs e2)
+            {
+                string message = "Tu jeszcze nic nie ma.";
+                string caption = "To wciąż wersja Alpha :(";
+                MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+                DialogResult result2;
+                result2 = MessageBox.Show(message, caption, buttons2);
+            }
         }
     }
 }

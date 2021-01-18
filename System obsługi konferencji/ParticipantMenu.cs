@@ -22,23 +22,14 @@ namespace System_obsługi_konferencji
             this.Close();
         }
 
-        private void pbxCloseClick(object sender, EventArgs e)
-        {
-            string message = "Czy na pewno chcesz opuścić aplikację?";
-            string caption = "Nie odchodź :(";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            DialogResult result;
-
-            result = MessageBox.Show(message, caption, buttons);
-            if (result == System.Windows.Forms.DialogResult.Yes)
-            {
-                //_ds.DataStore_save(_ds);
-                Application.Exit();
-            }
-        }//Zrobione
-
         private void button1_Click(object sender, EventArgs e)
         {
+            string message = "Z uwagi na fakt, że tworzenie całego systemu pod kątem oceny nie przyniosłoby rezultatów (wszystkie funkcje kluczowe z punktu widzenia wymogów projektu zostały już zaimplementowane), twórcy postanowili pozostawić sobie zadanie zaprojektowania działania tego formularza do dalszej, samodzielnej już zabawy z .NET. To, co zostało zaprezentowane tutaj jest wyłącznie wizualną prezentacją potencjalnych funkcji SOKu.";
+            string caption = "To wciąż wersja Alpha :(";
+            MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+            DialogResult result2;
+            result2 = MessageBox.Show(message, caption, buttons2);
+
             Form przegladKonferencji = new Form();
             przegladKonferencji.Height = 610;
             przegladKonferencji.Width = 773;
@@ -419,6 +410,12 @@ namespace System_obsługi_konferencji
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string message = "Z uwagi na fakt, że tworzenie całego systemu pod kątem oceny nie przyniosłoby rezultatów (wszystkie funkcje kluczowe z punktu widzenia wymogów projektu zostały już zaimplementowane), twórcy postanowili pozostawić sobie zadanie zaprojektowania działania tego formularza do dalszej, samodzielnej już zabawy z .NET. To, co zostało zaprezentowane tutaj jest wyłącznie wizualną prezentacją potencjalnych funkcji SOKu.";
+            string caption = "To wciąż wersja Alpha :(";
+            MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+            DialogResult result2;
+            result2 = MessageBox.Show(message, caption, buttons2);
+
             Form zapisy = new Form();
             zapisy.Height = 534;
             zapisy.Width = 745;
@@ -523,6 +520,12 @@ namespace System_obsługi_konferencji
 
         private void button3_Click(object sender, EventArgs e)
         {
+            string message = "Z uwagi na fakt, że tworzenie całego systemu pod kątem oceny nie przyniosłoby rezultatów (wszystkie funkcje kluczowe z punktu widzenia wymogów projektu zostały już zaimplementowane), twórcy postanowili pozostawić sobie zadanie zaprojektowania działania tego formularza do dalszej, samodzielnej już zabawy z .NET. To, co zostało zaprezentowane tutaj jest wyłącznie wizualną prezentacją potencjalnych funkcji SOKu.";
+            string caption = "To wciąż wersja Alpha :(";
+            MessageBoxButtons buttons2 = MessageBoxButtons.OK;
+            DialogResult result2;
+            result2 = MessageBox.Show(message, caption, buttons2);
+
             Form twojeWydarzenia = new Form();
             twojeWydarzenia.Height = 356;
             twojeWydarzenia.Width = 577;

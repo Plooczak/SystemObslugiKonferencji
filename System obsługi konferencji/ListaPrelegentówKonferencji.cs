@@ -8,8 +8,8 @@ namespace System_obsługi_konferencji
 {
     public class ListaPrelegentówKonferencji: IAktualizujListe, ICloneable
     {
-        //private int liczbaPrelegentow;
-        //public int LiczbaPrelegentow { get => liczbaPrelegentow; set => liczbaPrelegentow = value; }
+        private int liczbaPrelegentow;
+        public int LiczbaPrelegentow { get => liczbaPrelegentow; set => liczbaPrelegentow = value; }
         private LinkedList<Prelegent> listaPrelegentow;
         public LinkedList<Prelegent> Lista { get => listaPrelegentow; set => listaPrelegentow = value; }
         
@@ -21,6 +21,7 @@ namespace System_obsługi_konferencji
         public void DodajObiekt(dynamic prelegent)
         {
             listaPrelegentow.AddLast(prelegent);
+            liczbaPrelegentow++;
         }
 
         public bool UsunObiekt(string login)
@@ -75,6 +76,22 @@ namespace System_obsługi_konferencji
             ListaPrelegentówKonferencji kopia = (ListaPrelegentówKonferencji)this.Clone();
             kopia.listaPrelegentow = new LinkedList<Prelegent>(listaPrelegentow.Select(x => (Prelegent)x.Clone()));
             return kopia;
+        }
+
+        public List<Prelegent> ZnajdzPrelegenta(string stopien)
+        {
+            List<Prelegent> nowa = new List<Prelegent>();
+
+            foreach (Prelegent p in listaPrelegentow)
+            {
+                if (p.stopienNaukowy.Equals(stopien))
+                {
+                    nowa.Add(p);
+                }
+
+            }
+
+            return nowa.Count == 0 ? null : nowa;
         }
     }
 }

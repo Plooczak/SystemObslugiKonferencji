@@ -11,13 +11,11 @@ namespace System_obsługi_konferencji
     {
         public Adres adres { get; set; }
         public string numerKonta { get; set; }
-        //public static bool czyFirma { get; set; }
         public string nip { get; set; }
         public string nazwaFirmy { get; set; }
 
         public Organizator()
         {
-            //czyFirma = false;
             adres = new Adres();
             numerKonta = null;
             nip = null;
@@ -25,7 +23,6 @@ namespace System_obsługi_konferencji
         }
         public Organizator(string login, string haslo):base(login,haslo)
         {
-            //czyFirma = null;
             adres = null;
             numerKonta = null;
             nip = null;
@@ -35,7 +32,6 @@ namespace System_obsługi_konferencji
         {
             this.adres = adres;
             this.numerKonta = numerKonta;
-            //czyFirma = false;
             nip = null;
             nazwaFirmy = null;
         }
@@ -44,7 +40,6 @@ namespace System_obsługi_konferencji
         {
             this.adres = adres;
             this.numerKonta = numerKonta;
-            //czyFirma = true;
             this.nip = nip;
             this.nazwaFirmy = nazwaFirmy;
         }

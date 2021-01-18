@@ -162,10 +162,6 @@ namespace System_obsługi_konferencji
         //}
     }
 
-    //Pokaż nadchodzące posortowane datami 
-    //Pokaż wszystkie
-
-
     public class DataComparator : IComparer<Konferencja>
     {
         int IComparer<Konferencja>.Compare(Konferencja x, Konferencja y)

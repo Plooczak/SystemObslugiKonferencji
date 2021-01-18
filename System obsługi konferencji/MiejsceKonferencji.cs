@@ -16,8 +16,8 @@ namespace System_obsługi_konferencji
 
         public MiejsceKonferencji()
         {
-            this.nrSali = 0;
-            this.iloscMiejsc = 0;
+            nrSali = 0;
+            iloscMiejsc = 0;
         }
 
         public MiejsceKonferencji(string ulica, string miejscowosc, string kodPocztowy, string numerBudynku, string numerLokalu, int nrSali, int iloscMiejsc): base(ulica, miejscowosc, kodPocztowy, numerBudynku, numerLokalu)
@@ -36,6 +36,11 @@ namespace System_obsługi_konferencji
             {
                 return false;
             }
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 }

@@ -110,5 +110,23 @@ namespace SystemObsługiKonferencjiTesty
             int liczba = 0;
             Assert.IsTrue(list.PoliczObiekty() == liczba);
         }
+
+        [TestMethod]
+        public void TestZnajdzPrelegenta()
+        {
+            Prelegent p1 = new Prelegent("login1", "haslo1", "profesor", "matematyka", "opis1");
+            Prelegent p2 = new Prelegent("login2", "haslo2", "magister", "matematyka", "opis2");
+            Prelegent p3 = new Prelegent("login3", "haslo3", "doktor", "fizyka", "opis3");
+            Prelegent p4 = new Prelegent("login4", "haslo4", "profesor", "filozofia", "opis4");
+            Prelegent p5 = new Prelegent("login5", "haslo5", "doktor", "medycyna", "opis5");
+            ListaPrelegentówKonferencji list = new ListaPrelegentówKonferencji();
+            list.DodajObiekt(p1);
+            list.DodajObiekt(p2);
+            list.DodajObiekt(p3);
+            list.DodajObiekt(p4);
+            list.DodajObiekt(p5);
+            List<Prelegent> list2 = list.ZnajdzPrelegenta("profesor");
+            Assert.AreEqual(2, list2.Count);
+        }
     }
 }

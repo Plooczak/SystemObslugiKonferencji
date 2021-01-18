@@ -16,11 +16,11 @@ namespace System_obsługi_konferencji
 
         public Adres()
         {
-            this.ulica = null;
-            this.miejscowosc = null;
-            this.kodPocztowy = null;
-            this.numerBudynku = null;
-            this.numerLokalu = null;
+            ulica = null;
+            miejscowosc = null;
+            kodPocztowy = null;
+            numerBudynku = null;
+            numerLokalu = null;
         }
         public Adres(string ulica, string miejscowosc, string kodPocztowy, string numerBudynku, string numerLokalu) : this()
         {
@@ -29,6 +29,11 @@ namespace System_obsługi_konferencji
             this.kodPocztowy = kodPocztowy;
             this.numerBudynku = numerBudynku;
             this.numerLokalu = numerLokalu;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 }

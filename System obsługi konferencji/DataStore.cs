@@ -16,13 +16,6 @@ namespace System_obsługi_konferencji
         public List<Prelegent> Prelegenci { get; set; }
         public List<Organizator> Organizatorzy { get; set; }
 
-
-        //DataStore(List<Sluchacz> sluchacze, List<Prelegent> prelegenci, List<Organizator> organizatorzy)
-        //{
-        //    this.Sluchacze = sluchacze;
-        //    this.Prelegenci = prelegenci;
-        //    this.Organizatorzy = organizatorzy;
-        //}
         public void DataStore_save(DataStore ds)
         {
             ds.SortAll(ds);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System_obsługi_konferencji
+namespace System_obsługi_konferencji 
 {
     public class ListaMiejsc: IAktualizujListe
     {

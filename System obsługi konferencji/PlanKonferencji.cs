@@ -8,8 +8,6 @@ namespace System_obsługi_konferencji
 {
     public class PlanKonferencji
     {
-        //private string idKonferencji;
-        //public string IdKonferencji { get => idKonferencji; set  =>  idKonferencji  =  value; }
         private TimeSpan czasDlaReferatow;
         public TimeSpan CzasDlaReferatow { get => czasDlaReferatow; set => czasDlaReferatow = value; }
         private LinkedList<Referat> planKonferencji;
@@ -17,20 +15,13 @@ namespace System_obsługi_konferencji
 
         public PlanKonferencji()
         {
-           // idKonferencji = null;
             planKonferencji = new LinkedList<Referat>();
             czasDlaReferatow = new TimeSpan(0, 0, 0);
         }
 
-        //public PlanKonferencji(string id) : this()
-        //{
-        //   this.idKonferencji = id;
-        //}
-
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            //sb.AppendLine("Id: " + idKonferencji);
             sb.AppendLine("Lista referatow: ");
             foreach (Referat r in planKonferencji)
             {
